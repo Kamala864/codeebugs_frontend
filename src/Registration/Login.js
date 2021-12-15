@@ -1,19 +1,14 @@
 import { Component } from "react";
 
 class Login extends Component{
+  
     render(){
         return(
             <div>
   <div className="container" id="container">
     <div className="form-container sign-up-container">
-      <form action="#">
+      <form>
         <h1>Create Account</h1>
-        <div className="social-container">
-          <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
-          <a href="#" className="social"><i className="fab fa-google-plus-g" /></a>
-          <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
-        </div>
-        <span>or use your email for registration</span>
         <input type="text" placeholder="Name" />
         <input type="email" placeholder="Email" />
         <input type="password" placeholder="Password" />
@@ -21,14 +16,8 @@ class Login extends Component{
       </form>
     </div>
     <div className="form-container sign-in-container">
-      <form action="#">
+      <form>
         <h1>Sign in</h1>
-        <div className="social-container">
-          <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
-          <a href="#" className="social"><i className="fab fa-google-plus-g" /></a>
-          <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
-        </div>
-        <span>or use your account</span>
         <input type="email" placeholder="Email" />
         <input type="password" placeholder="Password" />
         <a href="#">Forgot your password?</a>
@@ -50,11 +39,7 @@ class Login extends Component{
       </div>
     </div>
   </div>
-  <script src="js/login.js"></script>
 </div>
-
-
-
 
         )
     }
