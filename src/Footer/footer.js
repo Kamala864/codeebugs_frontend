@@ -85,67 +85,7 @@ class Footer extends Component{
           </ul>
         </div>
       </div>
-      <div className="col-lg-3 col-sm-6">
-        <div className="single-footer-widget">
-          <h3>Photo Gallery</h3>
-          <ul className="photo-gallery-list">
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-1.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-2.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-3.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-4.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-5.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-6.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-1.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-2.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <img src="assets/img/footer-gallery/footer-gallery-3.jpg" alt="image" />
-                <a href="#" target="_blank" className="link-btn" />
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>
