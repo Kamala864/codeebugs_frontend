@@ -1,27 +1,95 @@
+import axios from "axios";
 import { Component } from "react";
 
 class Login extends Component{
   
+  state={
+    loginemail:'',
+    loginpassword:'',
+    full_name : "",
+    email : "",
+    age : "",
+    password : "",
+    confirm_password : ""
+  }
+
+
+  changeState=(e)=>{
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+  }
+
+  Logindata=(e)=>{
+    e.preventDefault();
+    if (this.state.loginemail === "" ||
+        this.state.loginpassword === "") {
+         alert("Please fill all of the informations!")
+    }
+    else {
+        const data={
+          email: this.state.loginemail,
+          password: this.state.loginpassword
+        }
+        axios.post('http://localhost:90/user/login', data)
+        .then((res)=>{
+          localStorage.setItem('token', res.data.token);
+          alert("Login success!")
+        })
+        .catch((err)=>{
+          console.log(err.response)
+          alert("Invalid Credentials")
+        })
+      }
+}
+
+  register = (e) => {
+    e.preventDefault()
+    if (this.state.full_name === "" ||
+         this.state.email === "" ||
+         this.state.age === "" || this.state.password === "") {
+         alert("Please fill all of the informations!")
+    }
+    else {
+          if (this.state.password === this.state.confirm_password) {
+              const data = {
+                   full_name: this.state.full_name,
+                   email: this.state.email,
+                   age: this.state.age,
+                   password: this.state.password
+              }
+
+              axios.post("http://localhost:90/signup",data)
+              alert("Registration successful!")
+         } else {
+              alert("Password does not match!")
+         }
+    }
+}
+
+
     render(){
         return(
             <div>
   <div className="container" id="container">
     <div className="form-container sign-up-container">
-      <form>
+      <form action="post">
         <h1>Create Account</h1>
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button>Sign Up</button>
+        <input type="text" name="full_name"  placeholder="Full Name" value={this.state.full_name} onChange={this.changeState}/>
+        <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeState}/>
+        <input type="text" name="age"  placeholder="Age" value={this.state.age} onChange={this.changeState}/> 
+        <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeState} />
+        <input type="password" name="confirm_password" placeholder="Confirm Password" value={this.state.confirm_password} onChange={this.changeState} />
+        <button onClick={this.register}>Sign Up</button>
       </form>
     </div>
     <div className="form-container sign-in-container">
-      <form>
+      <form action="post">
         <h1>Sign in</h1>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input type="email" name="loginemail" value={this.state.loginemail} onChange={this.changeState} placeholder="Email" />
+        <input type="password" name="loginpassword" value={this.state.loginpassword} onChange={this.changeState} placeholder="Password" />
         <a href="#">Forgot your password?</a>
-        <button>Sign In</button>
+        <button type="submit" onClick={this.Logindata}>Sign In</button>
       </form>
     </div>
     <div className="overlay-container">
