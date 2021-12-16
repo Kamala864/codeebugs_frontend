@@ -7,7 +7,7 @@ class Courses extends Component{
   <div className="container">
     <div className="section-title">
       <span>Classes</span>
-      <h2>Popular Classes</h2>
+      <h2>Popular Courses</h2>
     </div>
     <div className="row">
       <div className="col-lg-4 col-md-6">
