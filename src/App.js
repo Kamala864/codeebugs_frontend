@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 import Footer from './Footer/footer';
 import Header from './Header/header';
 import Mid from './Mid/mid';
@@ -10,8 +10,10 @@ function App() {
     <BrowserRouter>
     <Header></Header>
     <Mid></Mid>
-    <Footer></Footer>
+    <Footer></Footer>    
     </BrowserRouter>
+    
+    
   );
 }
 

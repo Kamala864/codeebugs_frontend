@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Route, Routes } from "react-router-dom";
+import Admindashboard from "./AdminDashboard";
 import Banner from "./banner";
 import Courses from "./courses";
 import Courses2 from "./courses2";
@@ -15,6 +16,7 @@ class Mid extends Component{
             <Route path="/" element={<Home />} />
             <Route path="/userprofile" element={<UserProfile />} />
             <Route path="/logout" element={<UserProfile/>} />
+            <Route path="/admin" element={<Admindashboard/>} />
             </Routes>
             </>
         )
