@@ -23,10 +23,4 @@ ReactDOM.render(
 );
 
 
-<<<<<<< HEAD
-
-
 reportWebVitals();
-=======
-reportWebVitals();
->>>>>>> bae7ad7407d5626844bc8b7136ed7ece52bcdb92

@@ -71,7 +71,9 @@ class Login extends Component{
     render(){
         return(
             <div>
-  <div className="container" id="container">
+              <section className="class-area2 bg-fdf6ed pt-100 pb-70">
+              <div className="row">
+  <div className="cont" id="container">
     <div className="form-container sign-up-container">
       <form action="post">
         <h1>Create Account</h1>
@@ -108,6 +110,11 @@ class Login extends Component{
     </div>
   </div>
 </div>
+
+</section>
+</div>
+
+
 
         )
     }

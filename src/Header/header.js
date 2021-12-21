@@ -19,7 +19,7 @@ class Header extends Component{
   <div className="main-navbar">
     <div className="container">
       <nav className="navbar navbar-expand-md navbar-light">
-        <a className="navbar-brand" href="index.html">
+        <a className="navbar-brand" href="/">
           <img src="assets/img/logo.png" alt="image" />
         </a>
         <div className="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -69,7 +69,7 @@ class Header extends Component{
 </div>
             
             <div className="option-item">
-              <a href="#" className="default-btn">Login</a>
+              <a href="/login" className="default-btn">Login</a>
             </div>
           </div>
         </div>
