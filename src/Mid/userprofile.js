@@ -5,13 +5,6 @@ class UserProfile extends Component {
         return(
             <div className="container">
   <div className="main-body">
-    <nav aria-label="breadcrumb" className="main-breadcrumb">
-      <ol className="breadcrumb">
-        <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li className="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-        <li className="breadcrumb-item active" aria-current="page">User Profile</li>
-      </ol>
-    </nav>
     <div className="row gutters-sm">
       <div className="col-md-4 mb-3">
         <div className="card">
@@ -22,8 +15,6 @@ class UserProfile extends Component {
                 <h4>John Doe</h4>
                 <p className="text-secondary mb-1">Full Stack Developer</p>
                 <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                <button className="btn btn-primary">Follow</button>
-                <button className="btn btn-outline-primary">Message</button>
               </div>
             </div>
           </div>
@@ -76,24 +67,6 @@ class UserProfile extends Component {
             <hr />
             <div className="row">
               <div className="col-sm-3">
-                <h6 className="mb-0">Phone</h6>
-              </div>
-              <div className="col-sm-9 text-secondary">
-                (239) 816-9029
-              </div>
-            </div>
-            <hr />
-            <div className="row">
-              <div className="col-sm-3">
-                <h6 className="mb-0">Mobile</h6>
-              </div>
-              <div className="col-sm-9 text-secondary">
-                (320) 380-4539
-              </div>
-            </div>
-            <hr />
-            <div className="row">
-              <div className="col-sm-3">
                 <h6 className="mb-0">Address</h6>
               </div>
               <div className="col-sm-9 text-secondary">
@@ -103,7 +76,7 @@ class UserProfile extends Component {
             <hr />
             <div className="row">
               <div className="col-sm-12">
-                <a className="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                <a className="btn btn-info " href="#">Edit</a>
               </div>
             </div>
           </div>

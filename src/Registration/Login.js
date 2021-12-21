@@ -35,6 +35,7 @@ class Login extends Component{
         .then((res)=>{
           localStorage.setItem('token', res.data.token);
           alert("Login success!")
+          window.location.href="/"
         })
         .catch((err)=>{
           console.log(err.response)
@@ -61,6 +62,7 @@ class Login extends Component{
 
               axios.post("http://localhost:90/signup",data)
               alert("Registration successful!")
+              window.location.href="/login"
          } else {
               alert("Password does not match!")
          }
@@ -82,7 +84,7 @@ class Login extends Component{
         <input type="text" name="age"  placeholder="Age" value={this.state.age} onChange={this.changeState}/> 
         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeState} />
         <input type="password" name="confirm_password" placeholder="Confirm Password" value={this.state.confirm_password} onChange={this.changeState} />
-        <button onClick={this.register}>Sign Up</button>
+        <button onClick={this.register} >Sign Up</button>
       </form>
     </div>
     <div className="form-container sign-in-container">

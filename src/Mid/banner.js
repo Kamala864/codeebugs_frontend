@@ -11,7 +11,6 @@ class Banner extends Component{
           <div className="main-banner-content">
             <span>Play, Learn and Grow</span>
             <h1>We are a Childcare Professional</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <div className="banner-btn">
               <a href="#" className="default-btn">
                 Learn More
