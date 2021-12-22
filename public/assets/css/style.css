@@ -5066,6 +5066,16 @@ Event Details  Area CSS
 /*================================================
 Class Details  Area CSS
 =================================================*/
+
+.class-details-area {
+  position: relative;
+  z-index: 1;
+}
+
+.class-details-area.bg-fdf6ed {
+  background-color: #fdf6ed;
+}
+
 .class-details-desc .class-details-tab {
   margin-top: 30px;
 }
