@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { NavLink } from "react-router-dom";
 
 class Header extends Component{
   logOut=(e)=>{
@@ -36,29 +35,15 @@ class Header extends Component{
             </a>
           </li>
         </ul>
+        
         <div className="others-options d-flex align-items-center">
-        <div class="option-item">
-<div className="dropdown language-switcher d-inline-block">
-<button className="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<span>Profile <i className="bx bx-chevron-down"/></span>
-</button>
-<div className="dropdown-menu">
-  <NavLink to="/userprofile" className="dropdown-item d-flex align-items-center">
-<img src="assets/img/Navbar/user.png" className="shadow-sm" alt="flag" />
-    <span>Profile</span>
-  </NavLink>
-  <NavLink to="/login" className="dropdown-item d-flex align-items-center" onClick={this.logOut}>
-  <img src="assets/img/Navbar/logout.png" className="shadow-sm" alt="flag" />
-    <span>Logout</span>
-  </NavLink>
-</div>
-</div>
-</div> 
-          <div className="option-item">
-            <a href="/login" className="default-btn">Login</a>
-          </div>
+        <div class="nav-item">
+        <a href="/userprofile" className="nav-link font-weight-bold">
+              PROFILE
+            </a>
         </div>
-      </div>
+        </div>
+        </div>
       }
       else{
         var menu = <div className="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -88,13 +73,6 @@ class Header extends Component{
           </li>
         </ul>
         <div className="others-options d-flex align-items-center">
-        <div class="option-item">
-<div className="dropdown language-switcher d-inline-block">
-<button className="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  
-</button>
-</div>
-</div> 
           <div className="option-item">
             <a href="/login" className="default-btn">Login</a>
           </div>
@@ -122,8 +100,6 @@ class Header extends Component{
           <img src="logo.png" alt="image" />
         </a>
           {menu}
-        
-        
       </nav>
     </div>
   </div>
@@ -134,16 +110,6 @@ class Header extends Component{
           <div className="circle circle-one" />
           <div className="circle circle-two" />
           <div className="circle circle-three" />
-        </div>
-      </div>
-      <div className="container">
-        <div className="option-inner">
-          <div className="others-options d-flex align-items-center">
-            
-            <div className="option-item">
-              <a href="#" className="default-btn">Contact Us</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
