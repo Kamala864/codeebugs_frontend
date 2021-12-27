@@ -4,7 +4,6 @@ class Header extends Component{
   logOut=(e)=>{
     localStorage.clear()
     window.location.href="/login"
-
   }
     render() {
 
@@ -39,7 +38,7 @@ class Header extends Component{
         <div className="others-options d-flex align-items-center">
         <div class="nav-item">
         <a href="/userprofile" className="nav-link font-weight-bold">
-              PROFILE
+              {localStorage.getItem('username')}
             </a>
         </div>
         </div>
@@ -62,11 +61,6 @@ class Header extends Component{
             
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
-              Payments
-            </a>
-          </li>
-          <li className="nav-item">
             <a href="contact.html" className="nav-link">
               About Us
             </a>
@@ -86,8 +80,8 @@ class Header extends Component{
     <div className="container">
       <div className="main-responsive-menu">
         <div className="logo">
-          <a href="index.html">
-            <img src="assets/img/logo.png" alt="image" />
+          <a href="/">
+            <img src="logo.png" alt="image" />
           </a>
         </div>
       </div>

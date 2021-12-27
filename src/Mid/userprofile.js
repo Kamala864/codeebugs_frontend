@@ -16,7 +16,7 @@ class UserProfile extends Component {
             <div className="d-flex flex-column align-items-center text-center">
               <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
               <div className="mt-3">
-                <h4>John Doe</h4>
+                <h4>{localStorage.getItem('username')}</h4>
                 <p className="text-secondary mb-1">Full Stack Developer</p>
                 <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
               </div>
@@ -39,7 +39,7 @@ class UserProfile extends Component {
                 <h6 className="mb-0">Full Name</h6>
               </div>
               <div className="col-sm-9 text-secondary">
-                Kenneth Valdez
+              {localStorage.getItem('username')}
               </div>
             </div>
             <hr />
@@ -48,7 +48,7 @@ class UserProfile extends Component {
                 <h6 className="mb-0">Email</h6>
               </div>
               <div className="col-sm-9 text-secondary">
-                fip@jukmuh.al
+              {localStorage.getItem('email')}
               </div>
             </div>
             <hr />

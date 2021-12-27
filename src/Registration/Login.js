@@ -34,6 +34,8 @@ class Login extends Component{
         axios.post('http://localhost:90/user/login', data)
         .then((res)=>{
           localStorage.setItem('token', res.data.token);
+          localStorage.setItem('username', res.data.username);
+          localStorage.setItem('email', res.data.email);
           alert("Login success!")
           window.location.href="/"
         })

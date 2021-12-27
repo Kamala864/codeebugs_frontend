@@ -1,6 +1,35 @@
+import axios from "axios";
 import { Component } from "react";
 
 class CourseDetail extends Component{
+        state = {
+          mycourse : []
+      }
+
+      componentDidMount(){
+        axios.get("http://localhost:90/course/showall")
+        .then((res)=>{
+            this.setState({
+                mycourse : res.data
+            })
+        })
+        .catch((err)=>{
+        })
+    }
+    
+    singleCourse=(course_id)=>{
+      axios.get("http://localhost:90/course/"+course_id)
+      .then((res)=>{
+          this.props.history.push({
+              pathname: '/coursedetail',
+                state: res.data
+            })
+            window.location.href="/coursedetail"
+      })
+      .catch()
+      
+    }
+
     render(){
         return(
            <section className="class-details-area pt-100 pb-70">
@@ -17,7 +46,7 @@ class CourseDetail extends Component{
                 <ul className="tabs">
                   <li>
                     <a href="#">
-                      Description
+                    {this.props.location.state.description}
                     </a>
                   </li>
                   <li>

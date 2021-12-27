@@ -1,6 +1,43 @@
+import axios from "axios";
 import { Component } from "react";
 
+
+
 class Courses extends Component{
+
+
+  state={
+    listcourses : []
+}
+
+componentDidMount(){
+  axios.get("http://localhost:90/course/showall")
+  .then((res)=>{
+      this.setState({
+          listcourses: res.data
+      })
+      console.log(res)
+      localStorage.setItem('courselength',this.state.listcourses.length)
+
+  })
+  .catch((err)=>{
+
+  })
+
+}
+
+singleCourse=(course_id)=>{
+  axios.get("http://localhost:90/course/"+course_id)
+  .then((res)=>{
+      this.props.history.push({
+          pathname: '/coursedetail',
+            state: res.data
+        })
+        window.location.href="/coursedetail"
+  })
+  .catch()
+}
+
     render(){
         return(
             <div>
@@ -24,204 +61,49 @@ class Courses extends Component{
   <section className="class-area pt-100 pb-100">
     <div className="container">
       <div className="row">
-        <div className="col-lg-4 col-md-6">
-          <div className="single-class">
-            <div className="class-image">
-              <a href="#">
-                <img src="assets/img/class/class-1.jpg" alt="image" />
-              </a>
-            </div>
-            <div className="class-content">
-              <div className="price">$880</div>
-              <h3>
-                <a href="#">Color Matching</a>
-              </h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <ul className="class-list">
-                <li>
-                  <span>Age:</span>
-                  3-5 Year
-                </li>
-                <li>
-                  <span>Time:</span>
-                  8-10 AM
-                </li>
-                <li>
-                  <span>Seat:</span>
-                  25
-                </li>
-              </ul>
-              <div className="class-btn">
-                <a href="#" className="default-btn">Join Class</a>
+
+
+{
+        this.state.listcourses.map(course=>{
+            return(
+              <div className="col-lg-4 col-md-6">
+              <div className="single-class">
+                <div className="class-image">
+                <a onClick={()=>this.singleCourse(course._id)}>
+                    <img src="assets/img/class/class-1.jpg" alt="image" />
+                  </a>
+                </div>
+                <div className="class-content">
+                  <div className="price">$880</div>
+                  <h3>
+                    <a href="#">{course.title}</a>
+                  </h3>
+                  <p>{course.description}</p>
+                  <ul className="class-list">
+                    <li>
+                      <span>Age:</span>
+                      3-5 Year
+                    </li>
+                    <li>
+                      <span>Time:</span>
+                      8-10 AM
+                    </li>
+                    <li>
+                      <span>Seat:</span>
+                      25
+                    </li>
+                  </ul>
+                  <div className="class-btn">
+                    <a href="#" className="default-btn">Join Class</a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6">
-          <div className="single-class">
-            <div className="class-image">
-              <a href="#">
-                <img src="assets/img/class/class-2.jpg" alt="image" />
-              </a>
-            </div>
-            <div className="class-content">
-              <div className="price">$790</div>
-              <h3>
-                <a href="#">Learning Disciplines</a>
-              </h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <ul className="class-list">
-                <li>
-                  <span>Age:</span>
-                  3-5 Year
-                </li>
-                <li>
-                  <span>Time:</span>
-                  8-10 AM
-                </li>
-                <li>
-                  <span>Seat:</span>
-                  25
-                </li>
-              </ul>
-              <div className="class-btn">
-                <a href="#" className="default-btn">Join Class</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6">
-          <div className="single-class">
-            <div className="class-image">
-              <a href="#">
-                <img src="assets/img/class/class-3.jpg" alt="image" />
-              </a>
-            </div>
-            <div className="class-content">
-              <div className="price">$590</div>
-              <h3>
-                <a href="#">Drawing</a>
-              </h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <ul className="class-list">
-                <li>
-                  <span>Age:</span>
-                  3-5 Year
-                </li>
-                <li>
-                  <span>Time:</span>
-                  8-10 AM
-                </li>
-                <li>
-                  <span>Seat:</span>
-                  25
-                </li>
-              </ul>
-              <div className="class-btn">
-                <a href="#" className="default-btn">Join Class</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6">
-          <div className="single-class">
-            <div className="class-image">
-              <a href="#">
-                <img src="assets/img/class/class-4.jpg" alt="image" />
-              </a>
-            </div>
-            <div className="class-content">
-              <div className="price">$880</div>
-              <h3>
-                <a href="#">Kids Painting Class</a>
-              </h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <ul className="class-list">
-                <li>
-                  <span>Age:</span>
-                  3-5 Year
-                </li>
-                <li>
-                  <span>Time:</span>
-                  8-10 AM
-                </li>
-                <li>
-                  <span>Seat:</span>
-                  25
-                </li>
-              </ul>
-              <div className="class-btn">
-                <a href="#" className="default-btn">Join Class</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6">
-          <div className="single-class">
-            <div className="class-image">
-              <a href="#">
-                <img src="assets/img/class/class-5.jpg" alt="image" />
-              </a>
-            </div>
-            <div className="class-content">
-              <div className="price">$790</div>
-              <h3>
-                <a href="#">Martial Art Class</a>
-              </h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <ul className="class-list">
-                <li>
-                  <span>Age:</span>
-                  3-5 Year
-                </li>
-                <li>
-                  <span>Time:</span>
-                  8-10 AM
-                </li>
-                <li>
-                  <span>Seat:</span>
-                  25
-                </li>
-              </ul>
-              <div className="class-btn">
-                <a href="#" className="default-btn">Join Class</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6">
-          <div className="single-class">
-            <div className="class-image">
-              <a href="#">
-                <img src="assets/img/class/class-6.jpg" alt="image" />
-              </a>
-            </div>
-            <div className="class-content">
-              <div className="price">$590</div>
-              <h3>
-                <a href="#">Music Class</a>
-              </h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <ul className="class-list">
-                <li>
-                  <span>Age:</span>
-                  3-5 Year
-                </li>
-                <li>
-                  <span>Time:</span>
-                  8-10 AM
-                </li>
-                <li>
-                  <span>Seat:</span>
-                  25
-                </li>
-              </ul>
-              <div className="class-btn">
-                <a href="#" className="default-btn">Join Class</a>
-              </div>
-            </div>
-          </div>
-        </div>
+            )
+        })
+
+    }
+
         <div className="col-lg-12 col-md-12">
           <div className="pagination-area">
             <a href="#" className="prev page-numbers">

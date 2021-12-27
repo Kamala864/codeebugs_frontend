@@ -1,79 +1,58 @@
 import axios from "axios";
 import { Component } from "react";
-import { Navigate, Route } from "react-router-dom";
 
 class CourseInsert extends Component{
 
     state = {
         courseTitle : '',
-        courseContent: '',
-        coursePrice: '',
-        courseType:'',
-        filename : null,
-        user: localStorage.getItem('userId'),
-        con : {
-            headers : {'authorization' : `Bearer ${localStorage.getItem('token')}`}
-        }
+        courseDescription: '',
+        courseLecturer: ''
     }
+
     textChangeHandler=(e)=>{
         this.setState({
             [e.target.name] : e.target.value
         })
     }
 
-    changeFileHandler=(e)=>{
-        this.setState({
-            filename : e.target.files[0]
-        })
-    }
 
-    sendData = (e)=>{
+    sendData =(e)=>{
         e.preventDefault();
-        const data =  new FormData();
-
-        data.append('courseTitle', this.state.courseTitle)
-        data.append('courseContent', this.state.courseContent)
-        data.append('courseType', this.state.courseType)
-        data.append('coursePrice', this.state.coursePrice)
-        data.append('user', this.state.user)
-        data.append('course_image', this.state.filename)
-        axios.post("http://localhost:90/course/insert", data, this.state.con)
+        const data = {
+            courseTitle: this.state.courseTitle,
+            courseDescription: this.state.courseDescription,
+            courseLecturer: this.state.courseLecturer
+        }
+        axios.post("http://localhost:90/addcourse", data)
         .then((result)=>{
             console.log(result)
+            alert("Course inserted")
         })
         .catch()
-        window.location.href="/courses"
+        window.location.href="/courseinsert"
     }
     render(){
-        if (!localStorage.getItem('token')) {
-            <Route path="/" element={<Navigate replace to="/" />} />
-        }
         return(
-<section className="class-area2 bg-fdf6ed pt-100 pb-70">
-  <div className="cont" id="container">
-      <div className="d-flex justify-content-center">
-  <div className="form-container col-lg-8 ">
+                <section className="class-area2 bg-fdf6ed pt-100 pb-70">
+                <div className="cont" id="container">
+                    <div className="d-flex justify-content-center">
+                <div className="form-container col-lg-8 ">
                             <form>
                             <h1>Add Course</h1>
                                 <div class="row">
                                 <input type="text" name="courseTitle" placeholder="Course Title"
                                 value={this.state.courseTitle} onChange={this.textChangeHandler}/>                               
-                                <input type="text" name="courseContent" placeholder="Course Content"
-                                value={this.state.courseContent} onChange={this.textChangeHandler}/>                               
-                                <input type="text" name="coursePrice" placeholder="Course Price"
-                                value={this.state.coursePrice} onChange={this.textChangeHandler}/>
-                                <input type="text" name="courseType" placeholder="Course Type"
-                                value={this.state.courseType} onChange={this.textChangeHandler}/>
-                                <input type="file" name="filename"
-                                onChange={this.changeFileHandler}/>
-                                <div className="center"><button onClick={this.sendData}>Add</button></div>
+                                <input type="text" name="courseDescription" placeholder="Course Description"
+                                value={this.state.courseDescription} onChange={this.textChangeHandler}/>
+                                <input type="text" name="courseLecturer" placeholder="Course Lecturer"
+                                value={this.state.courseLecturer} onChange={this.textChangeHandler}/>
+                                <div className="center"><button type="submit" onClick={this.sendData}>Add</button></div>
                                 </div>
                             </form>
-                           
                         </div>
                         </div>
                         </div>
-</section>
+                </section>
         )
     }
 
