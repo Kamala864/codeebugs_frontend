@@ -5,6 +5,7 @@ import Login from "../Registration/Login";
 import Admindashboard from "./AdminDashboard";
 import CourseDetail from "./Courses/coursedetail";
 import CourseInsert from "./Courses/courseinsert";
+import CourseDashboard from "./Courses/courselist";
 import Courses from "./Courses/courses";
 import Home from "./home";
 import UserProfile from "./userprofile";
@@ -24,6 +25,7 @@ class Mid extends Component{
             <Route path="/courseinsert" element={<CourseInsert/>} />
             <Route path="/admin" element={<Admindashboard/>}/>
             <Route path="/admin/login" element={<AdminRegistration/>}/>
+            <Route path="/coursedashboard" element={<CourseDashboard/>}/>
             </Routes>
             </>
         )
