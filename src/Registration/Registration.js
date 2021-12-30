@@ -49,17 +49,17 @@ class Registration extends Component{
                     <div class="form-container sign-up-container">
                          <form>
                               <h1>Create Account</h1>
-                              <input type="text" name="full_name"  placeholder="Full Name" 
+                              <input type="text" id="full_name" name="full_name"  placeholder="Full Name" 
                                     value={this.state.full_name} onChange={this.changeState}/>
-                              <input type="text" name="email" placeholder="Email" 
+                              <input type="text" id="email" name="email" placeholder="Email" 
                                     value={this.state.email} onChange={this.changeState}/>
-                              <input type="text" name="age"  placeholder="Age" 
+                              <input type="text" id="age" name="age"  placeholder="Age" 
                                     value={this.state.age} onChange={this.changeState}/> 
-                              <input type="password" name="password" placeholder="Password"
+                              <input type="password" id="password" name="password" placeholder="Password"
                                    alue={this.state.password} onChange={this.changeState} />
-                              <input type="password" name="confirm_password" placeholder="Confirm Password"
+                              <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password"
                                     value={this.state.confirm_password} onChange={this.changeState} />
-                              <button onClick={this.register}>Sign Up</button>
+                              <button id="signup" onClick={this.register}>Sign Up</button>
                          </form>
                     </div>
                     <div class="form-container sign-in-container">

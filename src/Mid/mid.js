@@ -9,7 +9,7 @@ class Mid extends Component {
           return(
                <>
                     <Routes>
-                         <Route path="/" element={<Registration />}></Route>
+                         <Route path="/registration" element={<Registration />}></Route>
                          <Route path="/admin" element={<AdminLogin />}></Route>
                     </Routes>
                </>
