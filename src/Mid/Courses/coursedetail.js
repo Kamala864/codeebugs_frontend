@@ -46,7 +46,6 @@ class CourseDetail extends Component{
                 <ul className="tabs">
                   <li>
                     <a href="#">
-                    {this.props.location.state.description}
                     </a>
                   </li>
                   <li>

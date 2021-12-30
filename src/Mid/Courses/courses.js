@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Component } from "react";
-
-
+import { Link } from "react-router-dom";
 
 class Courses extends Component{
 
@@ -29,10 +28,7 @@ componentDidMount(){
 singleCourse=(course_id)=>{
   axios.get("http://localhost:90/course/"+course_id)
   .then((res)=>{
-      this.props.history.push({
-          pathname: '/coursedetail',
-            state: res.data
-        })
+    <Link to={{  pathname: "/coursedetail",  state: res.data }}></Link>
         window.location.href="/coursedetail"
   })
   .catch()
