@@ -55,17 +55,28 @@ class Header extends Component{
           </li>
           <li className="nav-item">
             <a href="/courses" className="nav-link">
-              Courses
-              
+              Courses          
             </a>
-            
+
           </li>
           <li className="nav-item">
             <a href="contact.html" className="nav-link">
               About Us
             </a>
           </li>
-        </ul>
+          </ul>
+
+
+          <div className="others-options d-flex align-items-center mr-3">
+          <div class="input-group">
+            <div class="form-outline">
+              <input id="search-input" type="search" id="form1" class="form-control rounded" placeholder="Search" />
+            </div>
+          </div>
+          </div>
+
+  
+
         <div className="others-options d-flex align-items-center">
           <div className="option-item">
             <a href="/login" className="default-btn">Login</a>
