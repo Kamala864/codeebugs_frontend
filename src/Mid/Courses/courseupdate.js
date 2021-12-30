@@ -14,7 +14,7 @@ class CourseUpdate extends Component{
 
 
 componentDidMount(){
-    axios.get("http://localhost:90/course/"+this.state.id)
+    axios.get("http://localhost:5000/course/"+this.state.id)
     .then(res=>{
       this.setState({
           courseTitle:res.data.courseTitle,
@@ -33,7 +33,7 @@ textChangeHandler=(e)=>{
 sendData = (e)=>{
     e.preventDefault();
 
-    axios.put("http://localhost:90/course/updatecourse/"+this.state.id)
+    axios.put("http://localhost:5000/course/updatecourse/"+this.state.id)
     .then((result)=>{
         console.log(result) 
     })

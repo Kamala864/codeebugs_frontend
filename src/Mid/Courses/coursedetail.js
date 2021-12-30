@@ -7,7 +7,7 @@ class CourseDetail extends Component{
       }
 
       componentDidMount(){
-        axios.get("http://localhost:90/course/showall")
+        axios.get("http://localhost:5000/course/showall")
         .then((res)=>{
             this.setState({
                 mycourse : res.data
@@ -18,7 +18,7 @@ class CourseDetail extends Component{
     }
     
     singleCourse=(course_id)=>{
-      axios.get("http://localhost:90/course/"+course_id)
+      axios.get("http://localhost:5000/course/"+course_id)
       .then((res)=>{
           this.props.history.push({
               pathname: '/coursedetail',

@@ -11,7 +11,7 @@ class CourseDashboard extends Component{
     }
 
 componentDidMount(){
-    axios.get("http://localhost:90/course/showall")
+    axios.get("http://localhost:5000/course/showall")
     .then((res)=>{
         this.setState({
             listcourses:res.data

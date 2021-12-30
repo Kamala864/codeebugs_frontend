@@ -6,16 +6,17 @@ class Courses extends Component{
 
 
   state={
-    listcourses : []
+    listcourses : [],
+    course_title : ""
 }
 
 componentDidMount(){
-  axios.get("http://localhost:90/course/showall")
+  axios.get("http://localhost:5000/course/showall")
   .then((res)=>{
       this.setState({
-          listcourses: res.data
+          listcourses: res.data.data
       })
-      console.log(res)
+      console.log(res.data.data)
       localStorage.setItem('courselength',this.state.listcourses.length)
 
   })
@@ -26,10 +27,29 @@ componentDidMount(){
 }
 
 singleCourse=(course_id)=>{
-  axios.get("http://localhost:90/course/"+course_id)
+  axios.get("http://localhost:5000/course/"+course_id)
   .then((res)=>{
     <Link to={{  pathname: "/coursedetail",  state: res.data }}></Link>
         window.location.href="/coursedetail"
+  })
+  .catch()
+}
+
+searchState = (e) => {
+  this.setState({
+       [e.target.name]: e.target.value
+  })
+}
+
+search=(e)=>{
+  e.preventDefault()
+  const data = {
+    course_title : this.state.course_title
+  }
+  console.log(data)
+  axios.get("http://localhost:5000/searchcourse", this.state.course_title)
+  .then((res)=>{
+    console.log(res)
   })
   .catch()
 }
@@ -48,6 +68,10 @@ singleCourse=(course_id)=>{
                 <a href="index.html">Home</a>
               </li>
               <li>Class</li>
+                        
+          <input type="text" placeholder="Search.." name="course_title" value ={this.state.course_title} onChange = {this.searchState}/>
+          <button onClick={this.search}   ><i class="fa fa-search">Search</i></button>
+          
             </ul>
           </div>
         </div>
@@ -60,7 +84,7 @@ singleCourse=(course_id)=>{
 
 
 {
-        this.state.listcourses.map(course=>{
+        this.state.listcourses.map((course)=>{
             return(
               <div className="col-lg-4 col-md-6">
               <div className="single-class">

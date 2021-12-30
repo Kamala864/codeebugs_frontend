@@ -23,7 +23,7 @@ class CourseInsert extends Component{
             courseDescription: this.state.courseDescription,
             courseLecturer: this.state.courseLecturer
         }
-        axios.post("http://localhost:90/addcourse", data)
+        axios.post("http://localhost:5000/addcourse", data)
         .then((result)=>{
             console.log(result)
             alert("Course inserted")
