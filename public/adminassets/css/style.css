@@ -13536,6 +13536,12 @@ dl {
     background-color: darkgrey;
     outline: 1px solid slategrey; }
 
+    .course-search{
+      width: 20vh;
+      margin-right: 10px;
+    
+    }
+
 .page-body-wrapper {
   min-height: calc(100vh - 70px);
   display: -webkit-box;

@@ -46,12 +46,18 @@ search=(e)=>{
   const data = {
     course_title : this.state.course_title
   }
-  console.log(data)
-  axios.get("http://localhost:5000/searchcourse", this.state.course_title)
+  console.log(this.state.course_title)
+  axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title)
   .then((res)=>{
-    console.log(res)
+    localStorage.setItem("search", this.state.course_title)
+    window.location.href = "/coursesearch"
   })
   .catch()
+}
+
+joinClass=()=>{
+  alert("You have been enrolled in the class")
+  window.location.href = "/enrolledcourses"
 }
 
     render(){
@@ -70,7 +76,7 @@ search=(e)=>{
               <li>Class</li>
                         
           <input type="text" placeholder="Search.." name="course_title" value ={this.state.course_title} onChange = {this.searchState}/>
-          <button onClick={this.search}   ><i class="fa fa-search">Search</i></button>
+          <button onClick={this.search}><i class="fa fa-search">Search</i></button>
           
             </ul>
           </div>
@@ -114,7 +120,7 @@ search=(e)=>{
                     </li>
                   </ul>
                   <div className="class-btn">
-                    <a href="#" className="default-btn">Join Class</a>
+                    <a onClick={this.joinClass} className="default-btn">Join Class</a>
                   </div>
                 </div>
               </div>

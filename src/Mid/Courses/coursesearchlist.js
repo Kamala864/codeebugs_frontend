@@ -4,27 +4,24 @@ import { NavLink } from "react-router-dom";
 
 
 
-class CourseDashboard extends Component{
+class Coursesearchlist extends Component{
 
     state={
         listcourses:[],
         course_title : ""
     }
 
-componentDidMount(){
-    axios.get("http://localhost:5000/course/showall")
-    .then((res)=>{
-        this.setState({
-            listcourses:res.data
-        })
-        localStorage.setItem('courselength',this.state.listcourses.length)
-    })
-    .catch((err)=>{
-
-    })
-
-
+    componentDidMount(){
+      axios.get("http://localhost:5000/searchcourse/"+   localStorage.getItem("search"))
+      .then((res)=>{
+           this.setState({
+                listcourses : res.data.data
+              })
+      })
+      .catch()
+  
 }
+
 
 
 searchState = (e) => {
@@ -39,7 +36,7 @@ search=(e)=>{
     course_title : this.state.course_title
   }
   console.log(this.state.course_title)
-  axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title)
+  axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title.toLowerCase())
   .then((res)=>{
     localStorage.setItem("search", this.state.course_title)
     window.location.href = "/coursesearchlist"
@@ -160,4 +157,4 @@ deleteproduct=(pro_idd)=>{
         )
     }
 }
-export default CourseDashboard;
+export default Coursesearchlist;
