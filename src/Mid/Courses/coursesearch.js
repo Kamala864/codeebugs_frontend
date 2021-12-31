@@ -1,89 +1,63 @@
 import axios from "axios";
 import { Component } from "react";
-import { Link } from "react-router-dom";
-
-class Courses extends Component{
+import { Link, NavLink } from "react-router-dom";
 
 
-  state={
-    listcourses : [],
-    course_title : ""
-}
+
+class CourseSearch extends Component{
+
+    state={
+        listcourses:[],
+    }
 
 componentDidMount(){
-  axios.get("http://localhost:5000/course/showall")
-  .then((res)=>{
-      this.setState({
-          listcourses: res.data
-      })
-      console.log(res.data.data)
-      localStorage.setItem('courselength',this.state.listcourses.length)
-
-  })
-  .catch((err)=>{
-
-  })
-
-}
-
-singleCourse=(course_id)=>{
-  axios.get("http://localhost:5000/course/"+course_id)
-  .then((res)=>{
-    <Link to={{  pathname: "/coursedetail",  state: res.data }}></Link>
-        window.location.href="/coursedetail"
-  })
-  .catch()
+       axios.get("http://localhost:5000/searchcourse/"+   localStorage.getItem("search"))
+       .then((res)=>{
+            this.setState({
+                 listcourses : res.data.data
+               })
+       })
+       .catch()
+   
 }
 
 searchState = (e) => {
-  this.setState({
-       [e.target.name]: e.target.value
-  })
-}
-
-search=(e)=>{
-  e.preventDefault()
-  const data = {
-    course_title : this.state.course_title
+    this.setState({
+         [e.target.name]: e.target.value
+    })
   }
-  console.log(this.state.course_title)
-  axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title)
-  .then((res)=>{
-    localStorage.setItem("search", this.state.course_title)
-    window.location.href = "/coursesearch"
-  })
-  .catch()
-}
+  
+  search=(e)=>{
+    e.preventDefault()
+    const data = {
+      course_title : this.state.course_title
+    }
+    console.log(this.state.course_title)
+    axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title)
+    .then((res)=>{
+      localStorage.setItem("search", this.state.course_title)
+      window.location.href = "/coursesearch"
+    })
+    .catch()
+  }
 
-joinClass=()=>{
-  alert("You have been enrolled in the class")
-  window.location.href = "/enrolledcourses"
-}
+singleCourse=(course_id)=>{
+    axios.get("http://localhost:5000/course/"+course_id)
+    .then((res)=>{
+      <Link to={{  pathname: "/coursedetail",  state: res.data }}></Link>
+          window.location.href="/coursedetail"
+    })
+    .catch()
+  }
+
 
     render(){
         return(
             <div>
-  <div className="page-banner-area item-bg1">
-    <div className="d-table">
-      <div className="d-table-cell">
-        <div className="container">
-          <div className="page-banner-content">
-            <h2>Class</h2>
-            <ul>
-              <li>
-                <a href="index.html">Home</a>
-              </li>
-              <li>Class</li>
                         
           <input type="text" placeholder="Search.." name="course_title" value ={this.state.course_title} onChange = {this.searchState}/>
           <button onClick={this.search}><i class="fa fa-search">Search</i></button>
           
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <section className="class-area pt-100 pb-100">
     <div className="container">
       <div className="row">
@@ -156,9 +130,7 @@ joinClass=()=>{
     </div>
   </section>
 </div>
-
         )
     }
 }
-
-export default Courses;
+export default CourseSearch;

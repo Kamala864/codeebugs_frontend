@@ -31,7 +31,7 @@ class Login extends Component{
           email: this.state.loginemail,
           password: this.state.loginpassword
         }
-        axios.post('http://localhost:90/user/login', data)
+        axios.post('http://localhost:5000/user/login', data)
         .then((res)=>{
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('username', res.data.username);
@@ -62,7 +62,7 @@ class Login extends Component{
                    password: this.state.password
               }
 
-              axios.post("http://localhost:90/signup",data)
+              axios.post("http://localhost:5000/signup",data)
               alert("Registration successful!")
               window.location.href="/login"
          } else {

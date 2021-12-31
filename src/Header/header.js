@@ -34,6 +34,14 @@ class Header extends Component{
             </a>
           </li>
         </ul>
+
+        <div className="others-options d-flex align-items-center mr-3">
+          <div class="input-group">
+            <div class="form-outline">
+              <input id="search-input" type="search" id="form1" class="form-control rounded" placeholder="Search" />
+            </div>
+          </div>
+          </div>
         
         <div className="others-options d-flex align-items-center">
         <div class="nav-item">

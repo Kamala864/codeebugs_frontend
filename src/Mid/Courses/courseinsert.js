@@ -19,9 +19,9 @@ class CourseInsert extends Component{
     sendData =(e)=>{
         e.preventDefault();
         const data = {
-            courseTitle: this.state.courseTitle,
-            courseDescription: this.state.courseDescription,
-            courseLecturer: this.state.courseLecturer
+            title: this.state.courseTitle,
+            description: this.state.courseDescription,
+            lecturer: this.state.courseLecturer
         }
         axios.post("http://localhost:5000/addcourse", data)
         .then((result)=>{
