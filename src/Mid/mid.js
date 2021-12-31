@@ -7,6 +7,7 @@ import CourseDetail from "./Courses/coursedetail";
 import CourseInsert from "./Courses/courseinsert";
 import CourseDashboard from "./Courses/courselist";
 import Courses from "./Courses/courses";
+import CourseSearch from "./Courses/coursesearch";
 import Home from "./home";
 import UserProfile from "./userprofile";
 
@@ -26,7 +27,7 @@ class Mid extends Component{
             <Route path="/admin" element={<Admindashboard/>}/>
             <Route path="/admin/login" element={<AdminRegistration/>}/>
             <Route path="/coursedashboard" element={<CourseDashboard/>}/>
-            <Route path="/coursedashboard" element={<CourseDashboard/>}/>
+            <Route path="/coursesearch" element={<CourseSearch/>}/>
             </Routes>
             </>
         )
