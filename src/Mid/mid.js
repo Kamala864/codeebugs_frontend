@@ -8,8 +8,10 @@ import CourseInsert from "./Courses/courseinsert";
 import CourseDashboard from "./Courses/courselist";
 import Courses from "./Courses/courses";
 import CourseSearch from "./Courses/coursesearch";
+import EnrolledCourses from "./Courses/enrolledcourses";
 import Home from "./home";
 import UserProfile from "./userprofile";
+
 
 class Mid extends Component{
     render(){
@@ -28,6 +30,7 @@ class Mid extends Component{
             <Route path="/admin/login" element={<AdminRegistration/>}/>
             <Route path="/coursedashboard" element={<CourseDashboard/>}/>
             <Route path="/coursesearch" element={<CourseSearch/>}/>
+            <Route path="/enrolledcourses" element={<EnrolledCourses/>}/>
             </Routes>
             </>
         )

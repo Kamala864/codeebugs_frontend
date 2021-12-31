@@ -55,6 +55,11 @@ search=(e)=>{
   .catch()
 }
 
+joinClass=()=>{
+  alert("You have been enrolled in the class")
+  window.location.href = "/enrolledcourses"
+}
+
     render(){
         return(
             <div>
@@ -115,7 +120,7 @@ search=(e)=>{
                     </li>
                   </ul>
                   <div className="class-btn">
-                    <a onClick={this.join} className="default-btn">Join Class</a>
+                    <a onClick={this.joinClass} className="default-btn">Join Class</a>
                   </div>
                 </div>
               </div>
