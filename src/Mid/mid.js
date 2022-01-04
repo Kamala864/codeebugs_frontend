@@ -31,6 +31,7 @@ class Mid extends Component{
             <Route path="/admin/login" element={<AdminRegistration/>}/>
             <Route path="/coursedashboard" element={<CourseDashboard/>}/>
             <Route path="/coursesearchlist" element={<Coursesearchlist/>}/>
+            <Route path="/usersearchlist" element={<Coursesearchlist/>}/>
             <Route path="/coursesearch" element={<CourseSearch/>}/>
             <Route path="/enrolledcourses" element={<EnrolledCourses/>}/>
             </Routes>
