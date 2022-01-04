@@ -1,36 +1,17 @@
 import axios from "axios";
-import { Component } from "react";
+import { useState } from "react";
+import ReactPlayer from "react-player";
 
-class CourseDetail extends Component{
-        state = {
-          mycourse : []
-      }
+const CourseDetail = () => {
 
-      componentDidMount(){
-        axios.get("http://localhost:5000/course/showall")
-        .then((res)=>{
-            this.setState({
-                mycourse : res.data
-            })
-        })
-        .catch((err)=>{
-        })
+  const [watchComplete, setWatchComplete] = useState(false)
+
+  const handleWatchComplete = ({ played }) => {
+    if (played >= 0.9 && !watchComplete) {
+      setWatchComplete(true)
     }
-    
-    singleCourse=(course_id)=>{
-      axios.get("http://localhost:5000/course/"+course_id)
-      .then((res)=>{
-          this.props.history.push({
-              pathname: '/coursedetail',
-                state: res.data
-            })
-            window.location.href="/coursedetail"
-      })
-      .catch()
-      
-    }
+  }
 
-    render(){
         return(
            <section className="class-details-area pt-100 pb-70">
   <div className="container">
@@ -38,16 +19,28 @@ class CourseDetail extends Component{
       <div className="col-lg-8 col-md-12">
         <div className="class-details-desc">
           <div className="class-desc-image">
-            <img src="assets/img/class-details.jpg" alt="image" />
+          <div>
+      <ReactPlayer
+        url="https://www.youtube.com/watch?v=UjtOGPJ0URM"
+        controls
+        onProgress={handleWatchComplete}
+      />
+      <div
+        className={
+          watchComplete
+            ? "marker marker--is-complete"
+            : "marker marker--not-complete"
+        }
+      >
+        Completed
+      </div>
+    </div>
+      
           </div>
           <div className="tab class-details-tab">
             <div className="row">
               <div className="col-lg-12 col-md-12">
                 <ul className="tabs">
-                  <li>
-                    <a href="#">
-                    </a>
-                  </li>
                   <li>
                     <a href="#">
                       Teacher
@@ -226,119 +219,13 @@ class CourseDetail extends Component{
           </form>
         </div>
       </div>
-      <div className="col-lg-12 col-md-12">
-        <div className="related-class">
-          <h3>Popular Class</h3>
-          <div className="row">
-            <div className="col-lg-4 col-md-6">
-              <div className="single-class">
-                <div className="class-image">
-                  <a href="#">
-                    <img src="assets/img/class/class-1.jpg" alt="image" />
-                  </a>
-                </div>
-                <div className="class-content">
-                  <div className="price">$880</div>
-                  <h3>
-                    <a href="#">Color Matching</a>
-                  </h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <ul className="class-list">
-                    <li>
-                      <span>Age:</span>
-                      3-5 Year
-                    </li>
-                    <li>
-                      <span>Time:</span>
-                      8-10 AM
-                    </li>
-                    <li>
-                      <span>Seat:</span>
-                      25
-                    </li>
-                  </ul>
-                  <div className="class-btn">
-                    <a href="#" className="default-btn">Join Class</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-class">
-                <div className="class-image">
-                  <a href="#">
-                    <img src="assets/img/class/class-2.jpg" alt="image" />
-                  </a>
-                </div>
-                <div className="class-content">
-                  <div className="price">$790</div>
-                  <h3>
-                    <a href="#">Learning Disciplines</a>
-                  </h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <ul className="class-list">
-                    <li>
-                      <span>Age:</span>
-                      3-5 Year
-                    </li>
-                    <li>
-                      <span>Time:</span>
-                      8-10 AM
-                    </li>
-                    <li>
-                      <span>Seat:</span>
-                      25
-                    </li>
-                  </ul>
-                  <div className="class-btn">
-                    <a href="#" className="default-btn">Join Class</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-class">
-                <div className="class-image">
-                  <a href="#">
-                    <img src="assets/img/class/class-3.jpg" alt="image" />
-                  </a>
-                </div>
-                <div className="class-content">
-                  <div className="price">$590</div>
-                  <h3>
-                    <a href="#">Drawing</a>
-                  </h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <ul className="class-list">
-                    <li>
-                      <span>Age:</span>
-                      3-5 Year
-                    </li>
-                    <li>
-                      <span>Time:</span>
-                      8-10 AM
-                    </li>
-                    <li>
-                      <span>Seat:</span>
-                      25
-                    </li>
-                  </ul>
-                  <div className="class-btn">
-                    <a href="#" className="default-btn">Join Class</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 
         )
-    }
+    
 }
 
 export default CourseDetail;
