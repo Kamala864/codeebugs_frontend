@@ -6,8 +6,7 @@ class Courses extends Component{
 
 
   state={
-    listcourses : [],
-    course_title : ""
+    listcourses : []
 }
 
 componentDidMount(){
@@ -43,9 +42,6 @@ searchState = (e) => {
 
 search=(e)=>{
   e.preventDefault()
-  const data = {
-    course_title : this.state.course_title
-  }
   console.log(this.state.course_title)
   axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title)
   .then((res)=>{
@@ -90,7 +86,7 @@ joinClass=()=>{
 
 
 {
-        this.state.listcourses.map((course)=>{
+        this.state.listcourses.map(course=>{
             return(
               <div className="col-lg-4 col-md-6">
               <div className="single-class">
