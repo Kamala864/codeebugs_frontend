@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 function Courses(){
@@ -23,7 +23,7 @@ const singleCourse=(course_id)=>{
   axios.get("http://localhost:5000/course/"+course_id)
   .then((res)=>{
     console.log(res.data)
-    navigate('/coursedetail', {state:  res.data})
+    navigate(`/courses/${res.data.title}`, {state:  res.data})
     }
   )
 }

@@ -1,8 +1,9 @@
 import ReactPlayer from "react-player";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 function CourseDetail(){
 const location = useLocation()
+const {courseid} = useParams()
         return(
             <section className="class-details-area pt-100 pb-70">
    <div className="container">
