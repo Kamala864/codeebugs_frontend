@@ -7,8 +7,7 @@ import { NavLink } from "react-router-dom";
 class CourseDashboard extends Component{
 
     state={
-        listcourses:[],
-        course_title : ""
+        listcourses:[]
     }
 
 componentDidMount(){

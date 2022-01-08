@@ -28,12 +28,6 @@ const singleCourse=(course_id)=>{
   )
 }
 
-
-
-
-
-
-
         return(
             <div>
   <div className="page-banner-area item-bg1">

@@ -12,6 +12,7 @@ import CourseSearch from "./Courses/coursesearch";
 import EnrolledCourses from "./Courses/enrolledcourses";
 import Home from "./home";
 import UserProfile from "./userprofile";
+import Payment from "./payment";
 
 
 class Mid extends Component{
@@ -33,6 +34,7 @@ class Mid extends Component{
             <Route path="/coursesearchlist" element={<Coursesearchlist/>}/>
             <Route path="/usersearchlist" element={<Coursesearchlist/>}/>
             <Route path="/coursesearch" element={<CourseSearch/>}/>
+            <Route path="/payment" element={<Payment/>}/>
             <Route path="/enrolledcourses" element={<EnrolledCourses/>}/>
             </Routes>
             </>
