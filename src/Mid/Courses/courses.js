@@ -1,66 +1,39 @@
 import axios from "axios";
-import { Component } from "react";
-import { Link } from "react-router-dom";
-
-class Courses extends Component{
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-  state={
-    listcourses : [],
-    course_title : ""
-}
+function Courses(){
 
-componentDidMount(){
+const [listcourses,setlistcourses] = useState([])
+const navigate = useNavigate();
+
+useEffect(() => {
   axios.get("http://localhost:5000/course/showall")
-  .then((res)=>{
-      this.setState({
-          listcourses: res.data
-      })
-      console.log(res.data.data)
-      localStorage.setItem('courselength',this.state.listcourses.length)
-
+  .then(res => {
+    setlistcourses(res.data.data)
   })
-  .catch((err)=>{
-
+  .catch(err =>{
+    console.log(err)
   })
+    
+}, []);
 
-}
-
-singleCourse=(course_id)=>{
+const singleCourse=(course_id)=>{
   axios.get("http://localhost:5000/course/"+course_id)
   .then((res)=>{
-    <Link to={{  pathname: "/coursedetail",  state: res.data }}></Link>
-        window.location.href="/coursedetail"
-  })
-  .catch()
+    console.log(res.data)
+    navigate('/coursedetail', {state:  res.data})
+    }
+  )
 }
 
-searchState = (e) => {
-  this.setState({
-       [e.target.name]: e.target.value
-  })
-}
 
-search=(e)=>{
-  e.preventDefault()
-  const data = {
-    course_title : this.state.course_title
-  }
-  console.log(this.state.course_title)
-  axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title)
-  .then((res)=>{
-    localStorage.setItem("search", this.state.course_title)
-    window.location.href = "/coursesearch"
-  })
-  .catch()
-}
 
-joinClass=()=>{
-  alert("You have been enrolled in the class")
-  window.location.href = "/enrolledcourses"
-}
 
-    render(){
+
+
+
         return(
             <div>
   <div className="page-banner-area item-bg1">
@@ -75,8 +48,6 @@ joinClass=()=>{
               </li>
               <li>Class</li>
                         
-          <input type="text" placeholder="Search.." name="course_title" value ={this.state.course_title} onChange = {this.searchState}/>
-          <button onClick={this.search}><i class="fa fa-search">Search</i></button>
           
             </ul>
           </div>
@@ -89,13 +60,13 @@ joinClass=()=>{
       <div className="row">
 
 
-{
-        this.state.listcourses.map((course)=>{
+      {
+        listcourses.map((course)=>{
             return(
               <div className="col-lg-4 col-md-6">
               <div className="single-class">
                 <div className="class-image">
-                <a onClick={()=>this.singleCourse(course._id)}>
+                <a onClick={()=>singleCourse(course._id)}>
                     <img src="assets/img/class/class-1.jpg" alt="image" />
                   </a>
                 </div>
@@ -120,7 +91,7 @@ joinClass=()=>{
                     </li>
                   </ul>
                   <div className="class-btn">
-                    <a onClick={this.joinClass} className="default-btn">Join Class</a>
+                    <a className="default-btn">Join Class</a>
                   </div>
                 </div>
               </div>
@@ -158,7 +129,7 @@ joinClass=()=>{
 </div>
 
         )
-    }
+    
 }
 
 export default Courses;

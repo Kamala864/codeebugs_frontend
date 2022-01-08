@@ -6,7 +6,8 @@ class CourseInsert extends Component{
     state = {
         courseTitle : '',
         courseDescription: '',
-        courseLecturer: ''
+        courseLecturer: '',
+        filename: null
     }
 
     textChangeHandler=(e)=>{
@@ -15,22 +16,29 @@ class CourseInsert extends Component{
         })
     }
 
+    fileChangeHandler= (e)=>{
+        this.setState({
+            filename: e.target.files[0]
+        })
+    }
 
-    sendData =(e)=>{
+
+    sendData = (e)=>{
         e.preventDefault();
-        const data = {
-            title: this.state.courseTitle,
-            description: this.state.courseDescription,
-            lecturer: this.state.courseLecturer
-        }
+        const data =  new FormData();
+
+        data.append('title', this.state.courseTitle)
+        data.append('description', this.state.courseDescription)
+        data.append('lecturer', this.state.courseLecturer)
+        data.append('video', this.state.filename)
         axios.post("http://localhost:5000/addcourse", data)
         .then((result)=>{
             console.log(result)
-            alert("Course inserted")
         })
         .catch()
-        window.location.href="/courseinsert"
+        // window.location.href="/courseinsert"
     }
+
     render(){
         return(
                 <section className="class-area2 bg-fdf6ed pt-100 pb-70">
@@ -46,6 +54,8 @@ class CourseInsert extends Component{
                                 value={this.state.courseDescription} onChange={this.textChangeHandler}/>
                                 <input type="text" name="courseLecturer" placeholder="Course Lecturer"
                                 value={this.state.courseLecturer} onChange={this.textChangeHandler}/>
+                                <label>Upload Video Course</label>
+                                <input type="file" accept="video/mp4" name="filename" onChange={this.fileChangeHandler}/>                              
                                 <div className="center"><button type="submit" onClick={this.sendData}>Add</button></div>
                                 </div>
                             </form>
