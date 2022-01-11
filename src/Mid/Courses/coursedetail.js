@@ -1,9 +1,40 @@
+import axios from "axios";
+import { useState } from "react";
 import ReactPlayer from "react-player";
 import { useLocation, useParams } from "react-router-dom";
 
+
+// Project Imports
+import CodeEditor from "../Code Editor/codeeditor";
+import InputEditor from "../Code Editor/InputEditor";
+import OutputLogs from "../Code Editor/OutputLogs";
+import Header from "../Code Editor/Header";
+
 function CourseDetail(){
 const location = useLocation()
-const {courseid} = useParams()
+
+// state hooks
+const [language, setLanguage] = useState("java");
+const [code, setCode] = useState("");
+const [input, setInput] = useState("");
+const [outputLogs, setOutputLogs] = useState("");
+const [status, setStatus] = useState("Run");
+
+// run button callback
+const runCode = () => {
+  setStatus("Loading...");
+  axios.post("http://localhost:5000/runCode", { language, code, input }).then((res) => {
+    if (res.data.memory && res.data.cpuTime) {
+      setOutputLogs("");
+      setOutputLogs(
+        `Memory Used: ${res.data.memory} \nCPU Time: ${res.data.cpuTime} \n${res.data.output} `
+      );
+    } else {
+      setOutputLogs(`${res.data.output} `);
+    }
+    setStatus("Run");
+  });
+};
         return(
             <section className="class-details-area pt-100 pb-70">
    <div className="container">
@@ -164,26 +195,22 @@ const {courseid} = useParams()
            </div>
          </div>
        </div>
-       <div className="col-lg-4 col-md-12">
-         <div className="class-details-information">
-           <h3>Information</h3>
-           <ul>
-             <li>
-             <span>{location.state.title}</span>
-             </li>
-             <li>
-               <span>Chapters : </span>
-               6
-             </li>
-             <li>
-               <span>Language : </span>
-               English
-             </li>
-           </ul>
-         </div>
-         <div className="class-newsletter">
-             <button type="submit">Enroll Now</button>
-         </div>
+       <div className="col-lg-4 col-md-12" style={{ height: "300px", width: "100%" }}>
+      <Header
+        value={language}
+        status={status}
+        runCode={() => runCode()}
+        onChangeLanguage={({ value }) => setLanguage(value)}
+      />
+      <CodeEditor
+        value={code}
+        onCodeChange={(text) => setCode(text)}
+        programmingLanguage={language}
+      />
+      <div className="optionSegment">
+        <InputEditor value={input} onInputChange={(text) => setInput(text)} />
+        <OutputLogs value={outputLogs} />
+      </div>
        </div>
      </div>
    </div>
