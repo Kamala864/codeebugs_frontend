@@ -13,6 +13,8 @@ import EnrolledCourses from "./Courses/enrolledcourses";
 import Home from "./home";
 import UserProfile from "./userprofile";
 import Payment from "./payment";
+import Editor from "./Code Editor/Editor";
+import Learn from "./Courses/learn";
 
 
 class Mid extends Component{
@@ -36,6 +38,8 @@ class Mid extends Component{
             <Route path="/coursesearch" element={<CourseSearch/>}/>
             <Route path="/payment" element={<Payment/>}/>
             <Route path="/enrolledcourses" element={<EnrolledCourses/>}/>
+            <Route path="/editor" element={<Editor/>}/>
+            <Route path="/learn" element={<Learn/>}/>
             </Routes>
             </>
         )
