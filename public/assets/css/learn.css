@@ -1,0 +1,18 @@
+.Practice{
+    margin-right: 0%;
+    float: right;
+}
+h2{
+    float: left;
+}
+
+.Top{
+    height: 800px;
+}
+
+.Player{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 9%;
+}
