@@ -1,9 +1,8 @@
 import ReactPlayer from "react-player";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 
 function CourseDetail(){
 const location = useLocation()
-const {courseid} = useParams()
         return(
             <section className="class-details-area pt-100 pb-70">
    <div className="container">
@@ -13,7 +12,7 @@ const {courseid} = useParams()
            <div className="class-desc-image">
            <div>
        <ReactPlayer
-         url="https://www.youtube.com/watch?v=UjtOGPJ0URM"
+         url={"http://localhost:5000/" + location.state.video}
          controls
        />
      </div>
