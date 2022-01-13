@@ -39,11 +39,11 @@ const runCode = () => {
             <section className="class-details-area pt-100 pb-70">
    <div className="container">
      <div className="row">
-       <div className="col-lg-8 col-md-12">
+       <div className="col-lg-6 col-md-12">
          <div className="class-details-desc">
            <div className="class-desc-image">
            <div>
-       <ReactPlayer
+       <ReactPlayer width={540} height={360}
          url={"http://localhost:5000/" + location.state.video}
          controls
        />
@@ -195,7 +195,7 @@ const runCode = () => {
            </div>
          </div>
        </div>
-       <div className="col-lg-4 col-md-12" style={{ height: "300px", width: "100%" }}>
+       <div className="col-lg-6 col-md-12" style={{ height: "300px", width: "100%" }}>
       <Header
         value={language}
         status={status}
