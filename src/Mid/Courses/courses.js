@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Courses(){
 
 const [listcourses,setlistcourses] = useState([])
+const [searchdata, setSearchdata] = useState("")
 const navigate = useNavigate();
 
 useEffect(() => {
@@ -18,6 +19,23 @@ useEffect(() => {
   })
     
 }, []);
+
+
+const search=(e)=>{
+  e.preventDefault()
+  const data = {
+    course_title : this.search
+  }
+  console.log(this.state.course_title)
+  axios.get("http://localhost:5000/searchcourse/"+  this.search)
+  .then((res)=>{
+    localStorage.setItem("search", this.search)
+    window.location.href = "/coursesearch"
+  })
+  .catch()
+}
+
+
 
 const singleCourse=(course_id)=>{
   axios.get("http://localhost:5000/course/"+course_id)
@@ -41,9 +59,8 @@ const singleCourse=(course_id)=>{
                 <a href="index.html">Home</a>
               </li>
               <li>Class</li>
-                        
-          
             </ul>
+            <input type="text" placeholder="Search.." name="searchdata" value={searchdata} onChange={e => {setSearchdata(e.target.value)}}/>
           </div>
         </div>
       </div>
@@ -55,7 +72,13 @@ const singleCourse=(course_id)=>{
 
 
       {
-        listcourses.map((course)=>{
+        listcourses.filter((course) => {
+          if (searchdata == ""){
+            return course
+          } else if(course.title.toLowerCase().includes(searchdata.toLowerCase())){
+            return course
+          }
+        }).map((course)=>{
             return(
               <div className="col-lg-4 col-md-6">
               <div className="single-class">

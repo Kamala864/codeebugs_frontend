@@ -15,6 +15,7 @@ import UserProfile from "./userprofile";
 import Payment from "./payment";
 import Editor from "./Code Editor/Editor";
 import Learn from "./Courses/learn";
+import UserDashboard from "./Users/Userdashboard";
 
 
 class Mid extends Component{
@@ -30,9 +31,11 @@ class Mid extends Component{
             <Route path="/courses" element={<Courses/>} />
             <Route path="/courses/:coursetitle" element={<CourseDetail/>} />
             <Route path="/courseinsert" element={<CourseInsert/>} />
-            <Route path="/admin" element={<Admindashboard/>}/>
-            <Route path="/admin/login" element={<AdminRegistration/>}/>
+            <Route path="/admin" element={<Admindashboard/>} />
+            <Route path="/admin/users" element={<UserDashboard/>} />
+            <Route path="/admin/courses" element={<CourseDashboard/>}/>
             <Route path="/coursedashboard" element={<CourseDashboard/>}/>
+            <Route path="/userdashboard" element={<UserDashboard/>}/>
             <Route path="/coursesearchlist" element={<Coursesearchlist/>}/>
             <Route path="/usersearchlist" element={<Coursesearchlist/>}/>
             <Route path="/coursesearch" element={<CourseSearch/>}/>
