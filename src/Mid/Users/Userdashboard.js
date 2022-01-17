@@ -20,6 +20,11 @@ function UserDashboard(){
       
   }, []);
 
+  const logout = (e) => {
+    localStorage.clear()
+    window.location.href = "/login"
+  }
+
 
 //delete function
 
@@ -36,7 +41,7 @@ const deleteuser=(pro_idd)=>{
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
         <li className="nav-item nav-profile">
-          <a href="#" className="nav-link">
+          <NavLink to={"/userprofile"} className="nav-link">
             <div className="nav-profile-image">
               <img src="adminassets/images/faces/face1.jpg" alt="profile" />
               <span className="login-status online" />
@@ -46,7 +51,7 @@ const deleteuser=(pro_idd)=>{
               <span className="text-secondary text-small">Project Manager</span>
             </div>
             <i className="mdi mdi-bookmark-check text-success nav-profile-badge" />
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="/admin">
@@ -74,23 +79,29 @@ const deleteuser=(pro_idd)=>{
             <button className="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a Course</button>
           </span></a>
         </li>
+        <li className="nav-item sidebar-actions">
+          <h1><span className="nav-link">
+            <button className="btn btn-danger ml-3" onClick={logout}>Logout</button>
+          </span></h1>
+        </li>
       </ul>
     </nav>
 
 
-
+    <div className="main-panel">
+      <div className="content-wrapper">
        <div className="container p-5 ">
-            
-           <NavLink className="nav-link" to="/courseinsert"><button className="btn-info m-5">Add New Course</button></NavLink>
-
-           <input type="text" placeholder="Search.." name="searchdata" value={searchdata} onChange={e => {setSearchdata(e.target.value)}}/>
+       <div className="row">
+          <div className="col-12 grid-margin">
+            <div className="card">
+              <div className="card-body">
+         <input type="text" placeholder="Search.." name="searchdata" value={searchdata} onChange={e => {setSearchdata(e.target.value)}}/>           
           <br/>
           <br/>
           <br/>
-           <table className="table">
+           <table className="table col-12">
   <thead className="thead-dark">
     <tr>
-      
       <th scope="col">Full Name</th>
       <th scope="col">Email</th>
       <th scope="col">Age</th>
@@ -128,7 +139,12 @@ const deleteuser=(pro_idd)=>{
   }
   
 </table>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

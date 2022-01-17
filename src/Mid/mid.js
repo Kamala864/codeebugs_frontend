@@ -1,11 +1,10 @@
 import { Component } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdminRegistration from "../Registration/adminRegistration";
+import { Route, Routes } from "react-router-dom";
 import Login from "../Registration/Login";
 import Admindashboard from "./AdminDashboard";
 import CourseDetail from "./Courses/coursedetail";
 import CourseInsert from "./Courses/courseinsert";
-import CourseDashboard from "./Courses/courselist";
+import CourseDashboard from "./Courses/coursesdashboard";
 import Courses from "./Courses/courses";
 import Coursesearchlist from "./Courses/coursesearchlist";
 import CourseSearch from "./Courses/coursesearch";

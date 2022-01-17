@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -19,6 +19,11 @@ function CourseDashboard(){
     })
       
   }, []);
+
+  const logout = (e) => {
+    localStorage.clear()
+    window.location.href = "/login"
+  }
 
 
 //delete function
@@ -74,15 +79,22 @@ const deleteproduct=(pro_idd)=>{
             <button className="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a Course</button>
           </span></a>
         </li>
+        <li className="nav-item sidebar-actions">
+          <h1><span className="nav-link">
+            <button className="btn btn-danger ml-3" onClick={logout}>Logout</button>
+          </span></h1>
+        </li>
       </ul>
     </nav>
 
 
-
+    <div className="main-panel">
+      <div className="content-wrapper">
        <div className="container p-5 ">
-            
-           <NavLink className="nav-link" to="/courseinsert"><button className="btn-info m-5">Add New Course</button></NavLink>
-
+       <div className="row">
+          <div className="col-12 grid-margin">
+            <div className="card">
+              <div className="card-body">
            <input type="text" placeholder="Search.." name="searchdata" value={searchdata} onChange={e => {setSearchdata(e.target.value)}}/>
           <br/>
           <br/>
@@ -129,6 +141,12 @@ const deleteproduct=(pro_idd)=>{
   
 </table>
 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
