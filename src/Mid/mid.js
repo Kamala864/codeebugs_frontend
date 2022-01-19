@@ -1,21 +1,19 @@
 import { Component } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdminRegistration from "../Registration/adminRegistration";
+import { Route, Routes } from "react-router-dom";
 import Login from "../Registration/Login";
 import Admindashboard from "./AdminDashboard";
 import CourseDetail from "./Courses/coursedetail";
 import CourseInsert from "./Courses/courseinsert";
-import CourseDashboard from "./Courses/courselist";
+import CourseDashboard from "./Courses/coursesdashboard";
 import Courses from "./Courses/courses";
 import Coursesearchlist from "./Courses/coursesearchlist";
 import CourseSearch from "./Courses/coursesearch";
 import EnrolledCourses from "./Courses/enrolledcourses";
 import Home from "./home";
 import UserProfile from "./userprofile";
-import Payment from "./payment";
 import Editor from "./Code Editor/Editor";
 import Learn from "./Courses/learn";
-import Receipt from "./paymentReceipt";
+import UserDashboard from "./Users/Userdashboard";
 import CoursePayment from "./coursepayment";
 
 
@@ -32,9 +30,11 @@ class Mid extends Component{
             <Route path="/courses" element={<Courses/>} />
             <Route path="/courses/:coursetitle" element={<CourseDetail/>} />
             <Route path="/courseinsert" element={<CourseInsert/>} />
-            <Route path="/admin" element={<Admindashboard/>}/>
-            <Route path="/admin/login" element={<AdminRegistration/>}/>
+            <Route path="/admin" element={<Admindashboard/>} />
+            <Route path="/admin/users" element={<UserDashboard/>} />
+            <Route path="/admin/courses" element={<CourseDashboard/>}/>
             <Route path="/coursedashboard" element={<CourseDashboard/>}/>
+            <Route path="/userdashboard" element={<UserDashboard/>}/>
             <Route path="/coursesearchlist" element={<Coursesearchlist/>}/>
             <Route path="/usersearchlist" element={<Coursesearchlist/>}/>
             <Route path="/coursesearch" element={<CourseSearch/>}/>

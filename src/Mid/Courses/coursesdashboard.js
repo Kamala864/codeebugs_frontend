@@ -1,62 +1,40 @@
 import axios from "axios";
-import { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 
-class CourseDashboard extends Component{
+function CourseDashboard(){
 
-    state={
-        listcourses:[]
-    }
+  const [listcourses,setlistcourses] = useState([])
+  const [searchdata, setSearchdata] = useState("")
 
-componentDidMount(){
+  useEffect(() => {
     axios.get("http://localhost:5000/course/showall")
-    .then((res)=>{
-        this.setState({
-            listcourses:res.data
-        })
-        localStorage.setItem('courselength',this.state.listcourses.length)
+    .then(res => {
+      setlistcourses(res.data.data)
     })
-    .catch((err)=>{
-
+    .catch(err =>{
+      console.log(err)
     })
+      
+  }, []);
 
-
-}
-
-
-searchState = (e) => {
-  this.setState({
-       [e.target.name]: e.target.value
-  })
-}
-
-search=(e)=>{
-  e.preventDefault()
-  const data = {
-    course_title : this.state.course_title
+  const logout = (e) => {
+    localStorage.clear()
+    window.location.href = "/login"
   }
-  console.log(this.state.course_title)
-  axios.get("http://localhost:5000/searchcourse/"+  this.state.course_title)
-  .then((res)=>{
-    localStorage.setItem("search", this.state.course_title)
-    window.location.href = "/coursesearchlist"
-  })
-  .catch()
-}
 
 
 //delete function
 
-deleteproduct=(pro_idd)=>{
-    axios.delete("http://localhost:90/deletecourse/" + pro_idd )
+const deleteproduct=(pro_idd)=>{
+    axios.delete("http://localhost:5000/deletecourse/" + pro_idd )
     .then()
     .catch()
-   window.location.href="/coursedashboard"
+    window.location.href="/coursedashboard"
 }
 
-    render(){
         return(
             <div className="container-scroller">
   <div className="container-fluid page-body-wrapper">
@@ -84,34 +62,40 @@ deleteproduct=(pro_idd)=>{
         
         
         <li className="nav-item">
-          <a className="nav-link" href="/userdashboard">
+          <NavLink to={"/admin/users"} className="nav-link">
             <span className="menu-title">Users</span>
             <i className="mdi mdi-format-list-bulleted menu-icon" />
-          </a>
+          </NavLink>
         </li>
        
         <li className="nav-item">
-          <a className="nav-link" href="/coursedashboard">
+          <NavLink to={"/admin/courses"} className="nav-link">
             <span className="menu-title">Courses</span>
             <i className="mdi mdi-table-large menu-icon" />
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item sidebar-actions">
           <a href="/courseinsert"><span className="nav-link">
             <button className="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a Course</button>
           </span></a>
         </li>
+        <li className="nav-item sidebar-actions">
+          <h1><span className="nav-link">
+            <button className="btn btn-danger ml-3" onClick={logout}>Logout</button>
+          </span></h1>
+        </li>
       </ul>
     </nav>
 
 
-
+    <div className="main-panel">
+      <div className="content-wrapper">
        <div className="container p-5 ">
-            
-           <NavLink className="nav-link" to="/courseinsert"><button className="btn-info m-5">Add New Course</button></NavLink>
-
-           <input type="text" className="course-search" placeholder="Search.." name="course_title" value ={this.state.course_title} onChange = {this.searchState}/>
-          <button onClick={this.search}><i class="fa fa-search">Search</i></button>
+       <div className="row">
+          <div className="col-12 grid-margin">
+            <div className="card">
+              <div className="card-body">
+           <input type="text" placeholder="Search.." name="searchdata" value={searchdata} onChange={e => {setSearchdata(e.target.value)}}/>
           <br/>
           <br/>
           <br/>
@@ -127,7 +111,13 @@ deleteproduct=(pro_idd)=>{
   </thead>
   
   {
-      this.state.listcourses.map(courses=>{
+      listcourses.filter((courses) =>{
+        if(searchdata === ""){
+          return courses
+        } else if (courses.title.toLowerCase().includes(searchdata.toLowerCase())){
+          return courses
+        }
+      }).map(courses=>{
           return(
 
                 <tbody>
@@ -140,7 +130,7 @@ deleteproduct=(pro_idd)=>{
                     
                     
                     <NavLink className="btn-info bg-white" to={"/update/"+courses._id}><button className="btn-success m-4">Update</button></NavLink>
-                    <button onClick={()=>this.deleteproduct(courses._id)}className="btn-danger bg-danger">Delete</button>
+                    <button onClick={e => {deleteproduct(courses._id)}}className="btn-danger bg-danger">Delete</button>
                     </tr>
                     
                     
@@ -154,9 +144,15 @@ deleteproduct=(pro_idd)=>{
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
         )
     }
-}
+
 export default CourseDashboard;

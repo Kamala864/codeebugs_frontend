@@ -1,6 +1,12 @@
 import { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Admindashboard extends Component{
+
+  logout = (e) => {
+    localStorage.clear()
+    window.location.href = "/login"
+  }
     render() {
         return(
             <div className="container-scroller">
@@ -29,22 +35,27 @@ class Admindashboard extends Component{
         
         
         <li className="nav-item">
-          <a className="nav-link" href="/admin/users">
+          <NavLink to={"/admin/users"} className="nav-link">
             <span className="menu-title">Users</span>
             <i className="mdi mdi-format-list-bulleted menu-icon" />
-          </a>
+          </NavLink>
         </li>
        
         <li className="nav-item">
-          <a className="nav-link" href="/coursedashboard">
+          <NavLink to={"/admin/courses"} className="nav-link" >
             <span className="menu-title">Courses</span>
             <i className="mdi mdi-table-large menu-icon" />
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item sidebar-actions">
           <a href="/courseinsert"><span className="nav-link">
             <button className="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a Course</button>
           </span></a>
+        </li>
+        <li className="nav-item sidebar-actions">
+          <h1><span className="nav-link">
+            <button className="btn btn-danger ml-3" onClick={this.logout}>Logout</button>
+          </span></h1>
         </li>
       </ul>
     </nav>
