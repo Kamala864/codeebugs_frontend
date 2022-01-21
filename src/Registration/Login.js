@@ -60,7 +60,7 @@ class Login extends Component {
       loginEmailError = "**E-mail field cannot be empty!";
     }
 
-    else if (this.emailValidation === false) {
+    else if (this.emailValidation() === false) {
       loginEmailError = "**Invalid e-mail address!";
     }
 
