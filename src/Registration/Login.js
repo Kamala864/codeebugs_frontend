@@ -27,7 +27,7 @@ class Login extends Component {
     })
   }
 
-  validateLogin = (e) => {
+  login = (e) => {
     e.preventDefault()
 
     let loginEmailError = "";
@@ -77,7 +77,7 @@ class Login extends Component {
     return true;
   }
 
-  validateRegister = (e) => {
+  register = (e) => {
     e.preventDefault()
 
     let full_nameError = "";
@@ -148,57 +148,6 @@ class Login extends Component {
 
   }
 
-  Logindata = (e) => {
-    e.preventDefault();
-    if (this.state.loginemail === "" ||
-      this.state.loginpassword === "") {
-      alert("Please fill all of the informations!")
-    }
-    else {
-      const data = {
-        email: this.state.loginemail,
-        password: this.state.loginpassword
-      }
-      axios.post('http://localhost:5000/user/login', data)
-        .then((res) => {
-          localStorage.setItem('token', res.data.token);
-          localStorage.setItem('username', res.data.username);
-          localStorage.setItem('email', res.data.email);
-          alert("Login success!")
-          window.location.href = "/"
-        })
-        .catch((err) => {
-          console.log(err.response)
-          alert("Invalid Credentials")
-        })
-    }
-  }
-
-  register = (e) => {
-    e.preventDefault()
-    if (this.state.full_name === "" ||
-      this.state.email === "" ||
-      this.state.age === "" || this.state.password === "") {
-      alert("Please fill all of the informations!")
-    }
-    else {
-      if (this.state.password === this.state.confirm_password) {
-        const data = {
-          full_name: this.state.full_name,
-          email: this.state.email,
-          age: this.state.age,
-          password: this.state.password
-        }
-
-        axios.post("http://localhost:5000/signup", data)
-        alert("Registration successful!")
-        window.location.href = "/login"
-      } else {
-        alert("Password does not match!")
-      }
-    }
-  }
-
 
   render() {
     return (
@@ -219,8 +168,7 @@ class Login extends Component {
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.passwordError}</div>
                   <input type="password" name="confirm_password" placeholder="Confirm Password" value={this.state.confirm_password} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.passwordError}</div>
-                  <div style={{ color: "red", fontSize: "small" }}>{this.state.passwordError}</div>
-                  <button onClick={this.validateRegister} >Sign Up</button>
+                  <button onClick={this.register} >Sign Up</button>
                 </form>
               </div>
               <div className="form-container sign-in-container">
@@ -232,7 +180,7 @@ class Login extends Component {
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.loginPasswordError}</div>
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.invalidLoginError}</div>
                   <a href="#">Forgot your password?</a>
-                  <button type="submit" onClick={this.validateLogin}>Sign In</button>
+                  <button type="submit" onClick={this.login}>Sign In</button>
                 </form>
               </div>
               <div className="overlay-container">
