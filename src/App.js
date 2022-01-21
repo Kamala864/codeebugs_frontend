@@ -15,12 +15,6 @@ function App() {
         <Mid></Mid>
         <Footer></Footer>    
       </BrowserRouter>
-
-      <BrowserRouter>
-        <Routes>
-          <Route path="/admin/login" element={<AdminRegistration/>}/>
-        </Routes>
-      </BrowserRouter>
     </>
     
 
