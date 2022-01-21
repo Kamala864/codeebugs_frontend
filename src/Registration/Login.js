@@ -28,6 +28,21 @@ class Login extends Component {
     })
   }
 
+  emailValidation() {
+    const regex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+    if (regex.test(this.state.email) === false) {
+      return false;
+    }
+    return true;
+  }
+
+  nameValidation() {
+    if (!this.state.full_name.match(/^[a-zA-Z\s]+$/)) {
+      return false;
+    }
+    return true;
+  } 
+
   login = (e) => {
     e.preventDefault()
 
@@ -45,7 +60,7 @@ class Login extends Component {
       loginEmailError = "**E-mail field cannot be empty!";
     }
 
-    else if (!this.state.loginemail.includes("@")) {
+    else if (this.emailValidation === false) {
       loginEmailError = "**Invalid e-mail address!";
     }
 
@@ -78,25 +93,11 @@ class Login extends Component {
             return false;
           }
         })
-      
+
     }
 
     return true;
   }
-
-  emailValidation(){
-    const regex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
-    if(regex.test(this.state.email) === false){
-        return false;
-    }
-    return true;
-}
-nameValidation(){
-    if (!this.state.full_name.match(/^[a-zA-Z\s]+$/)) {
-     return false;
-      }
-    return true;
-}
 
   register = (e) => {
     e.preventDefault()
@@ -126,15 +127,15 @@ nameValidation(){
       emailError = "**E-mail field cannot be empty!";
     }
 
-    else if(this.emailValidation() === false){
+    else if (this.emailValidation() === false) {
       emailError = "**Invalid e-mail address!";
-  }
+    }
 
     if (this.state.age == "") {
       ageError = "**Age cannot be empty!";
     }
 
-    else if(this.state.age < 5 || this.state.age>13){
+    else if (this.state.age < 5 || this.state.age > 13) {
       ageError = "**Age must be between 5 and 13!"
     }
 
@@ -142,7 +143,7 @@ nameValidation(){
       passwordError = "**Password field cannot be empty!";
     }
 
-    if(this.state.password.length < 8 || this.state.password.length > 20){
+    if (this.state.password.length < 8 || this.state.password.length > 20) {
       passwordError = "**Password must be at least 8 characters long!"
     }
 
@@ -194,7 +195,7 @@ nameValidation(){
                   <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.emailError}</div>
                   <input type="number" name="age" placeholder="Age" value={this.state.age} onChange={this.changeState} />
-                  <div style={{ color: "red" , fontSize: "small"}}>{this.state.ageError}</div>
+                  <div style={{ color: "red", fontSize: "small" }}>{this.state.ageError}</div>
                   <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.passwordError}</div>
                   <input type="password" name="confirm_password" placeholder="Confirm Password" value={this.state.confirm_password} onChange={this.changeState} />
@@ -206,7 +207,7 @@ nameValidation(){
                 <form action="post">
                   <h1>Sign in</h1>
                   <input type="email" name="loginemail" value={this.state.loginemail} onChange={this.changeState} placeholder="Email" />
-                  <div style={{ color: "red" , fontSize: "small" }}>{this.state.loginEmailError}</div>
+                  <div style={{ color: "red", fontSize: "small" }}>{this.state.loginEmailError}</div>
                   <input type="password" name="loginpassword" value={this.state.loginpassword} onChange={this.changeState} placeholder="Password" />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.loginPasswordError}</div>
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.invalidLoginError}</div>
