@@ -17,6 +17,7 @@ class Login extends Component {
     emailError: "",
     ageError: "",
     passwordError: "",
+    confirmPasswordError: "",
     invalidLoginError: ""
   }
 
@@ -29,6 +30,12 @@ class Login extends Component {
 
   login = (e) => {
     e.preventDefault()
+
+    this.setState({
+      loginEmailError: "",
+      loginPasswordError: "",
+      invalidLoginError: ""
+    })
 
     let loginEmailError = "";
     let loginPasswordError = "";
@@ -77,19 +84,41 @@ class Login extends Component {
     return true;
   }
 
+  emailValidation(){
+    const regex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+    if(regex.test(this.state.email) === false){
+        return false;
+    }
+    return true;
+}
+nameValidation(){
+    if (!this.state.full_name.match(/^[a-zA-Z\s]+$/)) {
+     return false;
+      }
+    return true;
+}
+
   register = (e) => {
     e.preventDefault()
+
+    this.setState({
+      full_nameError: "",
+      emailError: "",
+      ageError: "",
+      passwordError: "",
+    })
 
     let full_nameError = "";
     let emailError = "";
     let ageError = "";
     let passwordError = "";
+    let confirmPasswordError = "";
 
     if (this.state.full_name == "") {
       full_nameError = "**Fullname cannot be empty!";
     }
 
-    else if (this.state.full_name.includes("Integer")) {
+    else if (this.nameValidation() === false) {
       full_nameError = "**Fullname must not contain number!";
     }
 
@@ -97,9 +126,9 @@ class Login extends Component {
       emailError = "**E-mail field cannot be empty!";
     }
 
-    else if (!this.state.email.includes("@")) {
+    else if(this.emailValidation() === false){
       emailError = "**Invalid e-mail address!";
-    }
+  }
 
     if (this.state.age == "") {
       ageError = "**Age cannot be empty!";
@@ -109,20 +138,25 @@ class Login extends Component {
       ageError = "**Age must be between 5 and 13!"
     }
 
-    if (this.state.password == "" || this.state.confirm_password == "") {
+    if (this.state.password == "") {
       passwordError = "**Password field cannot be empty!";
     }
 
-    if (this.state.confirm_password == "") {
-      passwordError = "**Password cannot be empty!";
-    }
-    
-    if (!(this.state.password === this.state.confirm_password)) {
-      passwordError = "**Passwords do not match!";
+    if(this.state.password.length < 8 || this.state.password.length > 20){
+      passwordError = "**Password must be at least 8 characters long!"
     }
 
-    if (full_nameError || emailError || ageError || passwordError) {
-      this.setState({ full_nameError, emailError, ageError, passwordError })
+    if (this.state.confirm_password == "") {
+      confirmPasswordError = "**Password field cannot be empty!";
+    }
+
+    else if (!(this.state.password === this.state.confirm_password)) {
+      passwordError = "**Passwords do not match!";
+      confirmPasswordError = "**Passwords do not match!";
+    }
+
+    if (full_nameError || emailError || ageError || passwordError || confirmPasswordError) {
+      this.setState({ full_nameError, emailError, ageError, passwordError, confirmPasswordError })
       return false;
     }
 
@@ -142,10 +176,7 @@ class Login extends Component {
         alert("Something went wrong!")
       }
     }
-
-
     return true;
-
   }
 
 
@@ -167,7 +198,7 @@ class Login extends Component {
                   <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.passwordError}</div>
                   <input type="password" name="confirm_password" placeholder="Confirm Password" value={this.state.confirm_password} onChange={this.changeState} />
-                  <div style={{ color: "red", fontSize: "small" }}>{this.state.passwordError}</div>
+                  <div style={{ color: "red", fontSize: "small" }}>{this.state.confirmPasswordError}</div>
                   <button onClick={this.register} >Sign Up</button>
                 </form>
               </div>
