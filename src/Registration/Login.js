@@ -36,6 +36,14 @@ class Login extends Component {
     return true;
   }
 
+  loginEmailValidation() {
+    const regex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+    if (regex.test(this.state.loginemail) === false) {
+      return false;
+    }
+    return true;
+  }
+
   nameValidation() {
     if (!this.state.full_name.match(/^[a-zA-Z\s]+$/)) {
       return false;
@@ -60,7 +68,7 @@ class Login extends Component {
       loginEmailError = "**E-mail field cannot be empty!";
     }
 
-    else if (this.emailValidation() === false) {
+    else if (this.loginEmailValidation() === false) {
       loginEmailError = "**Invalid e-mail address!";
     }
 
