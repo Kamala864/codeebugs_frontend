@@ -28,7 +28,9 @@ class Login extends Component {
     })
   }
 
+  
   emailValidation() {
+  // registration email validation
     const regex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
     if (regex.test(this.state.email) === false) {
       return false;
@@ -37,6 +39,8 @@ class Login extends Component {
   }
 
   loginEmailValidation() {
+
+    //login email validation
     const regex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
     if (regex.test(this.state.loginemail) === false) {
       return false;
@@ -45,6 +49,9 @@ class Login extends Component {
   }
 
   nameValidation() {
+
+    //full name validation
+    //checks whether the full name has number or not
     if (!this.state.full_name.match(/^[a-zA-Z\s]+$/)) {
       return false;
     }
@@ -64,6 +71,7 @@ class Login extends Component {
     let loginPasswordError = "";
     let invalidLoginError = "";
 
+    //login form validation
     if (this.state.loginemail == "") {
       loginEmailError = "**E-mail field cannot be empty!";
     }
@@ -82,6 +90,8 @@ class Login extends Component {
     }
 
     else {
+
+      // login function
       const data = {
         email: this.state.loginemail,
         password: this.state.loginpassword
@@ -123,6 +133,8 @@ class Login extends Component {
     let passwordError = "";
     let confirmPasswordError = "";
 
+
+    //registration form validation
     if (this.state.full_name == "") {
       full_nameError = "**Fullname cannot be empty!";
     }
@@ -170,6 +182,8 @@ class Login extends Component {
     }
 
     else {
+
+      //registration function
       if (this.state.password === this.state.confirm_password) {
         const data = {
           full_name: this.state.full_name,
