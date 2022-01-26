@@ -24,7 +24,7 @@ class Header extends Component{
             
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/payment" className="nav-link">
               Payments
             </a>
           </li>
