@@ -202,6 +202,10 @@ class Login extends Component {
     return true;
   }
 
+  forgotPassword = (e) =>{
+    window.location.href = "/forgot-password"
+  }
+
 
   render() {
     return (
@@ -233,7 +237,7 @@ class Login extends Component {
                   <input type="password" name="loginpassword" value={this.state.loginpassword} onChange={this.changeState} placeholder="Password" />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.loginPasswordError}</div>
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.invalidLoginError}</div>
-                  <a href="#">Forgot your password?</a>
+                  <a onClick={this.forgotPassword}>Forgot your password?</a>
                   <button type="submit" onClick={this.login}>Sign In</button>
                 </form>
               </div>

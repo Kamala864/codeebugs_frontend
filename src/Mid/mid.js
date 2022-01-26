@@ -15,6 +15,8 @@ import Editor from "./Code Editor/Editor";
 import Learn from "./Courses/learn";
 import UserDashboard from "./Users/Userdashboard";
 import CoursePayment from "./coursepayment";
+import ForgotPassword from "./forgot-password";
+import ResetPassword from "./reset-password";
 
 
 class Mid extends Component{
@@ -42,6 +44,8 @@ class Mid extends Component{
             <Route path="/enrolledcourses" element={<EnrolledCourses/>}/>
             <Route path="/editor" element={<Editor/>}/>
             <Route path="/learn" element={<Learn/>}/>
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
+            <Route path="/reset-password" element={<ResetPassword/>}/>
             </Routes>
             </>
         )
