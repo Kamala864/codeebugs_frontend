@@ -37,6 +37,7 @@ const Editor = () => {
       <Header
         value={language}
         status={status}
+        code={code}
         runCode={() => runCode()}
         onChangeLanguage={({ value }) => setLanguage(value)}
       />

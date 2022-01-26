@@ -16,3 +16,15 @@ h2{
     width: 50%;
     padding-top: 9%;
 }
+
+#download{
+    color: azure;
+    font-size: 12px;
+}
+
+.btn-download{
+    margin-left: 5px;
+    padding: 10px;
+    color: azure;
+    background-color: chocolate;
+}
