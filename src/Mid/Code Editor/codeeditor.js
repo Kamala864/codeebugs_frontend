@@ -34,6 +34,7 @@ const CodeEditor = ({ value, onCodeChange, programmingLanguage }) => {
         tabSize: 2,
       }}
     />
+    
   );
 };
 

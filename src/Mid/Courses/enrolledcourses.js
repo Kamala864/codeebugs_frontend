@@ -1,16 +1,33 @@
-import { Component } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
-class EnrolledCourses extends Component{
-     render(){
+function EnrolledCourses(){
+     const [listcourses, setListcourses] = useState([]);
+
+     useEffect(()=>{
+          axios.get("http://localhost:5000/course/showall")
+          .then(res =>{
+               setListcourses(res.data.data)
+          })
+          .catch(err =>{
+               console.log(err)
+          })
+     })
           return(
                <div>
-               <h1>Enrolled Courses</h1>
-               <p>Course 1</p>
-               <p>Course 2</p>
+                    <h1>Enrolled Courses</h1>
+                    {listcourses.map(course =>(
+                         <div key={course._id}>
+                         <p>{course.title}</p>
+                         <div>{course.enrolledBy.map(id =>(
+                              <li>{id.userID}</li>
+                         ))}</div>
+                         </div>
+                    ))}
+               
                </div>
           )
-     }
 }
 
 export default EnrolledCourses;
