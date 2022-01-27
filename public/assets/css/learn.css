@@ -19,7 +19,6 @@ h2{
 .column  {
     float: left;
     width: 50%;
-<<<<<<< HEAD
     height: 360px;
 }
 .left {
@@ -68,19 +67,3 @@ h2{
 }
 
 
-=======
-    padding-top: 9%;
-}
-
-#download{
-    color: azure;
-    font-size: 12px;
-}
-
-.btn-download{
-    margin-left: 5px;
-    padding: 10px;
-    color: azure;
-    background-color: chocolate;
-}
->>>>>>> f24c16f05c46b69cc7ea3e30bd3bb0d3ee52c7ea

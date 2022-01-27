@@ -15,7 +15,11 @@ class CourseInsert extends Component {
     initialValues={{courseTitle : "",
                     courseDescription : "",
                     tutorName: "",
-                    tutorial: [{chapterName : "", video : ""}]
+                    tutorial: [{chapterName : "", video : ""}],
+                    quiz : [{question : "", correctAnswer : "", incorrectAnswer : [{
+                                                                                    incorrect1 : "dddd",
+                                                                                    incorrect2 : "",
+                                                                                    incorrect3 : ""}]}]
                     }}
 
     
@@ -26,7 +30,8 @@ class CourseInsert extends Component {
           courseTitle : values.courseTitle,
           courseDescription : values.courseDescription,
           tutorName : values.tutorName,
-          tutorial : values.tutorial
+          tutorial : values.tutorial,
+          quiz : values.quiz
         })
 
         .then((result)=>{
@@ -36,8 +41,6 @@ class CourseInsert extends Component {
 
         .catch()
     }}
-
-    
 
     > 
     {({values  , handleChange, handleBlur, handleSubmit}) =>(
@@ -89,7 +92,6 @@ class CourseInsert extends Component {
               <Stack direction="row" alignItems="center" spacing={3}>
               <TextField 
               style={{width : 280}}
-              multiline
               variant="standard"
               label= "chapter Name"
               name={`tutorial.${index}.chapterName`} 
@@ -120,8 +122,96 @@ class CourseInsert extends Component {
         
     </FieldArray>
 
+    <FieldArray name="quiz">
+    {arrayHelpers => (
+        <div>
+          <Button
+            onClick={() =>
+              arrayHelpers.push({
+                question : "",
+                correctAnswer: "",
+                incorrectAnswer : [{
+                  incorrect1 : "",
+                  incorrect2 : "",
+                  incorrect3 : ""}],
+              })
+            }
+          >
+            ????Add Question????
+          </Button>
+          {values.quiz.map((question, index) => {
+            return (
+              <div >
+
+              <div>
+              <TextField 
+              style={{width : 480}}
+              variant="standard"
+              label= "Question"
+              name={`quiz.${index}.question`} 
+              values={`quiz.${index}.question`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
+              </div>
+
+              <Stack direction="row" alignItems="center" spacing={2}>
+              
+              
+
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              label= "Correct Answer"
+              name={`quiz.${index}.correctAnswer`} 
+              values={`quiz.${index}.correctAnswer`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
+
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              multiline
+              label= "Incorrect Answer"
+              name={`quiz.${index}.incorrect1`} 
+              values={`quiz.${index}.incorrect1`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
+
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              multiline
+              label= "Incorrect Answer"
+              name={`quiz.${index}.incorrect2`} 
+              values={`quiz.${index}.incorrect2`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
+
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              multiline
+              label= "Incorrect Answer"
+              name={`quiz.${index}.incorrect3`} 
+              values={`quiz.${index}.incorrect3`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
+
+                <Button onClick={() => arrayHelpers.remove(index)}>
+                  x
+                </Button>
+                </Stack>
+                
+              </div>
+            );
+          })}
+        </div>
+      )}
+        
+    </FieldArray>
+
         <Button endIcon={<SendIcon/>} varient="contained" type="submit">Submit</Button>
-        <pre>{JSON.stringify(values)}</pre>
+        <pre>{JSON.stringify(values.quiz)}</pre>
         </form>
     )}
     
