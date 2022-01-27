@@ -1,5 +1,7 @@
+
 import axios from "axios";
 import { Component } from "react";
+import { toast } from "react-toastify";
 
 class Login extends Component {
 
@@ -72,7 +74,7 @@ class Login extends Component {
     let invalidLoginError = "";
 
     //login form validation
-    if (this.state.loginemail == "") {
+    if (this.state.loginemail === "") {
       loginEmailError = "**E-mail field cannot be empty!";
     }
 
@@ -80,7 +82,7 @@ class Login extends Component {
       loginEmailError = "**Invalid e-mail address!";
     }
 
-    if (this.state.loginpassword == "") {
+    if (this.state.loginpassword === "") {
       loginPasswordError = "**Password field cannot be empty"
     }
 
@@ -98,12 +100,17 @@ class Login extends Component {
       }
       axios.post('http://localhost:5000/user/login', data)
         .then((res) => {
+          toast.success("Logged in successfully!", {
+            position: toast.POSITION.TOP_CENTER})
+
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('userID', res.data.userID);
           localStorage.setItem('username', res.data.username);
           localStorage.setItem('email', res.data.email);
-          alert("Login success!")
-          window.location.href = "/"
+          setTimeout(() => {
+            window.location.href = "/"
+         }, 2000);
+         
         })
         .catch((err) => {
           invalidLoginError = "**Invalid credentials!";
@@ -136,7 +143,7 @@ class Login extends Component {
 
 
     //registration form validation
-    if (this.state.full_name == "") {
+    if (this.state.full_name ==="") {
       full_nameError = "**Fullname cannot be empty!";
     }
 
@@ -144,7 +151,7 @@ class Login extends Component {
       full_nameError = "**Fullname must not contain number!";
     }
 
-    if (this.state.email == "") {
+    if (this.state.email === "") {
       emailError = "**E-mail field cannot be empty!";
     }
 
@@ -152,7 +159,7 @@ class Login extends Component {
       emailError = "**Invalid e-mail address!";
     }
 
-    if (this.state.age == "") {
+    if (this.state.age === "") {
       ageError = "**Age cannot be empty!";
     }
 
@@ -160,7 +167,7 @@ class Login extends Component {
       ageError = "**Age must be between 5 and 13!"
     }
 
-    if (this.state.password == "") {
+    if (this.state.password === "") {
       passwordError = "**Password field cannot be empty!";
     }
 
@@ -168,7 +175,7 @@ class Login extends Component {
       passwordError = "**Password must be at least 8 characters long!"
     }
 
-    if (this.state.confirm_password == "") {
+    if (this.state.confirm_password === "") {
       confirmPasswordError = "**Password field cannot be empty!";
     }
 
@@ -194,10 +201,12 @@ class Login extends Component {
         }
 
         axios.post("http://localhost:5000/signup", data)
-        alert("Registration successful!")
-        window.location.href = "/login"
+        toast.success("Registration successful!")
+        setTimeout(() => {
+          window.location.href = "/login"
+       }, 2000);
       } else {
-        alert("Something went wrong!")
+        toast.error("Something went wrong!")
       }
     }
     return true;

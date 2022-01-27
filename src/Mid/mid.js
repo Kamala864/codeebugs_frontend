@@ -17,7 +17,8 @@ import UserDashboard from "./Users/Userdashboard";
 import CoursePayment from "./coursepayment";
 import ForgotPassword from "./forgot-password";
 import ResetPassword from "./reset-password";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Mid extends Component{
     render(){
@@ -47,6 +48,7 @@ class Mid extends Component{
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
             <Route path="/reset-password" element={<ResetPassword/>}/>
             </Routes>
+            <ToastContainer autoClose={2000} theme="colored"/>
             </>
         )
     }

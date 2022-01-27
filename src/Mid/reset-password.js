@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const { Component } = require("react");
 
@@ -85,14 +86,20 @@ class ResetPassword extends Component {
                     newPassword: this.state.newPassword
                }
                axios.put("http://localhost:5000/reset-password", data)
-               alert("Your password has been changed successfully!")
-               window.location.href = "/login"
+               toast.success("your passwrod has been changed successfully!", {
+                    position: toast.POSITION.TOP_CENTER})
+               setTimeout(() => {
+                    window.location.href = "/login"
+                 }, 2000);
+               
           }
 
      }
 
      render() {
           return (
+               <>
+               <div>
                <form className="mt-3">
                     <h1>Reset Password</h1>
                     <p>Please enter OTP Code and new password.</p>
@@ -106,7 +113,9 @@ class ResetPassword extends Component {
                     <button className="mb-5" onClick={this.newOTP}>Send New OTP</button>
 
                </form>
-
+               </div>
+               
+</>
           )
      }
 }

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const { Component } = require("react");
 
@@ -39,7 +41,7 @@ class ForgotPassword extends Component {
           let emailError = "";
 
 
-          if (this.state.email == "") {
+          if (this.state.email === "") {
                emailError = "**E-mail field cannot be empty!";
           }
 
@@ -62,15 +64,18 @@ class ForgotPassword extends Component {
                     .post("http://localhost:5000/find-email", data)
                     .then((result) => {
                          if (result.data.success === true) {
-                              console.log(data)
+                              toast.success("Please check your e-mail for OTP code!", {
+                                   position: toast.POSITION.TOP_CENTER})
                               axios.post("http://localhost:5000/forgot-password", data)
-                              alert("Please check your email for OTP code!")
-                              window.location.href = "/reset-password"
+                              setTimeout(() => {
+                                   window.location.href = "/reset-password"
+                                }, 2000);
                          }
                     }).catch(function (error) {
 
                          if (error.response) {
-                              alert("User not found!")
+                              toast.error("User not found!", {
+                                   position: toast.POSITION.TOP_CENTER})
                               console.log(error.response.data);
                          }
                     });
@@ -80,14 +85,15 @@ class ForgotPassword extends Component {
 
      render() {
           return (
-               <form className="mt-3">
-                    <h1>Forgot Password</h1>
-                    <p>Please enter your e-mail id.</p>
-                    <input className="ml-5 mr-5" type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeState} />
-                    <div className="mb-1" style={{ color: "red", fontSize: "small" }}>{this.state.emailError}</div>
-                    <button className="mb-5" onClick={this.submit}>Submit</button>
-               </form>
-
+               <>
+                    <form className="mt-3">
+                         <h1>Forgot Password</h1>
+                         <p>Please enter your e-mail id.</p>
+                         <input className="ml-5 mr-5" type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeState} />
+                         <div className="mb-1" style={{ color: "red", fontSize: "small" }}>{this.state.emailError}</div>
+                         <button className="mb-5" onClick={this.submit}>Submit</button>
+                    </form>
+               </>
           )
      }
 }
