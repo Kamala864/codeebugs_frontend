@@ -19,7 +19,7 @@ h2{
 .column  {
     float: left;
     width: 50%;
-    height: 360px;
+    height: 460px;
 }
 .left {
     width:20%;
@@ -64,6 +64,12 @@ h2{
 
 .left a:hover{
     background-color: #ccc;
+}
+
+
+.quizCard{
+    float: center;
+    height: 360px;
 }
 
 
