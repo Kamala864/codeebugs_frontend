@@ -16,10 +16,8 @@ class CourseInsert extends Component {
                     courseDescription : "",
                     tutorName: "",
                     tutorial: [{chapterName : "", video : ""}],
-                    quiz : [{question : "", correctAnswer : "", incorrectAnswer : [{
-                                                                                    incorrect1 : "dddd",
-                                                                                    incorrect2 : "",
-                                                                                    incorrect3 : ""}]}]
+                    quiz : [{question : "", correctAnswer : "", 
+                            incorrectAnswer : []}]
                     }}
 
     
@@ -31,7 +29,8 @@ class CourseInsert extends Component {
           courseDescription : values.courseDescription,
           tutorName : values.tutorName,
           tutorial : values.tutorial,
-          quiz : values.quiz
+          quiz : values.quiz,
+          
         })
 
         .then((result)=>{
@@ -172,8 +171,8 @@ class CourseInsert extends Component {
               variant="standard"
               multiline
               label= "Incorrect Answer"
-              name={`quiz.${index}.incorrect1`} 
-              values={`quiz.${index}.incorrect1`} 
+              name={`quiz.${index}.incorrectAnswer[0]`} 
+              values={`quiz.${index}.incorrectAnswer[0]`} 
               onChange={handleChange} 
               onBlur={handleBlur}/>
 
@@ -182,8 +181,8 @@ class CourseInsert extends Component {
               variant="standard"
               multiline
               label= "Incorrect Answer"
-              name={`quiz.${index}.incorrect2`} 
-              values={`quiz.${index}.incorrect2`} 
+              name={`quiz.${index}.incorrectAnswer[1]`} 
+              values={`quiz.${index}.incorrectAnswer[1]`} 
               onChange={handleChange} 
               onBlur={handleBlur}/>
 
@@ -192,8 +191,8 @@ class CourseInsert extends Component {
               variant="standard"
               multiline
               label= "Incorrect Answer"
-              name={`quiz.${index}.incorrect3`} 
-              values={`quiz.${index}.incorrect3`} 
+              name={`quiz.${index}.incorrectAnswer[2]`} 
+              values={`quiz.${index}.incorrectAnswer[2]`} 
               onChange={handleChange} 
               onBlur={handleBlur}/>
 
@@ -211,7 +210,6 @@ class CourseInsert extends Component {
     </FieldArray>
 
         <Button endIcon={<SendIcon/>} varient="contained" type="submit">Submit</Button>
-        <pre>{JSON.stringify(values.quiz)}</pre>
         </form>
     )}
     
