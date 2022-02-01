@@ -19,6 +19,7 @@ import ForgotPassword from "./forgot-password";
 import ResetPassword from "./reset-password";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CourseAdd from "./Courses/addcourse";
 
 
 class Mid extends Component{
@@ -48,6 +49,7 @@ class Mid extends Component{
             <Route path="/learn" element={<Learn/>}/>
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
             <Route path="/reset-password" element={<ResetPassword/>}/>
+            <Route path="/addcourse" element = {<CourseAdd/>}/>
             </Routes>
             <ToastContainer autoClose={2000} theme="colored"/>
             </>

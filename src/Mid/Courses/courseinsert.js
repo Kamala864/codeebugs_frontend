@@ -15,34 +15,71 @@ class CourseInsert extends Component {
     initialValues={{courseTitle : "",
                     courseDescription : "",
                     tutorName: "",
-                    tutorial: [{chapterName : "", video : ""}],
+                    tutorial: [{chapterName : "", video : null}],
                     quiz : [{question : "", correctAnswer : "", 
                             incorrectAnswer : []}]
                     }}
 
+
     
-    onSubmit={values =>{
-        console.log('Submit: ',values);
 
-        axios.post("http://localhost:5000/addcourse",{
-          courseTitle : values.courseTitle,
-          courseDescription : values.courseDescription,
-          tutorName : values.tutorName,
-          tutorial : values.tutorial,
-          quiz : values.quiz,
+    
+     onSubmit={values =>{
+      console.log('Submit: ',values);
+      var input = document.querySelector('input[type="file"]')
+
+      //  const course_data = {
+      //   courseTitle : values.courseTitle,
+      //   courseDescription : values.courseDescription,
+      //   tutorName : values.tutorName,
+      //   tutorial : {chapterName : values.tutorial[0].chapterName, video : values.tutorial[0].video},
+      //   quiz : values.quiz,
+      //  }
+
+      //   axios.post('http://localhost:5000/addcourse',course_data).then((res)=>{
+      //    console.log(res)
+      //  })
+
+
+
+        const formData = new FormData();
+        formData.append('courseTitle', values.courseTitle)
+        formData.append('courseDescription', values.courseDescription)
+        formData.append('tutorName' , values.tutorName)
+        formData.append('tutorial', values.tutorial )
+        formData.append('quiz', values.quiz)
+
+        try {
+          console.log(values.tutorial)
+          axios.post('http://localhost:5000/addcourse',formData);
+        }catch (err){
+          console.log(err)
+        }
+   
+        // console.log(values.tutorial[0].video.name)
+        //   axios.post("http://localhost:5000/addcourse",{
+        //     courseTitle : values.courseTitle,
+        //     courseDescription : values.courseDescription,
+        //     tutorName : values.tutorName,
+        //     tutorial : {chapterName : values.tutorial[0].chapterName, video : values.tutorial[0].video.name},
+        //     // tutorial : values.tutorial,
+        //     quiz : values.quiz,
+
+            
           
-        })
+        //   })
+        //   console.log(values.tutorial)
+        
 
-        .then((result)=>{
+        // .then((result)=>{
 
-            console.log(result)
-        })
-
-        .catch()
+        //      console.log(result)
+        //  })
+        //  .catch()
     }}
 
     > 
-    {({values  , handleChange, handleBlur, handleSubmit}) =>(
+    {({values, setFieldValue  , handleChange, handleBlur, handleSubmit}) =>(
         <form onSubmit={handleSubmit}>
         <TextField 
         style={{width : 480}}
@@ -102,7 +139,9 @@ class CourseInsert extends Component {
               <Input name={`tutorial.${index}.video`}
               values={`tutorial.${index}.video`} 
               accept="video/mp4" type="file"
-              onChange={handleChange}
+              onChange={(event) => {
+                setFieldValue(`tutorial.${index}.video`,event.currentTarget.files[0])
+              }}
                 />
               <IconButton color="primary" aria-label="upload video" component="span">
                 <PhotoCamera />
