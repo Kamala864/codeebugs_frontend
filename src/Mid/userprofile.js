@@ -1,11 +1,32 @@
-import { Component } from "react";
+import axios from "axios"
+import { useEffect, useState } from "react"
 
-class UserProfile extends Component {
-  logOut=(e)=>{
+function UserProfile(){
+  const [listcourses, setListcourses] = useState([]);
+
+  useEffect(()=>{
+    axios.get("http://localhost:5000/course/showall")
+    .then(res =>{
+      setListcourses(res.data.data)
+      console.log(res.data.data)
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }, []);
+
+  // const user = listcourses.find((course) => {
+  //   return course.enrolledBy.some((item) => {
+  //   return item.userID === localStorage.getItem("userID")
+  //   })
+    
+  // }  );
+
+
+  const logOut=(e)=>{
     localStorage.clear()
     window.location.href="/login"
   }
-    render() {
         return(
             <div className="container">
   <div className="main-body">
@@ -26,7 +47,7 @@ class UserProfile extends Component {
         <div className="card mt-3">
           <ul className="list-group list-group-flush">
             <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              <a href="/login" onClick={this.logOut}><h6 className="mb-0"><img src="assets/img/Navbar/logout.png" width={24} height={24}/>&nbsp;&nbsp;&nbsp;Logout</h6></a>
+              <a href="/login" onClick={logOut}><h6 className="mb-0"><img src="assets/img/Navbar/logout.png" width={24} height={24}/>&nbsp;&nbsp;&nbsp;Logout</h6></a>
             </li>
           </ul>
         </div>
@@ -69,57 +90,23 @@ class UserProfile extends Component {
           </div>
         </div>
         <div className="row gutters-sm">
-          <div className="col-sm-6 mb-3">
+          <div className="col-sm-12 mb-2">
             <div className="card h-100">
               <div className="card-body">
-                <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                <small>Web Design</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '80%'}} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>Website Markup</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '72%'}} aria-valuenow={72} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>One Page</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '89%'}} aria-valuenow={89} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>Mobile Template</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '55%'}} aria-valuenow={55} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>Backend API</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '66%'}} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6 mb-3">
-            <div className="card h-100">
-              <div className="card-body">
-                <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                <small>Web Design</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '80%'}} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>Website Markup</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '72%'}} aria-valuenow={72} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>One Page</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '89%'}} aria-valuenow={89} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>Mobile Template</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '55%'}} aria-valuenow={55} aria-valuemin={0} aria-valuemax={100} />
-                </div>
-                <small>Backend API</small>
-                <div className="progress mb-3" style={{height: 5}}>
-                  <div className="progress-bar bg-primary" role="progressbar" style={{width: '66%'}} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
-                </div>
+                <h6 className="d-flex align-items-center mb-3">Enrolled Courses</h6>
+                {
+                  
+                }
+                {listcourses.map(course =>(
+                  <div>
+                  <small>{course.title}</small>
+                  <div className="progress mb-3" style={{height: 5}}>
+                    <div className="progress-bar bg-primary" role="progressbar" style={{width: '80%'}} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
+                  </div>
+                  </div>
+                )
+                )}
+
               </div>
             </div>
           </div>
@@ -130,7 +117,7 @@ class UserProfile extends Component {
 </div>
 
         )
-    }
+    
 }
 
 export default UserProfile;

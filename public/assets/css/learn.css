@@ -3,7 +3,7 @@
     float: right;
 }
 h2{
-    float: left;
+    float: center;
 }
 
 .Top{
@@ -11,20 +11,65 @@ h2{
 }
 
 .Player{
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    padding-top: 0;
+}
+.column  {
+    float: left;
     width: 50%;
-    padding-top: 9%;
+    height: 460px;
+}
+.left {
+    width:20%;
+    overflow-y: auto;
+}
+.right{
+    width:80%
 }
 
-#download{
-    color: azure;
-    font-size: 12px;
+.tutorial:after{
+    content: "";
+    display: table;
+    clear: both;
+    
+}
+.description{
+    position: relative;
+    left: 15px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
+.desContent{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: x-large;
+    position: relative;
+    left: 15px;
+    line-height: 1.5;
 }
 
-.btn-download{
-    margin-left: 5px;
-    padding: 10px;
-    color: azure;
-    background-color: chocolate;
+.tutor {
+    position: relative;
+    float: right;
+    right: 20px;
+    margin-top: 40px;
 }
+
+.left a{
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.left a:hover{
+    background-color: #ccc;
+}
+
+
+.quizCard{
+    float: center;
+    height: 360px;
+}
+
+

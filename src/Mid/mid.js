@@ -10,11 +10,17 @@ import Coursesearchlist from "./Courses/coursesearchlist";
 import CourseSearch from "./Courses/coursesearch";
 import EnrolledCourses from "./Courses/enrolledcourses";
 import Home from "./home";
+import Notification from "../Header/notification";
 import UserProfile from "./userprofile";
 import Editor from "./Code Editor/Editor";
 import Learn from "./Courses/learn";
 import UserDashboard from "./Users/Userdashboard";
 import CoursePayment from "./coursepayment";
+import ForgotPassword from "./forgot-password";
+import ResetPassword from "./reset-password";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CourseAdd from "./Courses/addcourse";
 
 
 class Mid extends Component{
@@ -24,6 +30,7 @@ class Mid extends Component{
             <>
             <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/notification" element={<Notification/>}/>
             <Route path="/userprofile" element={<UserProfile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<UserProfile/>} />
@@ -42,7 +49,11 @@ class Mid extends Component{
             <Route path="/enrolledcourses" element={<EnrolledCourses/>}/>
             <Route path="/editor" element={<Editor/>}/>
             <Route path="/learn" element={<Learn/>}/>
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
+            <Route path="/reset-password" element={<ResetPassword/>}/>
+            <Route path="/addcourse" element = {<CourseAdd/>}/>
             </Routes>
+            <ToastContainer autoClose={2000} theme="colored"/>
             </>
         )
     }
