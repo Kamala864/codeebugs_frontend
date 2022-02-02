@@ -19,6 +19,8 @@ import ForgotPassword from "./forgot-password";
 import ResetPassword from "./reset-password";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserDetailUpdate from "./Users/UserDetailUpdate";
+import CourseDetailUpdate from "./Courses/courseupdate";
 
 
 class Mid extends Component{
@@ -36,9 +38,9 @@ class Mid extends Component{
             <Route path="/courseinsert" element={<CourseInsert/>} />
             <Route path="/admin" element={<Admindashboard/>} />
             <Route path="/admin/users" element={<UserDashboard/>} />
+            <Route path="/user/update/:userid" element={<UserDetailUpdate/>} />
             <Route path="/admin/courses" element={<CourseDashboard/>}/>
-            <Route path="/coursedashboard" element={<CourseDashboard/>}/>
-            <Route path="/userdashboard" element={<UserDashboard/>}/>
+            <Route path="/course/update/:courseid" element={<CourseDetailUpdate/>} />
             <Route path="/coursesearchlist" element={<Coursesearchlist/>}/>
             <Route path="/usersearchlist" element={<Coursesearchlist/>}/>
             <Route path="/coursesearch" element={<CourseSearch/>}/>

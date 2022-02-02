@@ -47,7 +47,7 @@ function Courses() {
 
   return (
     <div>
-      <div className="page-banner-area item-bg1">
+      <div className="page-banner-area item-bg1"> 
         <div className="d-table">
           <div className="d-table-cell">
             <div className="container">

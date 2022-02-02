@@ -13,20 +13,6 @@ const InputEditor = ({ value, onInputChange }) => {
     console.log("input editor loaded");
   };
 
-const download = ()=>{
-  var fileName = "myfile.txt";
-  var fileContent = value.toString();
-  console.log(value);
-  var myFile = new Blob([fileContent], { type: 'text/plain' });
-
-  window.URL = window.URL || window.webkitURL;
-  var dlBtn = document.getElementById("download");
-
-  dlBtn.setAttribute("href", window.URL.createObjectURL(myFile));
-  dlBtn.setAttribute("download", fileName);
-}
-
-console.log(value.toString())
   return (
     <div>
       <AceEditor

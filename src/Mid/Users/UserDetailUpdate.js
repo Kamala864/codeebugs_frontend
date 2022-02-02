@@ -1,18 +1,18 @@
-import axios from "axios";
+
 import { useLocation } from "react-router-dom";
 
-function CourseDetailUpdate() {
-    
+function UserDetailUpdate() {
+
     const location = useLocation();
 
 
 return (
     <section className="class-details-area pt-100 pb-70">
         <form className="login-form">
-            <h1 className="mb-3">Course Update</h1>
+            <h1 className="mb-3">User Update</h1>
             <div className="form-input-material">
-            <label htmlFor="username">Course Title</label>
-                <input type="text" name="title" placeholder={location.state.title} className="form-control-material" required />
+            <label htmlFor="username">Email</label>
+                <input type="text" name="title" placeholder={location.state.email} className="form-control-material" required />
                 
             </div>
             <div className="form-input-material" >
@@ -23,7 +23,8 @@ return (
         </form>
     </section>
 
+
 )
 }
 
-export default CourseDetailUpdate;
+export default UserDetailUpdate;

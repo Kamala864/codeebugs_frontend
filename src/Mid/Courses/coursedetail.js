@@ -19,6 +19,30 @@ function CourseDetail() {
   const [input, setInput] = useState("");
   const [outputLogs, setOutputLogs] = useState("");
   const [status, setStatus] = useState("Run");
+  const [watchComplete, setWatchComplete] = useState(false);
+
+
+  const handleWatchComplete = ({ played }) =>{
+    if (played > 0.8 && !watchComplete) {
+      setWatchComplete(true)
+    }
+  }
+
+  const addProgress = () =>{
+    if (watchComplete===true) {
+      var progress = location.state.weight
+      console.log(progress)
+      axios.put("http://localhost:5000/updateprogress", progress)
+        .then(res => {
+          console.log(res.data.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
+  addProgress()
 
   // run button callback
   const runCode = () => {
@@ -48,6 +72,7 @@ function CourseDetail() {
                   <ReactPlayer width={540} height={360}
                     url={"http://localhost:5000/" + location.state.video}
                     controls
+                    onProgress={handleWatchComplete}
                   />
                 </div>
 

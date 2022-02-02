@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -8,6 +8,7 @@ function CourseDashboard(){
 
   const [listcourses,setlistcourses] = useState([])
   const [searchdata, setSearchdata] = useState("")
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get("http://localhost:5000/course/showall")
@@ -23,6 +24,16 @@ function CourseDashboard(){
   const logout = (e) => {
     localStorage.clear()
     window.location.href = "/login"
+  }
+
+
+  const CourseDetailUpdate=(course_id)=>{
+    axios.get("http://localhost:5000/course/" + course_id)
+      .then((res) => {
+        console.log(res.data)
+        navigate(`/course/update/${course_id}`, { state: res.data })
+      }
+      )
   }
 
 
@@ -129,7 +140,7 @@ const deleteproduct=(pro_idd)=>{
                     <td>{courses.lecturer}</td>
                     
                     
-                    <NavLink className="btn-info bg-white" to={"/update/"+courses._id}><button className="btn-success m-4">Update</button></NavLink>
+                    <button onClick={e => {CourseDetailUpdate(courses._id)}} className="btn-success m-4">Update</button>
                     <button onClick={e => {deleteproduct(courses._id)}}className="btn-danger bg-danger">Delete</button>
                     </tr>
                     
