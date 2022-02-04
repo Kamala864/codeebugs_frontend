@@ -10,227 +10,249 @@ import axios from "axios";
 
 class CourseInsert extends Component {
 
-
-  render() {
-    return <div>
-      <Formik
-        initialValues={{
-          courseTitle: "",
-          courseImage: "",
-          courseDescription: "",
-          tutorName: "",
-          tutorial: [{ chapterName: "", video: "" }],
-          quiz: [{
-            question: "", correctAnswer: "",
-            incorrectAnswer: []
-          }]
-        }}
-
-        FileChangeHandler = { (e) => {
-          e.target.value = e.target.files[0]
-      }}
+    render() {return <div>
+    <Formik
+    initialValues={{courseTitle : "",
+                    courseDescription : "",
+                    tutorName: "",
+                    tutorial: [{chapterName : "", video : null}],
+                    quiz : [{question : "", correctAnswer : "", 
+                            incorrectAnswer : []}]
+                    }}
 
 
+    
 
-        onSubmit={values => {
-          console.log('Submit: ', values);
+    
+     onSubmit={values =>{
+      console.log('Submit: ',values);
+      var input = document.querySelector('input[type="file"]')
 
-          axios.post("http://localhost:5000/addcourse", {
-            courseTitle: values.courseTitle,
-            courseImage: values.courseImage,
-            courseDescription: values.courseDescription,
-            tutorName: values.tutorName,
-            tutorial: values.tutorial,
-            quiz: values.quiz,
-          })
-            .then((result) => {
-              console.log(result)
-            })
-            .catch()
-        }}
+      //  const course_data = {
+      //   courseTitle : values.courseTitle,
+      //   courseDescription : values.courseDescription,
+      //   tutorName : values.tutorName,
+      //   tutorial : {chapterName : values.tutorial[0].chapterName, video : values.tutorial[0].video},
+      //   quiz : values.quiz,
+      //  }
 
-      >
-        {({ values, handleChange, handleBlur, handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <TextField
-              style={{ width: 480 }}
+      //   axios.post('http://localhost:5000/addcourse',course_data).then((res)=>{
+      //    console.log(res)
+      //  })
+
+
+
+        const formData = new FormData();
+        formData.append('courseTitle', values.courseTitle)
+        formData.append('courseDescription', values.courseDescription)
+        formData.append('tutorName' , values.tutorName)
+        formData.append('tutorial', values.tutorial )
+        formData.append('quiz', values.quiz)
+
+        try {
+          console.log(values.tutorial)
+          axios.post('http://localhost:5000/addcourse',formData);
+        }catch (err){
+          console.log(err)
+        }
+   
+        // console.log(values.tutorial[0].video.name)
+        //   axios.post("http://localhost:5000/addcourse",{
+        //     courseTitle : values.courseTitle,
+        //     courseDescription : values.courseDescription,
+        //     tutorName : values.tutorName,
+        //     tutorial : {chapterName : values.tutorial[0].chapterName, video : values.tutorial[0].video.name},
+        //     // tutorial : values.tutorial,
+        //     quiz : values.quiz,
+
+            
+          
+        //   })
+        //   console.log(values.tutorial)
+        
+
+        // .then((result)=>{
+
+        //      console.log(result)
+        //  })
+        //  .catch()
+    }}
+
+    > 
+    {({values, setFieldValue  , handleChange, handleBlur, handleSubmit}) =>(
+        <form onSubmit={handleSubmit}>
+        <TextField 
+        style={{width : 480}}
+        variant="standard"
+        label= "Course Title"
+        name="courseTitle" 
+        values={values.courseTitle} 
+        onChange={handleChange} 
+        onBlur={handleBlur}/>
+
+        <TextField 
+        style={{width : 480}}
+        variant="standard"
+        label= "Tutor Name"
+        name="tutorName" 
+        values={values.tutorName} 
+        onChange={handleChange} 
+        onBlur={handleBlur}/>
+
+        <TextField 
+        style={{width : 480}}
+        multiline
+        variant="standard"
+        label= "Course Description"
+        name="courseDescription" 
+        values={values.courseDescription} 
+        onChange={handleChange} 
+        onBlur={handleBlur}/>
+
+    <FieldArray name="tutorial">
+    {arrayHelpers => (
+        <div>
+          <Button
+            onClick={() =>
+              arrayHelpers.push({
+                chapterName : "",
+                video: "",
+              })
+            }
+          >
+            add Chapters
+          </Button>
+          {values.tutorial.map((chapterName, index) => {
+            return (
+              <div >
+              <Stack direction="row" alignItems="center" spacing={3}>
+              <TextField 
+              style={{width : 280}}
               variant="standard"
-              label="Course Title"
-              name="courseTitle"
-              values={values.courseTitle}
-              onChange={handleChange}
-              onBlur={handleBlur} />
+              label= "chapter Name"
+              name={`tutorial.${index}.chapterName`} 
+              values={`tutorial.${index}.chapterName`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
 
-              <Input
-               label="Course Image"
-               name="courseImage"
-                values={values.courseImage}
-                accept="images" type="file"
-                onChange={handleChange}
-              />
+              <label htmlFor="icon-button-file">
+              <Input name={`tutorial.${index}.video`}
+              values={`tutorial.${index}.video`} 
+              accept="video/mp4" type="file"
+              onChange={(event) => {
+                setFieldValue(`tutorial.${index}.video`,event.currentTarget.files[0])
+              }}
+                />
+              <IconButton color="primary" aria-label="upload video" component="span">
+                <PhotoCamera />
+              </IconButton>
+            </label>
+                
+                <Button onClick={() => arrayHelpers.remove(index)}>
+                  x
+                </Button>
+                </Stack>
+              </div>
+            );
+          })}
+        </div>
+      )}
+        
+    </FieldArray>
 
-              <TextField
-                style={{ width: 480 }}
-                variant="standard"
-                label="Tutor Name"
-                name="tutorName"
-                values={values.tutorName}
-                onChange={handleChange}
-                onBlur={handleBlur} />
+    <FieldArray name="quiz">
+    {arrayHelpers => (
+        <div>
+          <Button
+            onClick={() =>
+              arrayHelpers.push({
+                question : "",
+                correctAnswer: "",
+                incorrectAnswer : [{
+                  incorrect1 : "",
+                  incorrect2 : "",
+                  incorrect3 : ""}],
+              })
+            }
+          >
+            ????Add Question????
+          </Button>
+          {values.quiz.map((question, index) => {
+            return (
+              <div >
 
-              <TextField
-                style={{ width: 480 }}
-                multiline
-                variant="standard"
-                label="Course Description"
-                name="courseDescription"
-                values={values.courseDescription}
-                onChange={handleChange}
-                onBlur={handleBlur} />
+              <div>
+              <TextField 
+              style={{width : 480}}
+              variant="standard"
+              label= "Question"
+              name={`quiz.${index}.question`} 
+              values={`quiz.${index}.question`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
+              </div>
 
-              <FieldArray name="tutorial">
-                {arrayHelpers => (
-                  <div>
-                    <Button
-                      onClick={() =>
-                        arrayHelpers.push({
-                          chapterName: "",
-                          video: "",
-                        })
-                      }
-                    >
-                      add Chapters
-                    </Button>
-                    {values.tutorial.map((chapterName, index) => {
-                      return (
-                        <div >
-                          <Stack direction="row" alignItems="center" spacing={3}>
-                            <TextField
-                              style={{ width: 280 }}
-                              variant="standard"
-                              label="chapter Name"
-                              name={`tutorial.${index}.chapterName`}
-                              values={`tutorial.${index}.chapterName`}
-                              onChange={handleChange}
-                              onBlur={handleBlur} />
+              <Stack direction="row" alignItems="center" spacing={2}>
+              
+              
 
-                            <label htmlFor="icon-button-file">
-                              <Input name={`tutorial.${index}.video`}
-                                values={`tutorial.${index}.video`}
-                                accept="video/mp4" type="file"
-                                onChange={handleChange}
-                              />
-                              <IconButton color="primary" aria-label="upload video" component="span">
-                                <PhotoCamera />
-                              </IconButton>
-                            </label>
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              label= "Correct Answer"
+              name={`quiz.${index}.correctAnswer`} 
+              values={`quiz.${index}.correctAnswer`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
 
-                            <Button onClick={() => arrayHelpers.remove(index)}>
-                              x
-                            </Button>
-                          </Stack>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              multiline
+              label= "Incorrect Answer"
+              name={`quiz.${index}.incorrectAnswer[0]`} 
+              values={`quiz.${index}.incorrectAnswer[0]`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
 
-              </FieldArray>
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              multiline
+              label= "Incorrect Answer"
+              name={`quiz.${index}.incorrectAnswer[1]`} 
+              values={`quiz.${index}.incorrectAnswer[1]`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
 
-              <FieldArray name="quiz">
-                {arrayHelpers => (
-                  <div>
-                    <Button
-                      onClick={() =>
-                        arrayHelpers.push({
-                          question: "",
-                          correctAnswer: "",
-                          incorrectAnswer: [{
-                            incorrect1: "",
-                            incorrect2: "",
-                            incorrect3: ""
-                          }],
-                        })
-                      }
-                    >
-                      ????Add Question????
-                    </Button>
-                    {values.quiz.map((question, index) => {
-                      return (
-                        <div >
+              <TextField 
+              style={{width : 280}}
+              variant="standard"
+              multiline
+              label= "Incorrect Answer"
+              name={`quiz.${index}.incorrectAnswer[2]`} 
+              values={`quiz.${index}.incorrectAnswer[2]`} 
+              onChange={handleChange} 
+              onBlur={handleBlur}/>
 
-                          <div>
-                            <TextField
-                              style={{ width: 480 }}
-                              variant="standard"
-                              label="Question"
-                              name={`quiz.${index}.question`}
-                              values={`quiz.${index}.question`}
-                              onChange={handleChange}
-                              onBlur={handleBlur} />
-                          </div>
+                <Button onClick={() => arrayHelpers.remove(index)}>
+                  x
+                </Button>
+                </Stack>
+                
+              </div>
+            );
+          })}
+        </div>
+      )}
+        
+    </FieldArray>
 
-                          <Stack direction="row" alignItems="center" spacing={2}>
-
-
-
-                            <TextField
-                              style={{ width: 280 }}
-                              variant="standard"
-                              label="Correct Answer"
-                              name={`quiz.${index}.correctAnswer`}
-                              values={`quiz.${index}.correctAnswer`}
-                              onChange={handleChange}
-                              onBlur={handleBlur} />
-
-                            <TextField
-                              style={{ width: 280 }}
-                              variant="standard"
-                              multiline
-                              label="Incorrect Answer"
-                              name={`quiz.${index}.incorrectAnswer[0]`}
-                              values={`quiz.${index}.incorrectAnswer[0]`}
-                              onChange={handleChange}
-                              onBlur={handleBlur} />
-
-                            <TextField
-                              style={{ width: 280 }}
-                              variant="standard"
-                              multiline
-                              label="Incorrect Answer"
-                              name={`quiz.${index}.incorrectAnswer[1]`}
-                              values={`quiz.${index}.incorrectAnswer[1]`}
-                              onChange={handleChange}
-                              onBlur={handleBlur} />
-
-                            <TextField
-                              style={{ width: 280 }}
-                              variant="standard"
-                              multiline
-                              label="Incorrect Answer"
-                              name={`quiz.${index}.incorrectAnswer[2]`}
-                              values={`quiz.${index}.incorrectAnswer[2]`}
-                              onChange={handleChange}
-                              onBlur={handleBlur} />
-
-                            <Button onClick={() => arrayHelpers.remove(index)}>
-                              x
-                            </Button>
-                          </Stack>
-
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-              </FieldArray>
-
-              <Button endIcon={<SendIcon />} varient="contained" type="submit">Submit</Button>
-          </form>
-        )}
-
-      </Formik>
+        <Button endIcon={<SendIcon/>} varient="contained" type="submit">Submit</Button>
+        </form>
+    )}
+    
+    </Formik>
 
     </div>;
   }

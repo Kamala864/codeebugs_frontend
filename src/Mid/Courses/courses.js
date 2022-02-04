@@ -40,7 +40,7 @@ function Courses() {
     axios.get("http://localhost:5000/course/" + course_id)
       .then((res) => {
         console.log(res.data)
-        navigate(`/courses/${res.data.title}`, { state: res.data })
+        navigate(`/courses/${res.data.courseTitle}`, { state: res.data })
       }
       )
   }
@@ -74,7 +74,7 @@ function Courses() {
               currentCourses.filter((course) => {
                 if (searchdata == "") {
                   return course
-                } else if (course.title.toLowerCase().includes(searchdata.toLowerCase())) {
+                } else if (course.courseTitle.toLowerCase().includes(searchdata.toLowerCase())) {
                   return course
                 }
               }).map((course) => {
@@ -89,25 +89,10 @@ function Courses() {
                       <div className="class-content">
                         <div className="price">$880</div>
                         <h3>
-                          <a href="#">{course.title}</a>
+                          <a href="#">{course.courseTitle}</a>
                         </h3>
-                        <p>{course.description}</p>
-                        <ul className="class-list">
-                          <li>
-                            <span>Age:</span>
-                            3-5 Year
-                          </li>
-                          <li>
-                            <span>Time:</span>
-                            8-10 AM
-                          </li>
-                          <li>
-                            <span>Seat:</span>
-                            25
-                          </li>
-                        </ul>
                         <div className="class-btn">
-                          <a className="default-btn">Join Class</a>
+                          <a onClick={() => singleCourse(course._id)} className="default-btn">See More</a>
                         </div>
                       </div>
                     </div>

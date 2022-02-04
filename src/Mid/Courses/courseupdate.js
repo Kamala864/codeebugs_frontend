@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 function CourseDetailUpdate() {
@@ -12,12 +11,12 @@ return (
             <h1 className="mb-3">Course Update</h1>
             <div className="form-input-material">
             <label htmlFor="username">Course Title</label>
-                <input type="text" name="title" placeholder={location.state.title} className="form-control-material" required />
+                <input type="text" name="title" placeholder={location.state.courseTitle} className="form-control-material" required />
                 
             </div>
             <div className="form-input-material" >
             <label htmlFor="password">Course Description</label>
-                <textarea type="textarea" name="courseDescription" placeholder={location.state.description} className="form-control-material" required />
+                <textarea type="textarea" name="courseDescription" placeholder={location.state.courseDescription} className="form-control-material" required />
             </div>
             <button type="submit" className="btn btn-primary btn-ghost">Update</button>
         </form>

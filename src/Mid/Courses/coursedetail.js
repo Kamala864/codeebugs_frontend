@@ -22,17 +22,20 @@ function CourseDetail() {
   const [watchComplete, setWatchComplete] = useState(false);
 
 
-  const handleWatchComplete = ({ played }) =>{
+  const handleWatchComplete = ({ played }) => {
     if (played > 0.8 && !watchComplete) {
       setWatchComplete(true)
     }
   }
 
-  const addProgress = () =>{
-    if (watchComplete===true) {
-      var progress = location.state.weight
+  const addProgress = () => {
+    if (watchComplete === true) {
+      const progress = location.state.weight
       console.log(progress)
-      axios.put("http://localhost:5000/updateprogress", progress)
+      const data = {
+        progress: location.state.weight
+      }
+      axios.put("http://localhost:5000/updateprogress/" + location.state._id, data)
         .then(res => {
           console.log(res.data.data)
         })
@@ -60,6 +63,12 @@ function CourseDetail() {
     });
   };
 
+  if (watchComplete === true) {
+    var progress = <div>
+      <h3>Progress: {location.state.weight}%</h3>
+    </div>
+  }
+
 
   return (
     <section className="class-details-area pt-100 pb-70">
@@ -75,6 +84,8 @@ function CourseDetail() {
                     onProgress={handleWatchComplete}
                   />
                 </div>
+                {progress}
+
 
               </div>
               <div className="tab class-details-tab">
@@ -83,7 +94,7 @@ function CourseDetail() {
                     <ul className="tabs">
                       <li>
                         <a href="#">
-                          {location.state.title}
+                          {location.state.courseTitle}
                         </a>
                       </li>
                       <li>

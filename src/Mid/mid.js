@@ -10,6 +10,7 @@ import Coursesearchlist from "./Courses/coursesearchlist";
 import CourseSearch from "./Courses/coursesearch";
 import EnrolledCourses from "./Courses/enrolledcourses";
 import Home from "./home";
+import Notification from "../Header/notification";
 import UserProfile from "./userprofile";
 import Editor from "./Code Editor/Editor";
 import Learn from "./Courses/learn";
@@ -19,9 +20,10 @@ import ForgotPassword from "./forgot-password";
 import ResetPassword from "./reset-password";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import UserDetailUpdate from "./Users/UserDetailUpdate";
+import CourseAdd from "./Courses/addcourse";
 import CourseDetailUpdate from "./Courses/courseupdate";
-
+import UserDetailUpdate from "./Users/UserDetailUpdate";
+import AddChapter from "./Courses/addChapter";
 
 class Mid extends Component{
     render(){
@@ -30,6 +32,7 @@ class Mid extends Component{
             <>
             <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/notification" element={<Notification/>}/>
             <Route path="/userprofile" element={<UserProfile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<UserProfile/>} />
@@ -41,6 +44,7 @@ class Mid extends Component{
             <Route path="/user/update/:userid" element={<UserDetailUpdate/>} />
             <Route path="/admin/courses" element={<CourseDashboard/>}/>
             <Route path="/course/update/:courseid" element={<CourseDetailUpdate/>} />
+            <Route path="/course/addchapter/:id" element={<AddChapter/>} />
             <Route path="/coursesearchlist" element={<Coursesearchlist/>}/>
             <Route path="/usersearchlist" element={<Coursesearchlist/>}/>
             <Route path="/coursesearch" element={<CourseSearch/>}/>
@@ -50,6 +54,7 @@ class Mid extends Component{
             <Route path="/learn" element={<Learn/>}/>
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
             <Route path="/reset-password" element={<ResetPassword/>}/>
+            <Route path="/addcourse" element = {<CourseAdd/>}/>
             </Routes>
             <ToastContainer autoClose={2000} theme="colored"/>
             </>

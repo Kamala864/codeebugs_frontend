@@ -15,12 +15,12 @@ function UserProfile(){
     })
   }, []);
 
-  const user = listcourses.find((course) => {
-    return course.enrolledBy.some((item) => {
-    return item.userID === localStorage.getItem("userID")
-    })
+  // const user = listcourses.find((course) => {
+  //   return course.enrolledBy.some((item) => {
+  //   return item.userID === localStorage.getItem("userID")
+  //   })
     
-  }  );
+  // }  );
 
 
   const logOut=(e)=>{
@@ -44,13 +44,13 @@ function UserProfile(){
             </div>
           </div>
         </div>
-        <div className="card mt-3">
+        {/* <div className="card mt-3">
           <ul className="list-group list-group-flush">
             <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
               <a href="/login" onClick={logOut}><h6 className="mb-0"><img src="assets/img/Navbar/logout.png" width={24} height={24}/>&nbsp;&nbsp;&nbsp;Logout</h6></a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
       <div className="col-md-8">
         <div className="card mb-3">
@@ -94,7 +94,7 @@ function UserProfile(){
             <div className="card h-100">
               <div className="card-body">
                 <h6 className="d-flex align-items-center mb-3">Enrolled Courses</h6>
-                if (user) {
+                {
                   
                 }
                 {listcourses.map(course =>(

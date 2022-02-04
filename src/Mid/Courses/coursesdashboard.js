@@ -36,6 +36,10 @@ function CourseDashboard(){
       )
   }
 
+  const AddChapters=(course_id)=>{
+        navigate(`/course/addchapter/${course_id}` )
+  }
+
 
 //delete function
 
@@ -116,7 +120,7 @@ const deleteproduct=(pro_idd)=>{
       
       <th scope="col">Course Name</th>
       <th scope="col">Price</th>
-      <th scope="col">Category</th>
+      <th scope="col">Chapters</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -125,7 +129,7 @@ const deleteproduct=(pro_idd)=>{
       listcourses.filter((courses) =>{
         if(searchdata === ""){
           return courses
-        } else if (courses.title.toLowerCase().includes(searchdata.toLowerCase())){
+        } else if (courses.courseTitle.toLowerCase().includes(searchdata.toLowerCase())){
           return courses
         }
       }).map(courses=>{
@@ -134,14 +138,15 @@ const deleteproduct=(pro_idd)=>{
                 <tbody>
                     <tr>
                     
-                    <td>{courses.title}
+                    <td>{courses.courseTitle}
                     </td>
-                    <td>{courses.description}</td>
-                    <td>{courses.lecturer}</td>
+                    <td>{courses.courseDescription}</td>
+                    <button onClick={e => {AddChapters(courses._id)}} className="btn-primary bg-primary m-4">Add Chapters</button>
+
                     
                     
-                    <button onClick={e => {CourseDetailUpdate(courses._id)}} className="btn-success m-4">Update</button>
-                    <button onClick={e => {deleteproduct(courses._id)}}className="btn-danger bg-danger">Delete</button>
+                    <button onClick={e => {CourseDetailUpdate(courses._id)}} className="btn-success bg-success m-4">Update</button>
+                    <button onClick={e => {deleteproduct(courses._id)}} className="btn-danger bg-danger m-4">Delete</button>
                     </tr>
                     
                     
