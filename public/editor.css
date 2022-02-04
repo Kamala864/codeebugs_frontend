@@ -17,12 +17,19 @@ pre {
   margin-left: 5px;
 }
 
-.inputEditor,
+.inputeditor{
+  
+   
+    margin-top: 20px;
+    margin-right: 10px;
+    height: 550px !important;
+  
+}
 .outputLogs {
   width: 100% !important;
-  margin-top: 20px;
+ 
   margin-right: 10px;
-  height: 50px !important;
+  height: 250px !important;
 }
 
 .codeEditor {
@@ -46,6 +53,7 @@ pre {
   display: inline-flex;
   float: left;
   height: 40px;
+  background-color: #333;
 }
 pre code {
   line-height: 20px;

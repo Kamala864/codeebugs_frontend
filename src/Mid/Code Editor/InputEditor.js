@@ -30,7 +30,7 @@ console.log(value.toString())
   return (
     <div>
       <AceEditor
-        className="inputEditor"
+        className="inputeditor"
         placeholder="Input Parameters"
         mode="python"
         theme="monokai"

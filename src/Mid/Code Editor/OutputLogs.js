@@ -13,7 +13,9 @@ const OutputLogs = ({ value }) => {
     console.log("output editor loaded");
   };
   return (
+    
     <AceEditor
+     
       className="outputLogs"
       placeholder="Output Logs"
       mode="python"
@@ -31,7 +33,11 @@ const OutputLogs = ({ value }) => {
         showLineNumbers: true,
         tabSize: 2,
       }}
+
+      
     />
+    
+    
   );
 };
 
