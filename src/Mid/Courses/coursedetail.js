@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import ReactPlayer from "react-player";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 // Project Imports
@@ -12,6 +12,7 @@ import Header from "../Code Editor/Header";
 
 function CourseDetail() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   // state hooks
   const [language, setLanguage] = useState("java");
@@ -69,6 +70,10 @@ function CourseDetail() {
     </div>
   }
 
+  const startLearn=()=>{
+        navigate(`/courses/learn/${location.state._id}`)
+  }
+
 
   return (
     <section className="class-details-area pt-100 pb-70">
@@ -98,13 +103,8 @@ function CourseDetail() {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          Lesson
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Cost
+                        <a href="#" onClick={startLearn}>
+                          Start Learning
                         </a>
                       </li>
                     </ul>

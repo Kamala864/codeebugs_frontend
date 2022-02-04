@@ -139,7 +139,7 @@ const deleteuser=(pro_idd)=>{
                     <td>{user.age}</td>
                     
                     
-                    <button onClick={e => {UserUpdate(user._id)}} className="btn btn-success m-4">Update</button>
+                    <button onClick={e => {UserUpdate(user._id)}} className="btn btn-success bg-success m-4">Update</button>
                     <button onClick={e => {deleteuser(user._id)}}className="btn-danger bg-danger">Delete</button>
                     </tr>
                     
