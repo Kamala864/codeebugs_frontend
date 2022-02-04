@@ -30,9 +30,9 @@ class Login extends Component {
     })
   }
 
-  
+
   emailValidation() {
-  // registration email validation
+    // registration email validation
     const regex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
     if (regex.test(this.state.email) === false) {
       return false;
@@ -58,7 +58,7 @@ class Login extends Component {
       return false;
     }
     return true;
-  } 
+  }
 
   login = (e) => {
     e.preventDefault()
@@ -101,7 +101,8 @@ class Login extends Component {
       axios.post('http://localhost:5000/user/login', data)
         .then((res) => {
           toast.success("Logged in successfully!", {
-            position: toast.POSITION.TOP_CENTER})
+            position: toast.POSITION.TOP_CENTER
+          })
 
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('userID', res.data.userID);
@@ -109,8 +110,8 @@ class Login extends Component {
           localStorage.setItem('email', res.data.email);
           setTimeout(() => {
             window.location.href = "/"
-         }, 2000);
-         
+          }, 2000);
+
         })
         .catch((err) => {
           invalidLoginError = "**Invalid credentials!";
@@ -143,7 +144,7 @@ class Login extends Component {
 
 
     //registration form validation
-    if (this.state.full_name ==="") {
+    if (this.state.full_name === "") {
       full_nameError = "**Fullname cannot be empty!";
     }
 
@@ -204,7 +205,7 @@ class Login extends Component {
         toast.success("Registration successful!")
         setTimeout(() => {
           window.location.href = "/login"
-       }, 2000);
+        }, 2000);
       } else {
         toast.error("Something went wrong!")
       }
@@ -212,7 +213,7 @@ class Login extends Component {
     return true;
   }
 
-  forgotPassword = (e) =>{
+  forgotPassword = (e) => {
     window.location.href = "/forgot-password"
   }
 
@@ -220,7 +221,11 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <img className="customAnimationWelcome" src="welcome.gif" alt="image" />
+        <img className="customAnimationKid" src="helloKid.gif" alt="image" />
+        <img className="customAnimationLaptop" src="laptop.jpg" alt="image" />
         <section className="class-area2 bg-fdf6ed pt-100 pb-70">
+
           <div className="row">
             <div className="cont" id="container">
               <div className="form-container sign-up-container">
