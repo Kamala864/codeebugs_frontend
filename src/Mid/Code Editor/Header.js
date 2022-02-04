@@ -26,11 +26,12 @@ const Header = ({ onChangeLanguage, value, code, runCode, status }) => {
   }
 
   return (
-    <div style={{ textAlign: "center", width: "100%" }} className="bg-dark">
-      <div style={{ textAlign: 'left',  }}>
+  
+    <div style={{ textAlign: "center", width: "100%" }} className="bg-light mb-5">
+      <div className="ml-5 mb-2" style={{ textAlign: 'left',  }}>
         <DropDown
           onChange={onChangeLanguage}
-          className="nm"
+          className="nm  ml-5"
           options={options}
           value={value}
           placeholder="Select an option"
@@ -39,11 +40,11 @@ const Header = ({ onChangeLanguage, value, code, runCode, status }) => {
         style={{ fontSize: "12px" }}
           onClick={() => runCode()}
           disabled={status === "Run" ? false : true}
-          className="customButton"
+          className="customButton mr-5 pr-5 ml-5 pb-2"
         >
           {status}
         </button>
-        <button className="btn-download"><a href="#" id="download" onClick={download}>Download Code</a></button>
+        <button className="btn-warnning mr-5 pr-5 ml-5 pb-2"><a href="#" id="download" onClick={download}>Download Code</a></button>
       </div>
     </div>
   );
