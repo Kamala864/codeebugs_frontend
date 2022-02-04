@@ -91,12 +91,9 @@ function CourseDetail() {
                     controls
                     onProgress={handleWatchComplete}
                   />
-<<<<<<< HEAD
                 </div>
                 {progress}
 
-=======
->>>>>>> c8dc65e3f640625413a3994b4b0d99bf4c43f72d
 
                 <div className="tab class-details-tab">
                 <div className="row">
@@ -145,9 +142,6 @@ function CourseDetail() {
             </div>
           </div>
         </div>
-      </div>
-
-      
 
     </section>
 
