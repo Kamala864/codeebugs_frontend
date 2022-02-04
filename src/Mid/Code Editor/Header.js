@@ -26,8 +26,8 @@ const Header = ({ onChangeLanguage, value, code, runCode, status }) => {
   }
 
   return (
-    <div style={{ textAlign: "center", width: "100%" }}>
-      <div style={{ textAlign: 'left', marginBottom: '2px' }}>
+    <div style={{ textAlign: "center", width: "100%" }} className="bg-dark">
+      <div style={{ textAlign: 'left',  }}>
         <DropDown
           onChange={onChangeLanguage}
           className="nm"
