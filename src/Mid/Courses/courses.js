@@ -19,6 +19,37 @@ useEffect(() => {
     
 }, []);
 
+<<<<<<< HEAD
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const singleCourse = (course_id) => {
+    axios.get("http://localhost:5000/course/" + course_id)
+      .then((res) => {
+        console.log(res.data)
+        navigate(`/courses/${res.data.courseTitle}`, { state: res.data })
+      }
+      )
+  }
+
+  return (
+    <div>
+      <div className="page-banner-area item-bg1"> 
+        <div className="d-table">
+          <div className="d-table-cell">
+            <div className="container">
+              <div className="page-banner-content">
+                <h2>Class</h2>
+                <ul>
+                  <li>
+                    <a href="index.html">Home</a>
+                  </li>
+                  <li>Class</li>
+                </ul>
+                <input type="text" placeholder="Search.." name="searchdata" value={searchdata} onChange={e => { setSearchdata(e.target.value) }} />
+              </div>
+            </div>
+=======
 const singleCourse=(course_id)=>{
   axios.get("http://localhost:5000/course/"+course_id)
   .then((res)=>{
@@ -44,6 +75,7 @@ const singleCourse=(course_id)=>{
                         
           
             </ul>
+>>>>>>> c8dc65e3f640625413a3994b4b0d99bf4c43f72d
           </div>
         </div>
       </div>
@@ -54,6 +86,34 @@ const singleCourse=(course_id)=>{
       <div className="row">
 
 
+<<<<<<< HEAD
+            {
+              currentCourses.filter((course) => {
+                if (searchdata == "") {
+                  return course
+                } else if (course.courseTitle.toLowerCase().includes(searchdata.toLowerCase())) {
+                  return course
+                }
+              }).map((course) => {
+                return (
+                  <div className="col-lg-4 col-md-6">
+                    <div className="single-class">
+                      <div className="class-image">
+                        <a onClick={() => singleCourse(course._id)}>
+                          <img src="assets/img/class/class-1.jpg" alt="image" />
+                        </a>
+                      </div>
+                      <div className="class-content">
+                        <div className="price">$880</div>
+                        <h3>
+                          <a href="#">{course.courseTitle}</a>
+                        </h3>
+                        <div className="class-btn">
+                          <a onClick={() => singleCourse(course._id)} className="default-btn">See More</a>
+                        </div>
+                      </div>
+                    </div>
+=======
       {
         listcourses.map((course)=>{
             return(
@@ -86,6 +146,7 @@ const singleCourse=(course_id)=>{
                   </ul>
                   <div className="class-btn">
                     <a className="default-btn">Join Class</a>
+>>>>>>> c8dc65e3f640625413a3994b4b0d99bf4c43f72d
                   </div>
                 </div>
               </div>

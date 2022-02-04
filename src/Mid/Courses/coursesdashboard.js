@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -8,6 +8,7 @@ function CourseDashboard(){
 
   const [listcourses,setlistcourses] = useState([])
   const [searchdata, setSearchdata] = useState("")
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get("http://localhost:5000/course/showall")
@@ -23,6 +24,20 @@ function CourseDashboard(){
   const logout = (e) => {
     localStorage.clear()
     window.location.href = "/login"
+  }
+
+
+  const CourseDetailUpdate=(course_id)=>{
+    axios.get("http://localhost:5000/course/" + course_id)
+      .then((res) => {
+        console.log(res.data)
+        navigate(`/course/update/${course_id}`, { state: res.data })
+      }
+      )
+  }
+
+  const AddChapters=(course_id)=>{
+        navigate(`/course/addchapter/${course_id}` )
   }
 
 
@@ -105,7 +120,7 @@ const deleteproduct=(pro_idd)=>{
       
       <th scope="col">Course Name</th>
       <th scope="col">Price</th>
-      <th scope="col">Category</th>
+      <th scope="col">Chapters</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -114,7 +129,7 @@ const deleteproduct=(pro_idd)=>{
       listcourses.filter((courses) =>{
         if(searchdata === ""){
           return courses
-        } else if (courses.title.toLowerCase().includes(searchdata.toLowerCase())){
+        } else if (courses.courseTitle.toLowerCase().includes(searchdata.toLowerCase())){
           return courses
         }
       }).map(courses=>{
@@ -123,14 +138,15 @@ const deleteproduct=(pro_idd)=>{
                 <tbody>
                     <tr>
                     
-                    <td>{courses.title}
+                    <td>{courses.courseTitle}
                     </td>
-                    <td>{courses.description}</td>
-                    <td>{courses.lecturer}</td>
+                    <td>{courses.courseDescription}</td>
+                    <button onClick={e => {AddChapters(courses._id)}} className="btn-primary bg-primary m-4">Add Chapters</button>
+
                     
                     
-                    <NavLink className="btn-info bg-white" to={"/update/"+courses._id}><button className="btn-success m-4">Update</button></NavLink>
-                    <button onClick={e => {deleteproduct(courses._id)}}className="btn-danger bg-danger">Delete</button>
+                    <button onClick={e => {CourseDetailUpdate(courses._id)}} className="btn-success bg-success m-4">Update</button>
+                    <button onClick={e => {deleteproduct(courses._id)}} className="btn-danger bg-danger m-4">Delete</button>
                     </tr>
                     
                     

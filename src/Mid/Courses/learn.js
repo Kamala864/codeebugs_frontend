@@ -26,7 +26,7 @@ class Learn extends Component {
 
 
     componentDidMount(){
-        axios.get("http://localhost:5000/course/61f3e3c34f09a9686ff3429e")
+        axios.get("http://localhost:5000/course/61fa7d01f91ad0a26b69a2bb")
         .then(res => {
             this.setState({
                 courseTitle : (res.data.courseTitle),
@@ -83,7 +83,6 @@ class Learn extends Component {
                 {
                     this.state.tutorial.map(cObj => (
                         <a href=""  key={cObj._id} onClick={()=>{
-                            this.setState ({video :cObj.video })
                             alert(cObj.video)
                         }}>{cObj.chapterName}</a>
                         )
@@ -91,9 +90,6 @@ class Learn extends Component {
 
                     <a href="" onClick={quizfunc}>{quiz?'Quiz': 'quiz'}</a>
                     
-                    
-
-
                 </div>
 
                 <div className="column right">

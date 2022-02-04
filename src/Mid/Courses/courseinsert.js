@@ -1,5 +1,5 @@
 import { Formik, FieldArray } from "formik";
-import {TextField, Input } from "@material-ui/core";
+import { TextField, Input } from "@material-ui/core";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
@@ -255,7 +255,7 @@ class CourseInsert extends Component {
     </Formik>
 
     </div>;
-}
+  }
 }
 
 export default CourseInsert;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import ReactPlayer from "react-player";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 // Project Imports
@@ -12,6 +12,7 @@ import Header from "../Code Editor/Header";
 
 function CourseDetail() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   // state hooks
   const [language, setLanguage] = useState("java");
@@ -19,6 +20,33 @@ function CourseDetail() {
   const [input, setInput] = useState("");
   const [outputLogs, setOutputLogs] = useState("");
   const [status, setStatus] = useState("Run");
+  const [watchComplete, setWatchComplete] = useState(false);
+
+
+  const handleWatchComplete = ({ played }) => {
+    if (played > 0.8 && !watchComplete) {
+      setWatchComplete(true)
+    }
+  }
+
+  const addProgress = () => {
+    if (watchComplete === true) {
+      const progress = location.state.weight
+      console.log(progress)
+      const data = {
+        progress: location.state.weight
+      }
+      axios.put("http://localhost:5000/updateprogress/" + location.state._id, data)
+        .then(res => {
+          console.log(res.data.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
+  addProgress()
 
   // run button callback
   const runCode = () => {
@@ -35,6 +63,16 @@ function CourseDetail() {
       setStatus("Run");
     });
   };
+
+  if (watchComplete === true) {
+    var progress = <div>
+      <h3>Progress: {location.state.weight}%</h3>
+    </div>
+  }
+
+  const startLearn=()=>{
+        navigate(`/courses/learn/${location.state._id}`)
+  }
 
 
   return (
@@ -58,7 +96,14 @@ function CourseDetail() {
                   <ReactPlayer 
                     url={"http://localhost:5000/" + location.state.video}
                     controls
+                    onProgress={handleWatchComplete}
                   />
+<<<<<<< HEAD
+                </div>
+                {progress}
+
+=======
+>>>>>>> c8dc65e3f640625413a3994b4b0d99bf4c43f72d
 
                 <div className="tab class-details-tab">
                 <div className="row">
@@ -66,17 +111,12 @@ function CourseDetail() {
                     <ul className="tabs nav">
                       <li className="nav-item">
                         <a href="#">
-                          {location.state.title}
+                          {location.state.courseTitle}
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          Lesson
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          Cost
+                        <a href="#" onClick={startLearn}>
+                          Start Learning
                         </a>
                       </li>
                     </ul>

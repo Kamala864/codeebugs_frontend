@@ -6,8 +6,6 @@ import CourseDetail from "./Courses/coursedetail";
 import CourseInsert from "./Courses/courseinsert";
 import CourseDashboard from "./Courses/coursesdashboard";
 import Courses from "./Courses/courses";
-import Coursesearchlist from "./Courses/coursesearchlist";
-import CourseSearch from "./Courses/coursesearch";
 import EnrolledCourses from "./Courses/enrolledcourses";
 import Home from "./home";
 import UserProfile from "./userprofile";
@@ -19,7 +17,15 @@ import ForgotPassword from "./forgot-password";
 import ResetPassword from "./reset-password";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+<<<<<<< HEAD
+import CourseAdd from "./Courses/addcourse";
+import CourseDetailUpdate from "./Courses/courseupdate";
+import UserDetailUpdate from "./Users/UserDetailUpdate";
+import AddChapter from "./Courses/addChapter";
+import LearnArea from "./Courses/learnArea";
+=======
 
+>>>>>>> c8dc65e3f640625413a3994b4b0d99bf4c43f72d
 
 class Mid extends Component{
     render(){
@@ -36,16 +42,14 @@ class Mid extends Component{
             <Route path="/courseinsert" element={<CourseInsert/>} />
             <Route path="/admin" element={<Admindashboard/>} />
             <Route path="/admin/users" element={<UserDashboard/>} />
+            <Route path="/user/update/:userid" element={<UserDetailUpdate/>} />
             <Route path="/admin/courses" element={<CourseDashboard/>}/>
-            <Route path="/coursedashboard" element={<CourseDashboard/>}/>
-            <Route path="/userdashboard" element={<UserDashboard/>}/>
-            <Route path="/coursesearchlist" element={<Coursesearchlist/>}/>
-            <Route path="/usersearchlist" element={<Coursesearchlist/>}/>
-            <Route path="/coursesearch" element={<CourseSearch/>}/>
+            <Route path="/course/update/:courseid" element={<CourseDetailUpdate/>} />
+            <Route path="/course/addchapter/:id" element={<AddChapter/>} />
             <Route path="/payment" element={<CoursePayment/>}/>
             <Route path="/enrolledcourses" element={<EnrolledCourses/>}/>
             <Route path="/editor" element={<Editor/>}/>
-            <Route path="/learn" element={<Learn/>}/>
+            <Route path="/courses/learn/:idd" element={<LearnArea/>}/>
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
             <Route path="/reset-password" element={<ResetPassword/>}/>
             </Routes>

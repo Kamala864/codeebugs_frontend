@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -8,6 +8,7 @@ function UserDashboard(){
 
   const [listcourses,setlistcourses] = useState([])
   const [searchdata, setSearchdata] = useState("")
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:5000/user/showall")
@@ -23,6 +24,16 @@ function UserDashboard(){
   const logout = (e) => {
     localStorage.clear()
     window.location.href = "/login"
+  }
+
+
+  const UserUpdate=(user_id)=>{
+    axios.get("http://localhost:5000/user/" + user_id)
+      .then((res) => {
+        console.log(res.data)
+        navigate(`/user/update/${user_id}`, { state: res.data })
+      }
+      )
   }
 
 
@@ -128,7 +139,7 @@ const deleteuser=(pro_idd)=>{
                     <td>{user.age}</td>
                     
                     
-                    <NavLink className="btn-info bg-white" to={"/update/"+user._id}><button className="btn-success m-4">Update</button></NavLink>
+                    <button onClick={e => {UserUpdate(user._id)}} className="btn btn-success bg-success m-4">Update</button>
                     <button onClick={e => {deleteuser(user._id)}}className="btn-danger bg-danger">Delete</button>
                     </tr>
                     

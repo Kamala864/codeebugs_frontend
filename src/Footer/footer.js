@@ -8,12 +8,11 @@ class Footer extends Component{
     <div className="row">
       <div className="col-lg-3 col-sm-6">
         <div className="single-footer-widget">
-          <div className="logo">
-            <h2>
-              <a href="index.html">Ketan</a>
-            </h2>
-          </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div className="logo">
+                <a href="/">
+                  <img src="logo.png" alt="image" />
+                </a>
+              </div>
           <ul className="social">
             <li>
               <a href="#" target="_blank">
@@ -45,17 +44,16 @@ class Footer extends Component{
             <li>
               <i className="bx bxs-phone" />
               <span>Phone</span>
-              <a href="tel:882569756">882-569-756</a>
+              <a href="tel:882569756">+977981508867</a>
             </li>
             <li>
               <i className="bx bx-envelope" />
-              <span>Email</span>
-              <a href="/cdn-cgi/l/email-protection#4129242d2d2e012a2435202f6f222e2c"><span className="__cf_email__" data-cfemail="82eae7eeeeedc2e9e7f6e3ecace1edef">[email&nbsp;protected]</span></a>
+              <span>codeebugs@gmail.com</span>
             </li>
             <li>
               <i className="bx bx-map" />
               <span>Address</span>
-              175 5th Ave Premium Area, New York, NY 10010, United States
+              Naxal, Kathmandu Nepal
             </li>
           </ul>
         </div>
@@ -65,22 +63,16 @@ class Footer extends Component{
           <h3>Activities</h3>
           <ul className="quick-links">
             <li>
-              <a href="#">Maths Olympiad</a>
+              <a href="https://lifehacker.com/">Life Hacker</a>
             </li>
             <li>
-              <a href="#">Art Competition</a>
+              <a href="https://www.howstuffworks.com/">How Stuff Works?</a>
             </li>
             <li>
-              <a href="#">English Novels</a>
+              <a href="https://www.coderbyte.com/">Coder Byte</a>
             </li>
             <li>
-              <a href="#">Science Competition</a>
-            </li>
-            <li>
-              <a href="#">Teachers Day</a>
-            </li>
-            <li>
-              <a href="#">World Kids Day</a>
+              <a href="https://www.hackerrank.com/dashboard">Hacker Rank</a>
             </li>
           </ul>
         </div>
