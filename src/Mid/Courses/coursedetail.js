@@ -38,11 +38,18 @@ function CourseDetail() {
 
 
   return (
-    <section className="class-details-area pt-100 pb-70">
+    <section className="class-details-area mt-2">
       <div className="container-fluid">
         <div className="row">
-          
-        
+         <div className="container">
+        <Header
+              value={language}
+              status={status}
+              code={code}
+              runCode={() => runCode()}
+              onChangeLanguage={({ value }) => setLanguage(value)}
+            />
+            </div>
           <div className="col-lg-6 col-md-6">
             
             <div className="class-details-desc">
@@ -86,13 +93,7 @@ function CourseDetail() {
          
           <div className="col-lg-6 col-md-6" >
 
-          <Header
-              value={language}
-              status={status}
-              code={code}
-              runCode={() => runCode()}
-              onChangeLanguage={({ value }) => setLanguage(value)}
-            />
+         
             
             <CodeEditor
               value={code}
