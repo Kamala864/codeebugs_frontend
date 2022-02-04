@@ -15,7 +15,7 @@ class CourseInsert extends Component {
     initialValues={{courseTitle : "",
                     courseDescription : "",
                     tutorName: "",
-                    tutorial: [{chapterName : "", video : null}],
+                    tutorial: [{chapterName : "", video : ""}],
                     quiz : [{question : "", correctAnswer : "", 
                             incorrectAnswer : []}]
                     }}
@@ -46,7 +46,7 @@ class CourseInsert extends Component {
         formData.append('courseTitle', values.courseTitle)
         formData.append('courseDescription', values.courseDescription)
         formData.append('tutorName' , values.tutorName)
-        formData.append('tutorial', values.tutorial )
+        formData.append('tutorial', values.tutorial);
         formData.append('quiz', values.quiz)
 
         try {
@@ -139,9 +139,10 @@ class CourseInsert extends Component {
               <Input name={`tutorial.${index}.video`}
               values={`tutorial.${index}.video`} 
               accept="video/mp4" type="file"
-              onChange={(event) => {
-                setFieldValue(`tutorial.${index}.video`,event.currentTarget.files[0])
-              }}
+              onChange={handleChange}
+              // onChange={(event) => {
+              //   setFieldValue(`tutorial.${index}.video`,event.currentTarget.files)
+              // }}
                 />
               <IconButton color="primary" aria-label="upload video" component="span">
                 <PhotoCamera />
@@ -249,6 +250,7 @@ class CourseInsert extends Component {
     </FieldArray>
 
         <Button endIcon={<SendIcon/>} varient="contained" type="submit">Submit</Button>
+        <pre>{JSON.stringify(values.tutorial)}</pre>
         </form>
     )}
     
