@@ -126,17 +126,32 @@ function CourseDetail() {
 
   if (enrolledCourses.includes(id) === false) {
     var buttonEnroll =
-      <li className="nav-item">
-        <button onClick={enroll}>
-          Enroll
-        </button>
-      </li>
+      <button className="btn-success float-right" style={{marginRight: "270px"}} onClick={enroll}>Enroll Now</button>
   } else {
     var buttonLesson =
       <li className="nav-item">
-        <button>
-          Lessons
-        </button>
+        <div className="items">
+          <div class="items-head">
+            <p>Lessons</p>
+            <hr />
+          </div>
+          <div className="items-body">
+            {tutorial.map((chapter) => {
+              return (
+                <div key={chapter._id} className="items-body-content">
+                  <span onClick={(e) => {
+                    setUrl("http://localhost:5000/" + chapter.video)
+                  }}>
+                    {chapter.chapterName}
+                  </span>
+                </div>
+              )
+            })
+            }
+
+          </div>
+        </div>
+
       </li>
   }
 
@@ -163,36 +178,21 @@ function CourseDetail() {
                     <div className="row">
                       <ul className="tabs nav">
                         <li className="nav-item">
-                          {buttonEnroll}
+                          <h3>{course.courseTitle}</h3>
                           {buttonLesson}
                         </li>
+                        
                       </ul>
-                      <ul className="tabs nav">
-                        {tutorial.map((chapter) => {
-                          return (
-                            <li className="nav-item" key={chapter._id}>
-                              <a href="#" onClick={(e) => {
-                                setUrl("http://localhost:5000/" + chapter.video)
-                              }}>
-                                {chapter.chapterName}
-                              </a>
-                            </li>
-                          )
-                        })}
-                      </ul>
-
+                      
                     </div>
+                    
                   </div>
+                  
                 </div>
-
-
-
+                {buttonEnroll}
               </div>
-
-
             </div>
           </div>
-
           <div className="col-lg-6 col-md-6 bg-dark" >
 
             <Header
