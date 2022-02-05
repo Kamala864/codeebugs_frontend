@@ -140,7 +140,7 @@ const deleteproduct=(pro_idd)=>{
                     
                     <td>{courses.courseTitle}
                     </td>
-                    <td>{courses.courseDescription}</td>
+                    <td>Rs.{courses.coursePrice}</td>
                     <button onClick={e => {AddChapters(courses._id)}} className="btn-primary bg-primary m-4">Add Chapters</button>
 
                     

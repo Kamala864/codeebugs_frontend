@@ -37,22 +37,13 @@ function Courses() {
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  const singleCourse = (course_id) => {
-    axios.get("http://localhost:5000/course/" + course_id)
-      .then((res) => {
-        console.log(res.data)
-        navigate(`/courses/${res.data.courseTitle}`, { state: res.data })
-      }
-      )
-  }
-
   const redirect = (course_id) => {
-        navigate(`/courses/${course_id}`)
+    navigate(`/courses/${course_id}`)
   }
 
   return (
     <div>
-      <div className="page-banner-area item-bg1"> 
+      <div className="page-banner-area item-bg1">
         <div className="d-table">
           <div className="d-table-cell">
             <div className="container">
@@ -70,7 +61,7 @@ function Courses() {
           </div>
         </div>
       </div>
-      
+
       <section className="class-area pt-100 pb-100">
         <div className="container">
           <div className="row">
@@ -88,31 +79,22 @@ function Courses() {
                     <div className="single-class">
                       <div className="class-image">
                         <a onClick={() => redirect(course._id)}>
-                          <img src="assets/img/class/class-1.jpg" alt="image" />
+                          <img src={"http://localhost:5000/" + course.courseImage} alt="image"/>
                         </a>
                       </div>
                       <div className="class-content">
-                        <div className="price">$880</div>
+                        <div className="price">Rs.{course.coursePrice}</div>
                         <h3>
-                          <a href="#">{course.title}</a>
+                          <a href="#">{course.courseTitle}</a>
                         </h3>
-                        <p>{course.description}</p>
                         <ul className="class-list">
                           <li>
                             <span>Age:</span>
                             3-5 Year
                           </li>
-                          <li>
-                            <span>Time:</span>
-                            8-10 AM
-                          </li>
-                          <li>
-                            <span>Seat:</span>
-                            25
-                          </li>
                         </ul>
                         <div className="class-btn">
-                          <a className="default-btn">Join Class</a>
+                          <a className="default-btn" onClick={() => redirect(course._id)}>See More</a>
                         </div>
                       </div>
                     </div>
@@ -131,14 +113,14 @@ function Courses() {
                 />
               </div>
             </div>
-            
+
+          </div>
+        </div>
+      </section>
     </div>
-    </div>
-    </section>
-    </div>
-    
-        )
-    
+
+  )
+
 }
 
 export default Courses;

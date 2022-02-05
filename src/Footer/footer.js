@@ -10,7 +10,7 @@ class Footer extends Component{
         <div className="single-footer-widget">
         <div className="logo">
                 <a href="/">
-                  <img src="logo.png" alt="image" />
+                <h3>Coodebugs</h3>
                 </a>
               </div>
           <ul className="social">
