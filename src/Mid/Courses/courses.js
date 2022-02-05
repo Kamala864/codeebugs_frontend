@@ -1,23 +1,38 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Pagination from "./Pagination";
 
+function Courses() {
 
-function Courses(){
+  const [listcourses, setlistcourses] = useState([])
+  const [searchdata, setSearchdata] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [coursesPerPage] = useState(3);
+  const navigate = useNavigate();
 
-const [listcourses,setlistcourses] = useState([])
-const navigate = useNavigate();
+  useEffect(() => {
+    const fetchCourse = async () => {
+      setLoading(true);
+      axios.get("http://localhost:5000/course/showall")
+        .then(res => {
+          setlistcourses(res.data.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      setLoading(false);
+    }
 
-useEffect(() => {
-  axios.get("http://localhost:5000/course/showall")
-  .then(res => {
-    setlistcourses(res.data.data)
-  })
-  .catch(err =>{
-    console.log(err)
-  })
-    
-}, []);
+    fetchCourse();
+  }, []);
+
+  // Get current posts
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = listcourses.slice(indexOfFirstCourse, indexOfLastCourse);
+
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -52,51 +67,74 @@ useEffect(() => {
         </div>
       </div>
       
-        <div className="class-area pt-100 pb-100">
-   <div className="container">
-      <div className="row">
+      <section className="class-area pt-100 pb-100">
+        <div className="container">
+          <div className="row">
 
+            {
+              currentCourses.filter((course) => {
+                if (searchdata == "") {
+                  return course
+                } else if (course.title.toLowerCase().includes(searchdata.toLowerCase())) {
+                  return course
+                }
+              }).map((course) => {
+                return (
+                  <div className="col-lg-4 col-md-6">
+                    <div className="single-class">
+                      <div className="class-image">
+                        <a onClick={() => singleCourse(course._id)}>
+                          <img src="assets/img/class/class-1.jpg" alt="image" />
+                        </a>
+                      </div>
+                      <div className="class-content">
+                        <div className="price">$880</div>
+                        <h3>
+                          <a href="#">{course.title}</a>
+                        </h3>
+                        <p>{course.description}</p>
+                        <ul className="class-list">
+                          <li>
+                            <span>Age:</span>
+                            3-5 Year
+                          </li>
+                          <li>
+                            <span>Time:</span>
+                            8-10 AM
+                          </li>
+                          <li>
+                            <span>Seat:</span>
+                            25
+                          </li>
+                        </ul>
+                        <div className="class-btn">
+                          <a className="default-btn">Join Class</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
 
-             
-              
+            }
 
-    }
-
-        <div className="col-lg-12 col-md-12">
-          <div className="pagination-area">
-            <a href="#" className="prev page-numbers">
-              <i className="bx bx-chevron-left" />
-            </a>
-            <a href="#" className="page-numbers">1</a>
-            <span className="page-numbers current" aria-current="page">2</span>
-            <a href="#" className="page-numbers">3</a>
-            <a href="#" className="page-numbers">4</a>
-            <a href="#" className="next page-numbers">
-              <i className="bx bx-chevron-right" />
-            </a>
-          </div>
-        </div>
-      </div>
+            <div className="col-lg-12 col-md-12">
+              <div className="pagination-area">
+                <Pagination
+                  coursesPerPage={coursesPerPage}
+                  totalCourses={listcourses.length}
+                  paginate={paginate}
+                />
+              </div>
+            </div>
+            
     </div>
-    <div className="class-shape">
-      <div className="shape-1">
-        <img src="assets/img/class/class-shape-1.png" alt="image" />
-      </div>
-      <div className="shape-2">
-        <img src="assets/img/class/class-shape-2.png" alt="image" />
-      </div>
     </div>
-  </div>
-
+    </section>
     </div>
-  
-  )
-}
-
-// </div>
-
-//         )
     
-// }
+        )
+    
+}
 
 export default Courses;

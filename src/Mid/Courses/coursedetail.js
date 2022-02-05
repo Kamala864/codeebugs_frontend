@@ -76,36 +76,27 @@ function CourseDetail() {
 
 
   return (
-    <section className="class-details-area mt-2">
+    <section className="class-details-area">
       <div className="container-fluid">
         <div className="row">
-         <div className="container">
-        <Header
-              value={language}
-              status={status}
-              code={code}
-              runCode={() => runCode()}
-              onChangeLanguage={({ value }) => setLanguage(value)}
-            />
-            </div>
-          <div className="col-lg-6 col-md-6">
+        
+          <div className="col-lg-6 col-md-12  ">
             
-            <div className="class-details-desc">
+            <div className="class-details-desc bg-light">
               <div className="class-desc-image">
-                <div className="col-lg-6 col-md-6">
+                <div className="col-lg-6 col-md-6  ">
+                  
                   <ReactPlayer 
                     url={"http://localhost:5000/" + location.state.video}
                     controls
                     onProgress={handleWatchComplete}
                   />
-<<<<<<< HEAD
+                  
                 </div>
                 {progress}
 
-=======
->>>>>>> c8dc65e3f640625413a3994b4b0d99bf4c43f72d
 
-                <div className="tab class-details-tab">
+                <div className="tab class-details-tab bg-white">
                 <div className="row">
                   <div className="col-lg-12 col-md-6">
                     <ul className="tabs nav">
@@ -129,26 +120,34 @@ function CourseDetail() {
               </div>
               
             </div>
-          </div>
-         
-          <div className="col-lg-6 col-md-6" >
 
-         
-            
-            <CodeEditor
-              value={code}
-              onCodeChange={(text) => setCode(text)}
-              programmingLanguage={language}
+            <div className="col-lg-6 col-md-6 bg-dark" >
+              
+              <Header
+              value={language}
+              status={status}
+              code={code}
+              runCode={() => runCode()}
+              onChangeLanguage={({ value }) => setLanguage(value)}
             />
-            <div className="optionSegment" >
-               
-              <OutputLogs value={outputLogs} />
-            </div>
-          </div>
-        </div>
-      </div>
+         
+           
+              <CodeEditor
+                value={code}
+                onCodeChange={(text) => setCode(text)}
+                programmingLanguage={language}
+              />
+              
+              <div className="optionSegment mb-4 mt-4 " >
+                
+                <OutputLogs value={outputLogs} />
+              </div>
+              </div>
 
-      
+          </div>
+         
+         
+        </div>
 
     </section>
 

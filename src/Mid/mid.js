@@ -17,15 +17,11 @@ import ForgotPassword from "./forgot-password";
 import ResetPassword from "./reset-password";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-<<<<<<< HEAD
 import CourseAdd from "./Courses/addcourse";
 import CourseDetailUpdate from "./Courses/courseupdate";
 import UserDetailUpdate from "./Users/UserDetailUpdate";
 import AddChapter from "./Courses/addChapter";
 import LearnArea from "./Courses/learnArea";
-=======
-
->>>>>>> c8dc65e3f640625413a3994b4b0d99bf4c43f72d
 
 class Mid extends Component{
     render(){
