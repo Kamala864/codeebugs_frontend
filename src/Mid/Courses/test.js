@@ -1,0 +1,1 @@
+src/Mid/Courses/coursedetail.js

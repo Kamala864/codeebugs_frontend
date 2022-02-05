@@ -92,10 +92,10 @@ function CourseDetail() {
     <section className="class-details-area">
       <div className="container-fluid">
         <div className="row">
-        
-            <div className="class-details-desc bg-light">
+        <div className="col-lg-6 col-md-6">
+            <div className="class-details-desc">
               <div className="class-desc-image">
-                <div className="col-lg-12 col-md-12">
+                <div className="col-lg-6 col-md-6">
                   
                   <ReactPlayer 
                     url={url}
@@ -105,7 +105,7 @@ function CourseDetail() {
                 {progress}
 
 
-                <div className="tab class-details-tab bg-white">
+                <div className="tab class-details-tab ml-3 bg-white">
                   <div className="row">
                       <ul className="tabs nav">
                         <li className="nav-item">
@@ -127,9 +127,20 @@ function CourseDetail() {
                           )
                         })}
                       </ul>
+             
+               </div>
+            </div>
             </div>
 
-            <div className="col-lg-6 col-md-6 bg-dark" >
+            
+
+          </div>
+         
+         
+        </div>
+                 </div>
+
+                 <div className="col-lg-6 col-md-6 bg-dark" >
               
               <Header
               value={language}
@@ -150,17 +161,9 @@ function CourseDetail() {
                 <OutputLogs value={outputLogs} />
               </div>
               </div>
-              </div>
-            </div>
-
-            
-
-          </div>
-         
-         
-        </div>
       </div>
       </div>
+      
 
     </section>
 
