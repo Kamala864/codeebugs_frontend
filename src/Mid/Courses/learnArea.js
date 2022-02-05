@@ -8,7 +8,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 
 
@@ -16,21 +16,8 @@ function LearnArea() {
 
     const [course, setCourse] = useState([])
 
-    const { idd } = useParams()
-    console.log(idd)
+    const location = useLocation()
 
-
-    useEffect(() => {
-        axios.get("http://localhost:5000/course/" + idd)
-            .then(res => {
-                setCourse(res.data)
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
-    }, []);
 
     const playVideo=(chapter)=>{
         <div>
@@ -67,11 +54,11 @@ function LearnArea() {
                 <button >Practice Now</button>
 
             </div>
-            <h2>{course.courseTitle}</h2>
+            <h2>{location.state.courseTitle}</h2>
 
             <div className="tutorial">
                     {
-                        course.tutorial.map(chapter => (
+                        location.state.tutorial.map(chapter => (
                             <div key={chapter._id}>
                                 <a href="#" onClick={playVideo}>{chapter.chapterName}</a>
                                 <div className="column right">
@@ -91,9 +78,9 @@ function LearnArea() {
 
             <div>
                 <h3 className="description">Description</h3>
-                <p className="desContent">{course.courseDescription}</p>
+                <p className="desContent">{location.state.courseDescription}</p>
             </div>
-            <h3 className="tutor">Tutor : {course.tutorName}</h3>
+            <h3 className="tutor">Tutor : {location.state.tutorName}</h3>
         </div>
 
     )

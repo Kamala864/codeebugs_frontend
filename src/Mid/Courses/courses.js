@@ -46,6 +46,10 @@ function Courses() {
       )
   }
 
+  const redirect = (course_id) => {
+        navigate(`/courses/${course_id}`)
+  }
+
   return (
     <div>
       <div className="page-banner-area item-bg1"> 
@@ -83,7 +87,7 @@ function Courses() {
                   <div className="col-lg-4 col-md-6">
                     <div className="single-class">
                       <div className="class-image">
-                        <a onClick={() => singleCourse(course._id)}>
+                        <a onClick={() => redirect(course._id)}>
                           <img src="assets/img/class/class-1.jpg" alt="image" />
                         </a>
                       </div>

@@ -34,7 +34,7 @@ class Mid extends Component{
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<UserProfile/>} />
             <Route path="/courses" element={<Courses/>} />
-            <Route path="/courses/:coursetitle" element={<CourseDetail/>} />
+            <Route path="/courses/:id" element={<CourseDetail/>} />
             <Route path="/courseinsert" element={<CourseInsert/>} />
             <Route path="/admin" element={<Admindashboard/>} />
             <Route path="/admin/users" element={<UserDashboard/>} />
