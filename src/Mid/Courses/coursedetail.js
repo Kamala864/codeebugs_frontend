@@ -89,35 +89,24 @@ function CourseDetail() {
 
 
   return (
-    <section className="class-details-area mt-2">
+    <section className="class-details-area">
       <div className="container-fluid">
         <div className="row">
-          <div className="container">
-            <Header
-              value={language}
-              status={status}
-              code={code}
-              runCode={() => runCode()}
-              onChangeLanguage={({ value }) => setLanguage(value)}
-            />
-          </div>
-          <div className="col-lg-6 col-md-6">
-
-            <div className="class-details-desc">
+        
+            <div className="class-details-desc bg-light">
               <div className="class-desc-image">
-                <div className="col-lg-6 col-md-6">
-                  <ReactPlayer
+                <div className="col-lg-12 col-md-12">
+                  
+                  <ReactPlayer 
                     url={url}
                     controls
                     onProgress={handleWatchComplete}
                   />
-                </div>
                 {progress}
 
 
-                <div className="tab class-details-tab">
+                <div className="tab class-details-tab bg-white">
                   <div className="row">
-                    <div className="col-lg-12 col-md-6">
                       <ul className="tabs nav">
                         <li className="nav-item">
                           <a href="#">
@@ -138,38 +127,42 @@ function CourseDetail() {
                           )
                         })}
                       </ul>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
             </div>
 
+            <div className="col-lg-6 col-md-6 bg-dark" >
+              
+              <Header
+              value={language}
+              status={status}
+              code={code}
+              runCode={() => runCode()}
+              onChangeLanguage={({ value }) => setLanguage(value)}
+            />
+         
+              <CodeEditor
+                value={code}
+                onCodeChange={(text) => setCode(text)}
+                programmingLanguage={language}
+              />
+              
+              <div className="optionSegment mb-4 mt-4 " >
+                
+                <OutputLogs value={outputLogs} />
+              </div>
+              </div>
+              </div>
+            </div>
+
+            
+
           </div>
+         
+         
         </div>
-
-        <div className="col-lg-6 col-md-6" >
-
-
-
-          <CodeEditor
-            value={code}
-            onCodeChange={(text) => setCode(text)}
-            programmingLanguage={language}
-          />
-          <div className="optionSegment" >
-
-            <OutputLogs value={outputLogs} />
-          </div>
-        </div>
+      </div>
       </div>
 
     </section>
-
-
-
 
   )
 

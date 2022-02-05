@@ -16,7 +16,7 @@ const InputEditor = ({ value, onInputChange }) => {
   return (
     <div>
       <AceEditor
-        className="inputeditor"
+        className="inputeditor "
         placeholder="Input Parameters"
         mode="python"
         theme="monokai"
