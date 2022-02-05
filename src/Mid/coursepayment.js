@@ -103,17 +103,24 @@ class CoursePayment extends Component {
     }
 
     else{
+      if (localStorage.getItem("courseID") === null){
+        window.location.href = "/courses"
+      }else{
       const data = {
         userID : localStorage.getItem("userID"),
         courseID : localStorage.getItem("courseID")
       }
-      axios.put("http://localhost:5000/enrollcourse")
+      
+      axios.put("http://localhost:5000/enrollcourse", data)
       .then((result) => {
-        localStorage.removeItem("courseID")
+       
         toast.success("Payment successful!", {
           position: toast.POSITION.TOP_CENTER})
+        window.location.href = "/courses"
+        localStorage.removeItem("courseID")
     })
     .catch()
+  }
      
         
     }
@@ -172,7 +179,18 @@ class CoursePayment extends Component {
     }
 
     else {
-      alert("Card verified!")
+      const data = {
+        userID : localStorage.getItem("userID"),
+        courseID : localStorage.getItem("courseID")
+      }
+      axios.put("http://localhost:5000/enrollcourse", data)
+      .then((result) => {
+        localStorage.removeItem("courseID")
+        toast.success("Payment successful!", {
+          position: toast.POSITION.TOP_CENTER})
+    })
+    .catch()
+     
 
     }
     return true;

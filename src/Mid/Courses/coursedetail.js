@@ -42,7 +42,7 @@ function CourseDetail() {
     const fetchStudent = async () => {
       const userID = localStorage.getItem("userID")
       console.log(id)
-      axios.get("http://localhost:5000/user/"+userID )
+      axios.get("http://localhost:5000/user/" + userID)
         .then(res => {
           setEnrolledCourses(res.data.enrolledCourses)
         })
@@ -103,34 +103,39 @@ function CourseDetail() {
   }
 
   const enroll = (e) => {
- 
-    if (localStorage.getItem("token")===null) {
+
+    if (localStorage.getItem("token") === null) {
       toast.error("Please login to enroll!", {
         position: toast.POSITION.TOP_CENTER
       })
       setTimeout(() => {
         window.location.href = "/login"
       }, 2000);
-      
+
     } else {
       localStorage.setItem("courseID", id)
-      window.location.href = "/payment"
+      toast.success("Please pay to enroll!", {
+        position: toast.POSITION.TOP_CENTER
+      })
+      setTimeout(() => {
+        window.location.href = "/payment"
+      }, 2000);
     }
   }
 
 
-  if (enrolledCourses.includes(id) === false){
-    var buttonEnroll = 
-    <li className="nav-item">
-      <button onClick={enroll}>
-        Enroll
-      </button>
-    </li>
+  if (enrolledCourses.includes(id) === false) {
+    var buttonEnroll =
+      <li className="nav-item">
+        <button onClick={enroll}>
+          Enroll
+        </button>
+      </li>
   } else {
     var buttonLesson =
       <li className="nav-item">
         <button>
-         Lessons
+          Lessons
         </button>
       </li>
   }
@@ -141,74 +146,77 @@ function CourseDetail() {
     <section className="class-details-area">
       <div className="container-fluid">
         <div className="row">
+          <div className="col-lg-6 col-md-6">
+            <div className="class-details-desc">
+              <div className="class-desc-image">
+                <div className="col-lg-6 col-md-6">
 
-          <div className="class-details-desc bg-light">
-            <div className="class-desc-image">
-              <div className="col-lg-12 col-md-12">
-
-                <ReactPlayer
-                  url={url}
-                  controls
-                  onProgress={handleWatchComplete}
-                />
-                {progress}
+                  <ReactPlayer
+                    url={url}
+                    controls
+                    onProgress={handleWatchComplete}
+                  />
+                  {progress}
 
 
-                <div className="tab class-details-tab bg-white">
-                  <div className="row">
-                    <ul className="tabs nav">
-                    <li className="nav-item">
-{buttonEnroll}
-{buttonLesson}
-</li>
-                    </ul>
-                    <ul className="tabs nav">
-                      {tutorial.map((chapter) => {
-                        return (
-                          <li className="nav-item" key={chapter._id}>
-                            <a href="#" onClick={(e) => {
-                              setUrl("http://localhost:5000/" + chapter.video)
-                            }}>
-                              {chapter.chapterName}
-                            </a>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </div>
+                  <div className="tab class-details-tab ml-3 bg-white">
+                    <div className="row">
+                      <ul className="tabs nav">
+                        <li className="nav-item">
+                          {buttonEnroll}
+                          {buttonLesson}
+                        </li>
+                      </ul>
+                      <ul className="tabs nav">
+                        {tutorial.map((chapter) => {
+                          return (
+                            <li className="nav-item" key={chapter._id}>
+                              <a href="#" onClick={(e) => {
+                                setUrl("http://localhost:5000/" + chapter.video)
+                              }}>
+                                {chapter.chapterName}
+                              </a>
+                            </li>
+                          )
+                        })}
+                      </ul>
 
-                  <div className="col-lg-6 col-md-6 bg-dark" >
-
-                    <Header
-                      value={language}
-                      status={status}
-                      code={code}
-                      runCode={() => runCode()}
-                      onChangeLanguage={({ value }) => setLanguage(value)}
-                    />
-
-                    <CodeEditor
-                      value={code}
-                      onCodeChange={(text) => setCode(text)}
-                      programmingLanguage={language}
-                    />
-
-                    <div className="optionSegment mb-4 mt-4 " >
-
-                      <OutputLogs value={outputLogs} />
                     </div>
                   </div>
                 </div>
+
+
+
               </div>
 
 
-
             </div>
+          </div>
 
+          <div className="col-lg-6 col-md-6 bg-dark" >
 
+            <Header
+              value={language}
+              status={status}
+              code={code}
+              runCode={() => runCode()}
+              onChangeLanguage={({ value }) => setLanguage(value)}
+            />
+
+            <CodeEditor
+              value={code}
+              onCodeChange={(text) => setCode(text)}
+              programmingLanguage={language}
+            />
+
+            <div className="optionSegment mb-4 mt-4 " >
+
+              <OutputLogs value={outputLogs} />
+            </div>
           </div>
         </div>
       </div>
+
 
     </section>
 
