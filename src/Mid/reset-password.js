@@ -86,7 +86,7 @@ class ResetPassword extends Component {
                     newPassword: this.state.newPassword
                }
                axios.put("http://localhost:5000/reset-password", data)
-               toast.success("your passwrod has been changed successfully!", {
+               toast.success("Your password has been changed successfully!", {
                     position: toast.POSITION.TOP_CENTER})
                setTimeout(() => {
                     window.location.href = "/login"

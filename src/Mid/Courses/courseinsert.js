@@ -51,7 +51,12 @@ class CourseInsert extends Component {
 
         try {
           console.log(values.tutorial)
-          axios.post('http://localhost:5000/addcourse',formData);
+          axios.post('http://localhost:5000/addcourse',formData)
+          .then((result) => {
+            toast.success("Course has been added!", {
+                position: toast.POSITION.TOP_CENTER})
+        })
+        .catch()
         }catch (err){
           console.log(err)
         }

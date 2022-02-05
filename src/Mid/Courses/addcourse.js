@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 
 class CourseAdd extends Component {
@@ -36,6 +37,8 @@ class CourseAdd extends Component {
         axios.post("http://localhost:5000/addcourse", data)
             .then((result) => {
                 console.log(result)
+                toast.success("Course has been added!", {
+                    position: toast.POSITION.TOP_CENTER})
             })
             .catch()
         // window.location.href="/courseinsert"

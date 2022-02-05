@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
-
+import { toast } from "react-toastify";
 
 // Project Imports
 import CodeEditor from "../Code Editor/codeeditor";
@@ -22,6 +22,7 @@ function CourseDetail() {
   const [url, setUrl] = useState("http://localhost:5000/");
   const [tutorial, setTutorial] = useState([]);
   const [course, setCourse] = useState([]);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
 
 
   useEffect(() => {
@@ -37,6 +38,20 @@ function CourseDetail() {
     }
 
     fetchCourse();
+
+    const fetchStudent = async () => {
+      const userID = localStorage.getItem("userID")
+      console.log(id)
+      axios.get("http://localhost:5000/user/"+userID )
+        .then(res => {
+          setEnrolledCourses(res.data.enrolledCourses)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
+    fetchStudent();
   }, []);
 
 
@@ -87,79 +102,112 @@ function CourseDetail() {
     </div>
   }
 
+  const enroll = (e) => {
+ 
+    if (localStorage.getItem("token")===null) {
+      toast.error("Please login to enroll!", {
+        position: toast.POSITION.TOP_CENTER
+      })
+      setTimeout(() => {
+        window.location.href = "/login"
+      }, 2000);
+      
+    } else {
+      localStorage.setItem("courseID", id)
+      window.location.href = "/payment"
+    }
+  }
+
+
+  if (enrolledCourses.includes(id) === false){
+    var buttonEnroll = 
+    <li className="nav-item">
+      <button onClick={enroll}>
+        Enroll
+      </button>
+    </li>
+  } else {
+    var buttonLesson =
+      <li className="nav-item">
+        <button>
+         Lessons
+        </button>
+      </li>
+  }
+
+
 
   return (
     <section className="class-details-area">
       <div className="container-fluid">
         <div className="row">
-        
-            <div className="class-details-desc bg-light">
-              <div className="class-desc-image">
-                <div className="col-lg-12 col-md-12">
-                  
-                  <ReactPlayer 
-                    url={url}
-                    controls
-                    onProgress={handleWatchComplete}
-                  />
+
+          <div className="class-details-desc bg-light">
+            <div className="class-desc-image">
+              <div className="col-lg-12 col-md-12">
+
+                <ReactPlayer
+                  url={url}
+                  controls
+                  onProgress={handleWatchComplete}
+                />
                 {progress}
 
 
                 <div className="tab class-details-tab bg-white">
                   <div className="row">
-                      <ul className="tabs nav">
-                        <li className="nav-item">
-                          <a href="#">
-                            {course.courseTitle}
-                          </a>
-                        </li>
-                      </ul>
-                      <ul className="tabs nav">
-                        {tutorial.map((chapter) => {
-                          return (
-                            <li className="nav-item" key={chapter._id}>
-                              <a href="#" onClick={(e) => {
-                                setUrl("http://localhost:5000/" + chapter.video)
-                              }}>
-                                {chapter.chapterName}
-                              </a>
-                            </li>
-                          )
-                        })}
-                      </ul>
+                    <ul className="tabs nav">
+                    <li className="nav-item">
+{buttonEnroll}
+{buttonLesson}
+</li>
+                    </ul>
+                    <ul className="tabs nav">
+                      {tutorial.map((chapter) => {
+                        return (
+                          <li className="nav-item" key={chapter._id}>
+                            <a href="#" onClick={(e) => {
+                              setUrl("http://localhost:5000/" + chapter.video)
+                            }}>
+                              {chapter.chapterName}
+                            </a>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+
+                  <div className="col-lg-6 col-md-6 bg-dark" >
+
+                    <Header
+                      value={language}
+                      status={status}
+                      code={code}
+                      runCode={() => runCode()}
+                      onChangeLanguage={({ value }) => setLanguage(value)}
+                    />
+
+                    <CodeEditor
+                      value={code}
+                      onCodeChange={(text) => setCode(text)}
+                      programmingLanguage={language}
+                    />
+
+                    <div className="optionSegment mb-4 mt-4 " >
+
+                      <OutputLogs value={outputLogs} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
             </div>
 
-            <div className="col-lg-6 col-md-6 bg-dark" >
-              
-              <Header
-              value={language}
-              status={status}
-              code={code}
-              runCode={() => runCode()}
-              onChangeLanguage={({ value }) => setLanguage(value)}
-            />
-         
-              <CodeEditor
-                value={code}
-                onCodeChange={(text) => setCode(text)}
-                programmingLanguage={language}
-              />
-              
-              <div className="optionSegment mb-4 mt-4 " >
-                
-                <OutputLogs value={outputLogs} />
-              </div>
-              </div>
-              </div>
-            </div>
-
-            
 
           </div>
-         
-         
         </div>
-      </div>
       </div>
 
     </section>

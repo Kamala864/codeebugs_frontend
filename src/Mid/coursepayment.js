@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Receipt from './paymentReceipt';
-import validator from 'validator';
+import {toast} from 'react-toastify';
+import axios from 'axios';
 
 class CoursePayment extends Component {
   state = {
@@ -102,7 +103,19 @@ class CoursePayment extends Component {
     }
 
     else{
-      alert("E-Sewa verified!")
+      const data = {
+        userID : localStorage.getItem("userID"),
+        courseID : localStorage.getItem("courseID")
+      }
+      axios.put("http://localhost:5000/enrollcourse")
+      .then((result) => {
+        localStorage.removeItem("courseID")
+        toast.success("Payment successful!", {
+          position: toast.POSITION.TOP_CENTER})
+    })
+    .catch()
+     
+        
     }
 
     return true;
@@ -160,6 +173,7 @@ class CoursePayment extends Component {
 
     else {
       alert("Card verified!")
+
     }
     return true;
   }

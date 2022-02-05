@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { toast }from "react-toastify";
 
 
 function AddChapter () {
@@ -30,7 +30,8 @@ function AddChapter () {
         console.log(chapterName)
         axios.put("http://localhost:5000/addchapter/" + id, data)
             .then((result) => {
-                console.log(result)
+                toast.success("Chapter has been added!", {
+                    position: toast.POSITION.TOP_CENTER})
             })
             .catch()
     }
