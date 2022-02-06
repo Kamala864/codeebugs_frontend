@@ -70,7 +70,7 @@ function Courses() {
               currentCourses.filter((course) => {
                 if (searchdata == "") {
                   return course
-                } else if (course.title.toLowerCase().includes(searchdata.toLowerCase())) {
+                } else if (course.courseTitle.toLowerCase().includes(searchdata.toLowerCase())) {
                   return course
                 }
               }).map((course) => {
