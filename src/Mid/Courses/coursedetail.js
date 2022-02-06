@@ -40,12 +40,15 @@ function CourseDetail() {
     fetchCourse();
 
     const fetchStudent = async () => {
-      const userID = localStorage.getItem("userID")
-      console.log(id)
-      axios.get("http://localhost:5000/user/" + userID)
-        .then(res => {
-          setEnrolledCourses(res.data.enrolledCourses)
-        })
+       const data = {
+      userID : localStorage.getItem("userID")
+    }
+      axios.post("http://localhost:5000/enrolledCourses", data)
+      .then((res)=>{
+        console.log(res.data.enrolledCourses)
+        setEnrolledCourses(res.data.enrolledCourses)
+        console.log(enrolledCourses)
+      })
         .catch(err => {
           console.log(err)
         })
@@ -104,41 +107,41 @@ function CourseDetail() {
 
   const enroll = (e) => {
 
-    if (localStorage.getItem("token") === null) {
-      toast.error("Please login to enroll!", {
-        position: toast.POSITION.TOP_CENTER
-      })
-      setTimeout(() => {
-        window.location.href = "/login"
-      }, 2000);
+    // if (localStorage.getItem("token") === null) {
+    //   toast.error("Please login to enroll!", {
+    //     position: toast.POSITION.TOP_CENTER
+    //   })
+    //   setTimeout(() => {
+    //     window.location.href = "/login"
+    //   }, 2000);
 
-    } else {
-      localStorage.setItem("courseID", id)
-      toast.success("Please pay to enroll!", {
-        position: toast.POSITION.TOP_CENTER
-      })
-      setTimeout(() => {
-        window.location.href = "/payment"
-      }, 2000);
-    }
+    // } else {
+    //   localStorage.setItem("courseID", id)
+    //   toast.success("Please pay to enroll!", {
+    //     position: toast.POSITION.TOP_CENTER
+    //   })
+    //   setTimeout(() => {
+    //     window.location.href = "/payment"
+    //   }, 2000);
+    // }
   }
 
 
-  if (enrolledCourses.includes(id) === false) {
-    var buttonEnroll =
-      <li className="nav-item">
-        <button onClick={enroll}>
-          Enroll
-        </button>
-      </li>
-  } else {
-    var buttonLesson =
-      <li className="nav-item">
-        <button>
-          Lessons
-        </button>
-      </li>
-  }
+  // if (enrolledCourses.includes(id) === false) {
+  //   var buttonEnroll =
+  //     <li className="nav-item">
+  //       <button onClick={enroll}>
+  //         Enroll
+  //       </button>
+  //     </li>
+  // } else {
+  //   var buttonLesson =
+  //     <li className="nav-item">
+  //       <button>
+  //         Lessons
+  //       </button>
+  //     </li>
+  // }
 
 
 
@@ -163,8 +166,12 @@ function CourseDetail() {
                     <div className="row">
                       <ul className="tabs nav">
                         <li className="nav-item">
-                          {buttonEnroll}
-                          {buttonLesson}
+                        var buttonEnroll =
+      <li className="nav-item">
+        <button onClick={enroll}>
+          Enroll
+        </button>
+      </li>
                         </li>
                       </ul>
                       <ul className="tabs nav">
