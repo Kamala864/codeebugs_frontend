@@ -23,6 +23,7 @@ function CourseDetail() {
   const [tutorial, setTutorial] = useState([]);
   const [course, setCourse] = useState([]);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [courseIdList, setCourseIdList] = useState([]);
 
 
   useEffect(() => {
@@ -45,9 +46,12 @@ function CourseDetail() {
     }
       axios.post("http://localhost:5000/enrolledCourses", data)
       .then((res)=>{
-        console.log(res.data.enrolledCourses)
         setEnrolledCourses(res.data.enrolledCourses)
-        console.log(enrolledCourses)
+
+        res.data.enrolledCourses.forEach((courselist) => {
+          enrolledCourses.push(courselist)
+        })
+        
       })
         .catch(err => {
           console.log(err)
@@ -106,28 +110,32 @@ function CourseDetail() {
   }
 
   const enroll = (e) => {
+   
+    if (localStorage.getItem("token") === null) {
+      toast.error("Please login to enroll!", {
+        position: toast.POSITION.TOP_CENTER
+      })
+      setTimeout(() => {
+        window.location.href = "/login"
+      }, 2000);
 
-    // if (localStorage.getItem("token") === null) {
-    //   toast.error("Please login to enroll!", {
-    //     position: toast.POSITION.TOP_CENTER
-    //   })
-    //   setTimeout(() => {
-    //     window.location.href = "/login"
-    //   }, 2000);
-
-    // } else {
-    //   localStorage.setItem("courseID", id)
-    //   toast.success("Please pay to enroll!", {
-    //     position: toast.POSITION.TOP_CENTER
-    //   })
-    //   setTimeout(() => {
-    //     window.location.href = "/payment"
-    //   }, 2000);
-    // }
+    } else {
+      localStorage.setItem("courseID", id)
+      toast.success("Please pay to enroll!", {
+        position: toast.POSITION.TOP_CENTER
+      })
+      setTimeout(() => {
+        window.location.href = "/payment"
+      }, 2000);
+    }
   }
 
+   enrolledCourses.forEach((courses) => {
+      courseIdList.push(courses.courseID)
+    })
 
-  if (enrolledCourses.includes(id) === false) {
+  if (courseIdList.includes(id) === false) {
+    console.log(id)
     var buttonEnroll =
       <button className="btn-success float-right" style={{marginRight: "270px"}} onClick={enroll}>Enroll Now</button>
   } else {
