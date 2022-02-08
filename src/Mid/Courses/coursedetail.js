@@ -135,7 +135,6 @@ function CourseDetail() {
     })
 
   if (courseIdList.includes(id) === false) {
-    console.log(id)
     var buttonEnroll =
       <button className="btn-success float-right" style={{marginRight: "270px"}} onClick={enroll}>Enroll Now</button>
   } else {
