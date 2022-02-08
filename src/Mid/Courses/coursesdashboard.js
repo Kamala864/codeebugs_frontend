@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import {toast } from "react-toastify"
 
 
 function CourseDashboard(){
@@ -45,9 +45,14 @@ function CourseDashboard(){
 
 const deleteproduct=(pro_idd)=>{
     axios.delete("http://localhost:5000/deletecourse/" + pro_idd )
-    .then()
+    .then(()=>{
+      toast.success("The course has been deleted!")
+      setTimeout(() => {
+        window.location.href = "/coursedashboard"
+      }, 2000);}
+    )
     .catch()
-    window.location.href="/coursedashboard"
+
 }
 
         return(
