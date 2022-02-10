@@ -1,0 +1,17 @@
+{
+  "name": "codeebugsbddtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": { 
+    "test":"cucumber-js features" 
+   },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "chromedriver": "^98.0.0",
+    "@cucumber/cucumber": "^7.0.0",
+    "selenium-webdriver": "^4.1.1"
+  }
+}

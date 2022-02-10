@@ -231,29 +231,29 @@ class Login extends Component {
               <div className="form-container sign-up-container">
                 <form action="post">
                   <h1>Create Account</h1>
-                  <input type="text" name="full_name" placeholder="Full Name" value={this.state.full_name} onChange={this.changeState} />
+                  <input type="text" name="full_name" placeholder="Full Name" id="full_name" value={this.state.full_name} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.full_nameError}</div>
-                  <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeState} />
+                  <input type="text" name="email" placeholder="Email" id="email" value={this.state.email} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.emailError}</div>
-                  <input type="number" name="age" placeholder="Age" value={this.state.age} onChange={this.changeState} />
+                  <input type="number" name="age" placeholder="Age" id= "age" value={this.state.age} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.ageError}</div>
-                  <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeState} />
+                  <input type="password" name="password" placeholder="Password" id= "password" value={this.state.password} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.passwordError}</div>
-                  <input type="password" name="confirm_password" placeholder="Confirm Password" value={this.state.confirm_password} onChange={this.changeState} />
+                  <input type="password" name="confirm_password" placeholder="Confirm Password" id= "confirm_password" value={this.state.confirm_password} onChange={this.changeState} />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.confirmPasswordError}</div>
-                  <button onClick={this.register} >Sign Up</button>
+                  <button id="btnSignup" onClick={this.register} >Sign Up</button>
                 </form>
               </div>
               <div className="form-container sign-in-container">
                 <form action="post">
                   <h1>Sign in</h1>
-                  <input type="email" name="loginemail" value={this.state.loginemail} onChange={this.changeState} placeholder="Email" />
+                  <input type="email" name="loginemail" id="loginemail" value={this.state.loginemail} onChange={this.changeState} placeholder="Email" />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.loginEmailError}</div>
-                  <input type="password" name="loginpassword" value={this.state.loginpassword} onChange={this.changeState} placeholder="Password" />
+                  <input type="password" name="loginpassword" id= "loginpassword" value={this.state.loginpassword} onChange={this.changeState} placeholder="Password" />
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.loginPasswordError}</div>
                   <div style={{ color: "red", fontSize: "small" }}>{this.state.invalidLoginError}</div>
                   <a onClick={this.forgotPassword}>Forgot your password?</a>
-                  <button type="submit" onClick={this.login}>Sign In</button>
+                  <button type="submit" id="login_signin" onClick={this.login}>Sign In</button>
                 </form>
               </div>
               <div className="overlay-container">
