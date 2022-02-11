@@ -126,7 +126,7 @@ class Header extends Component {
             <div className="main-responsive-menu">
               <div className="logo">
                 <a href="/">
-                  <img src="logo.png" alt="image" />
+                  <img id="logo" src="logo.png" alt="image" />
                 </a>
               </div>
             </div>

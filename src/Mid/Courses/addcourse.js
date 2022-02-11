@@ -39,6 +39,7 @@ class CourseAdd extends Component {
                 console.log(result)
                 toast.success("Course has been added!", {
                     position: toast.POSITION.TOP_CENTER})
+                    window.location.href="/admin/courses"
             })
             .catch()
         // window.location.href="/courseinsert"
@@ -53,17 +54,17 @@ class CourseAdd extends Component {
                             <form>
                                 <h1>Add Course</h1>
                                 <div class="row">
-                                    <input type="text" name="courseTitle" placeholder="Course Title"
+                                    <input type="text" name="courseTitle" id='courseTitle' placeholder="Course Title"
                                         value={this.state.courseTitle} onChange={this.textChangeHandler} />
-                                    <input type="text" name="courseDescription" placeholder="Course Description"
+                                    <input type="text" name="courseDescription" id='courseDescription' placeholder="Course Description"
                                         value={this.state.courseDescription} onChange={this.textChangeHandler} />
-                                    <input type="text" name="coursePrice" placeholder="Course Price"
+                                    <input type="text" name="coursePrice" id='coursePrice' placeholder="Course Price"
                                         value={this.state.coursePrice} onChange={this.textChangeHandler} />
-                                    <input type="text" name="tutorName" placeholder="Course Lecturer"
+                                    <input type="text" name="tutorName" id='tutorName' placeholder="Course Lecturer"
                                         value={this.state.tutorName} onChange={this.textChangeHandler} />
                                     <label>Upload Course Image</label>
                                     <input type="file" accept="image/*" name="filename" onChange={this.fileChangeHandler} />
-                                    <div className="center"><button type="submit" onClick={this.sendData}>Add</button></div>
+                                    <div className="center"><button type="submit" id='btnAdd' onClick={this.sendData}>Add</button></div>
                                 </div>
                             </form>
                         </div>

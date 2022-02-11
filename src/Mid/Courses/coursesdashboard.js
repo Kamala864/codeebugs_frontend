@@ -48,7 +48,7 @@ const deleteproduct=(pro_idd)=>{
     .then(()=>{
       toast.success("The course has been deleted!")
       setTimeout(() => {
-        window.location.href = "/coursedashboard"
+        window.location.href = "/admin/courses"
       }, 2000);}
     )
     .catch()
@@ -96,7 +96,7 @@ const deleteproduct=(pro_idd)=>{
         </li>
         <li className="nav-item sidebar-actions">
           <a href="/courseinsert"><span className="nav-link">
-            <button className="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a Course</button>
+            <button id="addCourseAdmin" className="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a Course</button>
           </span></a>
         </li>
         <li className="nav-item sidebar-actions">
@@ -151,7 +151,7 @@ const deleteproduct=(pro_idd)=>{
                     
                     
                     <button onClick={e => {CourseDetailUpdate(courses._id)}} className="btn-success bg-success m-4">Update</button>
-                    <button onClick={e => {deleteproduct(courses._id)}} className="btn-danger bg-danger m-4">Delete</button>
+                    <button id='courseDelete' onClick={e => {deleteproduct(courses._id)}} className="btn-danger bg-danger m-4">Delete</button>
                     </tr>
                     
                     
