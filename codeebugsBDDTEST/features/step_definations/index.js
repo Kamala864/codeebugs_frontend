@@ -13,8 +13,9 @@ Given('Test registration functionality', {timeout: 30000}, async function (){
     await driver.findElement(By.id("password")).sendKeys("12345678");
     await driver.findElement(By.id("confirm_password")).sendKeys("12345678");
     await driver.sleep(delay);
+    await driver.findElement(By.id("btnSignup")).click()
     await driver.wait(until.elementLocated(By.id("loginemail")), 30000);
-    expect(await driver.wait(until.elementLocated(by.id("loginemail"))));
+    expect(await driver.wait(until.elementLocated(By.id("loginemail"))));
     await driver.quit()
 
 })
