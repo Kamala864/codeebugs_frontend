@@ -19,6 +19,7 @@ import CourseDetailUpdate from "./Courses/courseupdate";
 import UserDetailUpdate from "./Users/UserDetailUpdate";
 import AddChapter from "./Courses/addChapter";
 import CourseAdd from "./Courses/addcourse";
+import AdminLogin from "../AdminLogin/adminLogin";
 
 class Mid extends Component{
     render(){
@@ -44,6 +45,7 @@ class Mid extends Component{
             <Route path="/editor" element={<Editor/>}/>
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
             <Route path="/reset-password" element={<ResetPassword/>}/>
+            <Route path="/admin-login" element={<AdminLogin/>}/>
             </Routes>
             <ToastContainer autoClose={2000} theme="colored"/>
             </>
