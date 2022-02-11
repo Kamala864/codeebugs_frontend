@@ -36,6 +36,37 @@ Given ('Test login functionality', {timeout:40000}, async function(){
     
     await driver.wait(until.elementLocated(By.id("logo")), 30000);
     expect(await driver.wait(until.elementLocated(By.id("logo"))));
-    await driver.quit()
+    //await driver.quit()
 
+})
+
+Given ('Test adding course functionality', {timeout: 40000}, async function(){
+    var webdriver = require('selenium-webdriver');
+    var driver = new webdriver.Builder().forBrowser('chrome').build();
+
+    await driver.get("http://localhost:3000/courseinsert");
+
+    await driver.findElement(By.id("courseTitle")).sendKeys("testBDD");
+    await driver.findElement(By.id("courseDescription")).sendKeys("testBDD");
+    await driver.findElement(By.id("coursePrice")).sendKeys("700");
+    await driver.findElement(By.id("tutorName")).sendKeys("testBDD");
+    await driver.findElement(By.id("btnAdd")).click()
+
+    await driver.wait(until.elementLocated(By.id('courseDelete')), 30000);
+    expect(await driver.wait(until.elementLocated(By.id("courseDelete"))));
+    //await driver.quit();
+})
+
+Given('Test deleting course functionality', {timeout:40000}, async function(){
+    var webdriver = require('selenium-webdriver');
+    var driver = new webdriver.Builder().forBrowser('chrome').build();
+
+    await driver.get("http://localhost:3000/admin/courses");
+
+    await driver.findElement(By.id('courseDelete')).click();
+
+    await driver.wait(until.elementLocated(By.id('addCourseAdmin')), 30000);
+    expect(await driver.wait(until.elementLocated(By.id("addCourseAdmin"))));
+    await driver.quit();
+    
 })
